@@ -5,6 +5,8 @@
  */
 package plus_life;
 
+import Banco_de_dados.Conexao;
+
 /**
  *
  * @author HARDWARE
@@ -14,8 +16,10 @@ public class Plus_Life {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) throws Exception {
+        Conexao con = new Conexao();
+        
+        con.abrir();
     }
     
 }
