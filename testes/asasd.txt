@@ -1,0 +1,7 @@
+CampoNome
+CampoCPF
+CampoRG
+CampoCRM
+CampoTelefone
+CampoEndereco
+CheckMasculino       CheckFeminino

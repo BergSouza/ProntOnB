@@ -5,6 +5,8 @@
  */
 package Telas;
 import Banco_de_dados.Conexao;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -24,19 +26,28 @@ public class cadastrar_convenios extends javax.swing.JFrame {
     }
     
     public void adiciona() throws Exception{ 
-        Conexao conexao = new Conexao();
-        conexao.abrir();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/pluslife", "root", "");
+            
+            String sql = "INSERT INTO convenios(nome_convenio,endereco_convenio,telefone_convenio,cnpj_convenio,plano_convenio) VALUES(?,?,?,?,?)";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, CampoNome.getText());
+            stmt.setString(2, CampoEndereco.getText());
+            stmt.setString(3, CampoTelefone.getText());
+            stmt.setString(4, CampoCNPJ.getText());
+            stmt.setString(5, CampoPlano.getText());
+            stmt.execute();
+            stmt.close(); 
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
-        String sql = "INSERT INTO convenios(nome_convenio,endereco_convenio,telefone_convenio,cnpj_convenio,plano_convenio) VALUES(?,?,?,?,?)";
-        PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setString(1, CampoNome.getText());
-        stmt.setString(2, CampoEndereco.getText());
-        stmt.setString(3, CampoTelefone.getText());
-        stmt.setString(4, CampoCNPJ.getText());
-        stmt.setString(5, CampoPlano.getText());
-        stmt.execute();
-        stmt.close(); 
         
     } 
 
@@ -124,6 +135,11 @@ public class cadastrar_convenios extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 100, 30));
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 100, 30));
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 310));
 
@@ -150,6 +166,10 @@ public class cadastrar_convenios extends javax.swing.JFrame {
             Logger.getLogger(cadastrar_convenios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
