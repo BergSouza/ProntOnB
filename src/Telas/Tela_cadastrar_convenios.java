@@ -12,24 +12,24 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.PreparedStatement;
+import Banco_de_dados.Conexao;
 /**
  *
  * @author HARDWARE
  */
-public class cadastrar_convenios extends javax.swing.JFrame {
+public class Tela_cadastrar_convenios extends javax.swing.JFrame {
 
     /**
      * Creates new form cadastrar_convenios
      */
-    public cadastrar_convenios() {
+    public Tela_cadastrar_convenios() {
         initComponents();
     }
     
     public void adiciona() throws Exception{ 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            
-            Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/pluslife", "root", "");
+            Conexao conexao = new Conexao();
+            Connection con = conexao.abrir();
             
             String sql = "INSERT INTO convenios(nome_convenio,endereco_convenio,telefone_convenio,cnpj_convenio,plano_convenio) VALUES(?,?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -163,7 +163,7 @@ public class cadastrar_convenios extends javax.swing.JFrame {
             adiciona();
             
         } catch (Exception ex) {
-            Logger.getLogger(cadastrar_convenios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_cadastrar_convenios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -188,20 +188,21 @@ public class cadastrar_convenios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(cadastrar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_cadastrar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(cadastrar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_cadastrar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(cadastrar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_cadastrar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(cadastrar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_cadastrar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new cadastrar_convenios().setVisible(true);
+                new Tela_cadastrar_convenios().setVisible(true);
             }
         });
     }

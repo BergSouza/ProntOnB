@@ -1,3 +1,17 @@
+
+CADASTRO MÉDICO
+
+id_medico
+
+nome_medico 1
+cpf_medico 2
+rg_medico 3
+crm_medico 4
+telefone_medico 5
+endereco_medico 6
+sexo_medico 7
+senha_medico 8
+
 CampoNome
 CampoCPF
 CampoRG
@@ -5,3 +19,46 @@ CampoCRM
 CampoTelefone
 CampoEndereco
 CheckMasculino       CheckFeminino
+CampoSenha
+
+
+
+
+CADASTRO SECRETÁRIA
+
+id_secretária
+
+identity
+nome_secretaria
+cpf_secretaria
+rg_secretaria
+telefone_secretaria
+endereco_secretaria
+sexo_secretaria
+senha_secretaria
+
+CampoIdentity 1
+CampoNome 2
+CampoCPF 3
+CampoRG 4 
+CampoTelefone 5
+CampoEndereco 6
+CheckMasculino 7        CheckFeminino
+CampoSenha 8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

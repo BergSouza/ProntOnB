@@ -6,6 +6,7 @@
 package plus_life;
 
 import Banco_de_dados.Conexao;
+import Telas.Tela_login;
 
 /**
  *
@@ -17,9 +18,9 @@ public class Plus_Life {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-        Conexao con = new Conexao();
-        
-        con.abrir();
+        Tela_login login = new Tela_login();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null);
     }
     
 }
