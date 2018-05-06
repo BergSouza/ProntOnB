@@ -5,9 +5,13 @@
  */
 package Telas;
 
+import Banco_de_dados.Conexao;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import plus_life.Plus_Life;
 
 /**
  *
@@ -40,19 +44,19 @@ public class Tela_login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jbtn_Logar = new javax.swing.JButton();
-        CampoSenha = new javax.swing.JPasswordField();
+        CampoPass = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel5 = new javax.swing.JLabel();
+        txtVersao = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtNovidades = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        PainelAjuda = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
+        PainelNovidades = new javax.swing.JTextPane();
 
         jCheckBox1.setBackground(new java.awt.Color(102, 153, 255));
         jCheckBox1.setText("Secretária");
@@ -73,6 +77,11 @@ public class Tela_login extends javax.swing.JFrame {
         setTitle("Login");
         setBackground(new java.awt.Color(0, 0, 0));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
@@ -107,14 +116,13 @@ public class Tela_login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CampoSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbtn_Logar, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(CampoA)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(CampoPass)
+                    .addComponent(CampoA)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtn_Logar, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,14 +135,13 @@ public class Tela_login extends javax.swing.JFrame {
                 .addComponent(CampoA, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CampoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jbtn_Logar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CampoPass, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jbtn_Logar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 0, 210, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 210, 350));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -143,9 +150,9 @@ public class Tela_login extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("PlusLife");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel5.setText("v0.7");
+        txtVersao.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtVersao.setForeground(new java.awt.Color(102, 153, 255));
+        txtVersao.setText("v0.0");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 153, 255));
@@ -158,13 +165,11 @@ public class Tela_login extends javax.swing.JFrame {
         jLabel8.setText("Ajuda:");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jTextPane1.setEditable(false);
-        jTextPane1.setText("Identity: é o código único entre todos os usuários.Ex: O identity de um médico é diferente de uma secretária, e ambos diferentes de todos os outros.");
-        jScrollPane1.setViewportView(jTextPane1);
+        PainelAjuda.setEditable(false);
+        jScrollPane1.setViewportView(PainelAjuda);
 
-        jTextPane2.setEditable(false);
-        jTextPane2.setText("v0.6:  PlusLife conta com o Identity.");
-        jScrollPane2.setViewportView(jTextPane2);
+        PainelNovidades.setEditable(false);
+        jScrollPane2.setViewportView(PainelNovidades);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -191,7 +196,7 @@ public class Tela_login extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5)))
+                                .addComponent(txtVersao)))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -212,7 +217,7 @@ public class Tela_login extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(txtVersao)
                     .addComponent(jLabel6))
                 .addContainerGap())
         );
@@ -227,29 +232,98 @@ public class Tela_login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jbtn_LogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_LogarActionPerformed
-       
-        if(CampoA.getText() == "r"){
-            if(CampoSenha.getText() == "r"){
-                dispose();
-                Tela_Administrador tela_admin = new Tela_Administrador();
-                tela_admin.setVisible(true);
-                tela_admin.setLocationRelativeTo(null);
+        try {                                           
+            String identity = CampoA.getText();
+            String senha = CampoPass.getText();
+            
+            Conexao conexao = new Conexao();
+            Connection con = conexao.abrir();
+            
+            java.sql.Statement st = con.createStatement();
+            st.executeQuery("select identity,senha_admin from administradores");
+            ResultSet rs = st.getResultSet();
+            
+            int login = 0;
+            
+            while(rs.next()){
+                if(rs.getString("identity").equals(identity) && rs.getString("senha_admin").equals(senha)){
+                    dispose();
+                    Tela_Administrador tela_admin = new Tela_Administrador();
+                    tela_admin.setVisible(true);
+                    tela_admin.setLocationRelativeTo(null);
+                    tela_admin.atualizar();
+                    login = 1;
+                    try {
+                        tela_admin.MostraSecs();
+                    } catch (Exception ex) {
+                        Logger.getLogger(Tela_login.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Login inválido!");
-        }
-        
-        /*TEMPORÁRIO*/
-            dispose();
-            Tela_Administrador tela_admin = new Tela_Administrador();
-            tela_admin.setVisible(true);
-            tela_admin.setLocationRelativeTo(null);
-        try {
-            tela_admin.MostraSecs();
+            
+            
+            
+            java.sql.Statement st2 = con.createStatement();
+            st2.executeQuery("select * from medicos");
+            ResultSet rs2 = st2.getResultSet();
+            
+            
+            while(rs2.next()){
+                if(rs2.getString("identity").equals(identity) && rs2.getString("senha_medico").equals(senha)){
+                    dispose();
+                    Tela_Administrador tela_admin = new Tela_Administrador();
+                    tela_admin.setVisible(true);
+                    tela_admin.setLocationRelativeTo(null);
+                    login = 1;
+                    try {
+                        tela_admin.MostraSecs();
+                    } catch (Exception ex) {
+                        Logger.getLogger(Tela_login.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            
+            
+            
+            java.sql.Statement st3 = con.createStatement();
+            st3.executeQuery("select * from secs");
+            ResultSet rs3 = st3.getResultSet();
+            
+            
+            while(rs3.next()){
+                if(rs3.getString("identity").equals(identity) && rs3.getString("senha_secs").equals(senha)){
+                    dispose();
+                    Tela_Administrador tela_admin = new Tela_Administrador();
+                    tela_admin.setVisible(true);
+                    tela_admin.setLocationRelativeTo(null);
+                    login = 1;
+                    try {
+                        tela_admin.MostraSecs();
+                    } catch (Exception ex) {
+                        Logger.getLogger(Tela_login.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            
+            if(login == 0){
+                JOptionPane.showMessageDialog(null, "Login Inválido");
+            }
+            
+            /*TEMPORÁRIO*/
+            
         } catch (Exception ex) {
             Logger.getLogger(Tela_login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtn_LogarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Plus_Life pl = new Plus_Life();
+        String versao = pl.getVersao();
+        txtVersao.setText("v"+versao);
+        
+        PainelNovidades.setText(pl.getNovidades());
+        PainelAjuda.setText(pl.getAjuda());
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -288,7 +362,9 @@ public class Tela_login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CampoA;
-    private javax.swing.JPasswordField CampoSenha;
+    private javax.swing.JPasswordField CampoPass;
+    private javax.swing.JTextPane PainelAjuda;
+    private javax.swing.JTextPane PainelNovidades;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
@@ -296,7 +372,6 @@ public class Tela_login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -305,9 +380,8 @@ public class Tela_login extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
     private javax.swing.JButton jbtn_Logar;
     private javax.swing.JLabel txtNovidades;
+    private javax.swing.JLabel txtVersao;
     // End of variables declaration//GEN-END:variables
 }

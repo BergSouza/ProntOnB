@@ -18,14 +18,34 @@ import javax.swing.JOptionPane;
  *
  * @author HARDWARE
  */
-public class Tela_cadastrar_sec extends javax.swing.JFrame {
+public class Tela_editar_sec extends javax.swing.JFrame {
 
     /**
      * Creates new form tela_Sec
      */
-    public Tela_cadastrar_sec() {
+    public Tela_editar_sec() {
         initComponents();
+        
     }
+    
+    public String pegavalores(String identity,String id,String nome, String cpf, String rg,String telefone,String endereco, String sexo, String senha){
+        CampoIdentity.setText(identity);
+        identityy.setText(identity);
+        campoid.setText(id);
+        CampoNome.setText(nome);
+        CampoCPF.setText(cpf);
+        CampoRG.setText(rg);
+        CampoTelefone.setText(telefone);
+        CampoEndereco.setText(endereco);
+        if(sexo.equals("M")){
+            CheckMasculino.setSelected(true);
+        }if(sexo.equals("F")){
+            CheckFeminino.setSelected(true);
+        }
+        CampoSenha.setText(senha);
+        return "a";
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,7 +56,8 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField5 = new javax.swing.JTextField();
+        campoid = new javax.swing.JTextField();
+        identityy = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -63,7 +84,9 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
-        jTextField5.setText("jTextField5");
+        campoid.setEditable(false);
+
+        identityy.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +96,7 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Cadastro Secretário(a)");
+        jLabel9.setText("Editar Secretário(a)");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 386, 70));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_Azul.png"))); // NOI18N
@@ -197,7 +220,7 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(102, 153, 255));
-        jButton1.setText("Cadastrar");
+        jButton1.setText("Atualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -292,6 +315,9 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
             while(rs.next()){
                 if(rs.getString("identity").equals(CampoIdentity.getText())){
                     identity = 1;
+                    if(CampoIdentity.getText().equals(this.identityy.getText())){
+                    identity = 0;
+                }
                 }else{
                     
                 }
@@ -306,6 +332,9 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
             while(rs2.next()){
                 if(rs2.getString("identity").equals(CampoIdentity.getText())){
                     identity = 1;
+                    if(CampoIdentity.getText().equals(this.identityy.getText())){
+                    identity = 0;
+                }
                 }else{
                     
                 }
@@ -320,6 +349,9 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
             while(rs3.next()){
                 if(rs3.getString("identity").equals(CampoIdentity.getText())){
                     identity = 1;
+                    if(CampoIdentity.getText().equals(identityy.getText())){
+                    identity = 0;
+                    }
                 }else{
                     
                 }
@@ -336,7 +368,7 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
             }
             
             if(identity == 0){
-                String sql = "INSERT INTO secs(identity,nome_sec,cpf_sec,rg_sec,telefone_sec,endereco_sec,sexo_sec,senha_sec) VALUES(?,?,?,?,?,?,?,?)";
+                String sql = "UPDATE secs SET identity = ?,nome_sec = ?,cpf_sec = ?,rg_sec = ?,telefone_sec = ?,endereco_sec = ?,sexo_sec = ?,senha_sec = ? WHERE id_sec = ?";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1, CampoIdentity.getText());
                 stmt.setString(2, CampoNome.getText());
@@ -346,9 +378,10 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
                 stmt.setString(6, CampoEndereco.getText());
                 stmt.setString(7, SexoSec);
                 stmt.setString(8, CampoSenha.getText());
+                stmt.setString(9, campoid.getText());
                 stmt.execute();
                 stmt.close(); 
-                JOptionPane.showMessageDialog(null, "Secretário(a) cadastrado!");
+                JOptionPane.showMessageDialog(null, "Secretário(a) atualizado!");
             }
             
             
@@ -385,14 +418,18 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastrar_sec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_editar_sec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastrar_sec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_editar_sec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastrar_sec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_editar_sec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastrar_sec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_editar_sec.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -401,7 +438,7 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_cadastrar_sec().setVisible(true);
+                new Tela_editar_sec().setVisible(true);
             }
         });
     }
@@ -416,6 +453,8 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
     private javax.swing.JTextField CampoTelefone;
     private javax.swing.JCheckBox CheckFeminino;
     private javax.swing.JCheckBox CheckMasculino;
+    private javax.swing.JTextField campoid;
+    private javax.swing.JTextField identityy;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -432,6 +471,5 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }

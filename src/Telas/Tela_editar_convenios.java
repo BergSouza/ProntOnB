@@ -18,13 +18,23 @@ import javax.swing.JOptionPane;
  *
  * @author HARDWARE
  */
-public class Tela_cadastrar_convenios extends javax.swing.JFrame {
+public class Tela_editar_convenios extends javax.swing.JFrame {
 
     /**
      * Creates new form cadastrar_convenios
      */
-    public Tela_cadastrar_convenios() {
+    public Tela_editar_convenios() {
         initComponents();
+    }
+    
+    public String pegavalores(String id,String nome,String endereco, String telefone, String cnpj,String plano){
+        campoid.setText(id);
+        CampoNome.setText(nome);
+        CampoTelefone.setText(telefone);
+        CampoEndereco.setText(endereco);
+        CampoCNPJ.setText(cnpj);
+        CampoPlano.setText(plano);
+        return "a";
     }
     
     public void adiciona() throws Exception{ 
@@ -32,16 +42,17 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
             Conexao conexao = new Conexao();
             Connection con = conexao.abrir();
             
-            String sql = "INSERT INTO convenios(nome_convenio,endereco_convenio,telefone_convenio,cnpj_convenio,plano_convenio) VALUES(?,?,?,?,?)";
+            String sql = "UPDATE convenios SET nome_convenio = ?,endereco_convenio = ?,telefone_convenio = ?,cnpj_convenio = ?,plano_convenio = ? WHERE id_convenio = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, CampoNome.getText());
             stmt.setString(2, CampoEndereco.getText());
             stmt.setString(3, CampoTelefone.getText());
             stmt.setString(4, CampoCNPJ.getText());
             stmt.setString(5, CampoPlano.getText());
+            stmt.setString(6, campoid.getText());
             stmt.execute();
             stmt.close(); 
-            JOptionPane.showMessageDialog(null, "Convênio cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Convênio atualizado!");
             
         } catch (SQLException ex) {
             Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,6 +73,7 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        campoid = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -80,6 +92,8 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         CampoPlano = new javax.swing.JTextField();
 
+        campoid.setText("jTextField1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(380, 380));
@@ -90,7 +104,7 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cadastro Convênio");
+        jLabel1.setText("Editar Convênio");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 280, 50));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_Azul.png"))); // NOI18N
@@ -103,7 +117,7 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setForeground(new java.awt.Color(102, 153, 255));
-        jButton2.setText("Cancelar");
+        jButton2.setText("Voltar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -113,7 +127,7 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(102, 153, 255));
-        jButton1.setText("Cadastrar");
+        jButton1.setText("Atualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -197,7 +211,7 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
             adiciona();
             
         } catch (Exception ex) {
-            Logger.getLogger(Tela_cadastrar_convenios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_editar_convenios.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -222,21 +236,23 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastrar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_editar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastrar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_editar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastrar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_editar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastrar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_editar_convenios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_cadastrar_convenios().setVisible(true);
+                new Tela_editar_convenios().setVisible(true);
             }
         });
     }
@@ -247,6 +263,7 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
     private javax.swing.JTextField CampoNome;
     private javax.swing.JTextField CampoPlano;
     private javax.swing.JTextField CampoTelefone;
+    private javax.swing.JTextField campoid;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

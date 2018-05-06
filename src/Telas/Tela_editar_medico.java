@@ -19,15 +19,33 @@ import javax.swing.JOptionPane;
  *
  * @author HARDWARE
  */
-public class Tela_cadastrar_medico extends javax.swing.JFrame {
+public class Tela_editar_medico extends javax.swing.JFrame {
 
     /**
      * Creates new form cadastrar_medico
      */
-    public Tela_cadastrar_medico() {
+    public Tela_editar_medico() {
         initComponents();
     }
-
+    
+    public String pegavalores(String identity,String id,String nome, String cpf, String rg,String crm,String telefone, String endereco, String sexo,String senha){
+        CampoIdentity.setText(identity);
+        identityy.setText(identity);
+        campoid.setText(id);
+        CampoNome.setText(nome);
+        CampoCPF.setText(cpf);
+        CampoCRM.setText(crm);
+        CampoRG.setText(rg);
+        CampoTelefone.setText(telefone);
+        CampoEndereco.setText(endereco);
+        if(sexo.equals("M")){
+            CheckMasculino.setSelected(true);
+        }if(sexo.equals("F")){
+            CheckFeminino.setSelected(true);
+        }
+        CampoSenha.setText(senha);
+        return "a";
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,6 +57,8 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
 
         jLabel8 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
+        campoid = new javax.swing.JTextField();
+        identityy = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -71,6 +91,10 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
 
         jCheckBox1.setText("jCheckBox1");
 
+        campoid.setText("jTextField1");
+
+        identityy.setText("jTextField1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 11, 476, -1));
@@ -80,7 +104,7 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cadastro Médico");
+        jLabel1.setText("Editar Médico");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 50));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_Azul.png"))); // NOI18N
@@ -214,7 +238,7 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(102, 153, 255));
-        jButton2.setText("Cancelar\n");
+        jButton2.setText("Voltar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -225,7 +249,7 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(102, 153, 255));
-        jButton1.setText("Salvar\n");
+        jButton1.setText("Atualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -285,6 +309,9 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
             while(rs.next()){
                 if(rs.getString("identity").equals(CampoIdentity.getText())){
                     identity = 1;
+                    if(CampoIdentity.getText().equals(this.identityy.getText())){
+                    identity = 0;
+                }
                 }else{
                     
                 }
@@ -299,6 +326,9 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
             while(rs2.next()){
                 if(rs2.getString("identity").equals(CampoIdentity.getText())){
                     identity = 1;
+                    if(CampoIdentity.getText().equals(this.identityy.getText())){
+                    identity = 0;
+                }
                 }else{
                     
                 }
@@ -313,6 +343,9 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
             while(rs3.next()){
                 if(rs3.getString("identity").equals(CampoIdentity.getText())){
                     identity = 1;
+                    if(CampoIdentity.getText().equals(identityy.getText())){
+                    identity = 0;
+                    }
                 }else{
                     
                 }
@@ -322,6 +355,7 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Identity já existe");
             }
             
+            
             if(CheckMasculino.isSelected()){
                 SexoMedico = "M";
             }else if(CheckFeminino.isSelected()){
@@ -329,7 +363,7 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
             }
             
             if(identity == 0){
-                String sql = "INSERT INTO medicos(identity,nome_medico,cpf_medico,rg_medico,crm_medico,telefone_medico,endereco_medico,sexo_medico,senha_medico) VALUES(?,?,?,?,?,?,?,?,?)";
+                String sql = "UPDATE medicos SET identity = ?,nome_medico = ?,cpf_medico = ?,rg_medico = ?,crm_medico = ?,telefone_medico = ?,endereco_medico = ?,sexo_medico = ?,senha_medico = ? WHERE id_medico = ?";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1, CampoIdentity.getText());
                 stmt.setString(2, CampoNome.getText());
@@ -340,9 +374,10 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
                 stmt.setString(7, CampoEndereco.getText());
                 stmt.setString(8, SexoMedico);
                 stmt.setString(9, CampoSenha.getText());
+                stmt.setString(10, campoid.getText());
                 stmt.execute();
                 stmt.close(); 
-                JOptionPane.showMessageDialog(null, "Médico(a) cadastrado!");
+                JOptionPane.showMessageDialog(null, "Médico(a) atualizado!");
             }
             
             
@@ -353,7 +388,7 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(Tela_cadastrar_medico.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_editar_medico.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -382,21 +417,23 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastrar_medico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_editar_medico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastrar_medico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_editar_medico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastrar_medico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_editar_medico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastrar_medico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_editar_medico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_cadastrar_medico().setVisible(true);
+                new Tela_editar_medico().setVisible(true);
             }
         });
     }
@@ -412,6 +449,8 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
     private javax.swing.JTextField CampoTelefone;
     private javax.swing.JCheckBox CheckFeminino;
     private javax.swing.JCheckBox CheckMasculino;
+    private javax.swing.JTextField campoid;
+    private javax.swing.JTextField identityy;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
