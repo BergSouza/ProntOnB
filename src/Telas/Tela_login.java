@@ -270,8 +270,16 @@ public class Tela_login extends javax.swing.JFrame {
             
             while(rs2.next()){
                 if(rs2.getString("identity").equals(identity) && rs2.getString("senha_medico").equals(senha)){
-                    JOptionPane.showMessageDialog(null, "Tela do(a) médico(a) indisponível!");
+                    dispose();
+                    Tela_Administrador tela_admin = new Tela_Administrador();
+                    tela_admin.setVisible(true);
+                    tela_admin.setLocationRelativeTo(null);
                     login = 1;
+                    try {
+                        tela_admin.MostraSecs();
+                    } catch (Exception ex) {
+                        Logger.getLogger(Tela_login.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
             
@@ -283,9 +291,17 @@ public class Tela_login extends javax.swing.JFrame {
             
             
             while(rs3.next()){
-                if(rs3.getString("identity").equals(identity) && rs3.getString("senha_sec").equals(senha)){
-                    JOptionPane.showMessageDialog(null, "Tela do(a) secretário(a) indisponível!");
+                if(rs3.getString("identity").equals(identity) && rs3.getString("senha_secs").equals(senha)){
+                    dispose();
+                    Tela_Administrador tela_admin = new Tela_Administrador();
+                    tela_admin.setVisible(true);
+                    tela_admin.setLocationRelativeTo(null);
                     login = 1;
+                    try {
+                        tela_admin.MostraSecs();
+                    } catch (Exception ex) {
+                        Logger.getLogger(Tela_login.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
             
