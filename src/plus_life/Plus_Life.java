@@ -14,7 +14,7 @@ import Telas.Tela_login;
  */
 public class Plus_Life {
     
-    private String versao = "0.8";
+    private String versao = "0.8.1";
     private String novidades = "v0.8: Sistema do Administrador 100% funcional\n"
             + "v0.6: PlusLife conta com o Identity.";
     private String ajuda = "Identity: é o código único entre todos os usuários.Ex: O identity de um médico é diferente de uma secretária, e ambos diferentes de todos os outros.";
