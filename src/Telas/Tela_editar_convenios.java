@@ -95,6 +95,7 @@ public class Tela_editar_convenios extends javax.swing.JFrame {
         campoid.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Editar Convênio");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(380, 380));
         setResizable(false);

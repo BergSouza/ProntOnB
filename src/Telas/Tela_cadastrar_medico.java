@@ -72,6 +72,7 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
         jCheckBox1.setText("jCheckBox1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro Médico(a)");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 11, 476, -1));
@@ -94,14 +95,14 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Nome:*");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
         jPanel2.add(CampoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 183, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 153, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("CPF:");
+        jLabel3.setText("CPF:*");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 60, -1));
 
         CampoCPF.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +115,7 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 153, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("RG:");
+        jLabel4.setText("RG:*");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 50, -1));
 
         CampoRG.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +128,7 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 153, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("CRM:");
+        jLabel5.setText("CRM:*");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 60, -1));
 
         CampoCRM.addActionListener(new java.awt.event.ActionListener() {
@@ -140,24 +141,24 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 153, 255));
         jLabel6.setText("Telefone:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 153, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Endereço:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 100, 30));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 100, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 153, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Sexo:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 112, 60, 50));
+        jLabel9.setText("Sexo:*");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 112, 70, 50));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 153, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Senha:");
+        jLabel10.setText("Senha:*");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 80, -1));
 
         CampoTelefone.addActionListener(new java.awt.event.ActionListener() {
@@ -205,7 +206,7 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel12.setText("Identity:");
+        jLabel12.setText("Identity:*");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
         jPanel2.add(CampoIdentity, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 180, 30));
 
@@ -271,6 +272,37 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            int campos = 0;
+            if(CampoIdentity.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira um Identity!");
+                campos = 1;
+            }
+            if(CampoNome.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira um Nome!");
+                campos = 1;
+            }
+            if(CampoCPF.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira um CPF!");
+                campos = 1;
+            }
+            if(CampoRG.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira um RG!");
+                campos = 1;
+            }
+            if(CampoCRM.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira um CRM!");
+                campos = 1;
+            }
+            if(CheckMasculino.isSelected() || CheckFeminino.isSelected()){
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Selecione um Sexo!");
+                campos = 1;
+            }
+            if(CampoSenha.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira uma Senha!");
+                campos = 1;
+            }
             
             Conexao conexao = new Conexao();
             Connection con = conexao.abrir();
@@ -329,7 +361,7 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
                 SexoMedico = "F";
             }
             
-            if(identity == 0){
+            if(identity == 0 && campos == 0){
                 String sql = "INSERT INTO medicos(identity,nome_medico,cpf_medico,rg_medico,crm_medico,telefone_medico,endereco_medico,sexo_medico,senha_medico) VALUES(?,?,?,?,?,?,?,?,?)";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1, CampoIdentity.getText());
@@ -351,10 +383,13 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
             
         } catch (SQLException ex) {
             Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Algo deu errado!");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Algo deu errado!");
         } catch (Exception ex) {
             Logger.getLogger(Tela_cadastrar_medico.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Algo deu errado!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

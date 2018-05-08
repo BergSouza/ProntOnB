@@ -94,6 +94,7 @@ public class Tela_visualizar_convenios extends javax.swing.JFrame {
         campoid.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Visualizar Convênio");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(380, 380));
         setResizable(false);

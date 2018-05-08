@@ -89,6 +89,7 @@ public class Tela_editar_sec extends javax.swing.JFrame {
         identityy.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Editar Secretário(a)");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));

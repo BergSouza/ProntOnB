@@ -66,6 +66,7 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
         jTextField5.setText("jTextField5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro Secretário(a)");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 255));
@@ -85,13 +86,13 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel10.setText("Identity:");
+        jLabel10.setText("Identity:*");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
         jPanel2.add(CampoIdentity, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 248, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel1.setText("Nome:");
+        jLabel1.setText("Nome:*");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, 32));
 
         CampoNome.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +104,7 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel2.setText("CPF:");
+        jLabel2.setText("CPF:*");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
 
         CampoCPF.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +116,7 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel3.setText("RG:");
+        jLabel3.setText("RG:*");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
 
         CampoRG.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +153,7 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel7.setText("Sexo:");
+        jLabel7.setText("Sexo:*");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
 
         CheckMasculino.setBackground(new java.awt.Color(255, 255, 255));
@@ -179,7 +180,7 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel8.setText("Senha:");
+        jLabel8.setText("Senha:*");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, -1));
         jPanel2.add(CampoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 248, 30));
 
@@ -281,8 +282,33 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
             Connection con = conexao.abrir();
             
             String SexoSec = null;
-            
-            
+            int campos = 0;
+            if(CampoIdentity.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira um Identity!");
+                campos = 1;
+            }
+            if(CampoNome.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira um Nome!");
+                campos = 1;
+            }
+            if(CampoCPF.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira um CPF!");
+                campos = 1;
+            }
+            if(CampoRG.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira um RG!");
+                campos = 1;
+            }
+            if(CheckMasculino.isSelected() || CheckFeminino.isSelected()){
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Selecione um Sexo!");
+                campos = 1;
+            }
+            if(CampoSenha.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira uma Senha!");
+                campos = 1;
+            }
             /*Secretárias*/
             
             java.sql.Statement st = con.createStatement();
@@ -336,7 +362,7 @@ public class Tela_cadastrar_sec extends javax.swing.JFrame {
                 SexoSec = "F";
             }
             
-            if(identity == 0){
+            if(identity == 0 && campos == 0){
                 String sql = "INSERT INTO secs(identity,nome_sec,cpf_sec,rg_sec,telefone_sec,endereco_sec,sexo_sec,senha_sec) VALUES(?,?,?,?,?,?,?,?)";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1, CampoIdentity.getText());

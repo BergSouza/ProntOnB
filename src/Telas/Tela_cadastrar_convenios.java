@@ -32,6 +32,23 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
             Conexao conexao = new Conexao();
             Connection con = conexao.abrir();
             
+            int campos = 0;
+            if(CampoCNPJ.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira um CNPJ!");
+                campos = 1;
+            }
+            if(CampoNome.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira um Nome!");
+                campos = 1;
+            }
+            if(CampoPlano.getText() == null){
+                JOptionPane.showMessageDialog(null, "Insira um Plano!");
+                campos = 1;
+            }
+            
+            if(campos == 0){
+                
+            
             String sql = "INSERT INTO convenios(nome_convenio,endereco_convenio,telefone_convenio,cnpj_convenio,plano_convenio) VALUES(?,?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, CampoNome.getText());
@@ -43,10 +60,14 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
             stmt.close(); 
             JOptionPane.showMessageDialog(null, "Convênio cadastrado com sucesso!");
             
+            
+            }
         } catch (SQLException ex) {
             Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Algo deu errado!");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Algo deu errado!");
         }
         
         
@@ -81,6 +102,7 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
         CampoPlano = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro Convênio");
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(380, 380));
         setResizable(false);
@@ -136,7 +158,7 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel2.setText("Nome:");
+        jLabel2.setText("Nome:*");
         jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -165,14 +187,14 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel5.setText("CNPJ:");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+        jLabel5.setText("CNPJ:*");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 180, 70, -1));
         jPanel3.add(CampoCNPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 247, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 153, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Plano:");
+        jLabel6.setText("Plano:*");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 70, -1));
         jPanel3.add(CampoPlano, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 247, 30));
 

@@ -317,6 +317,46 @@ public class Tela_Administrador extends javax.swing.JFrame {
         
     } 
     
+    public void PesquisaSecs(String pesquisa) throws Exception{
+        try {
+            //Registra JDBC driver
+            Conexao conexao = new Conexao();
+            Connection con = conexao.abrir();
+            //Executa a query de seleção
+            java.sql.Statement st = con.createStatement();
+            st.executeQuery("select * from secs where nome_sec like '%"+pesquisa+"%'");
+            ResultSet rs = st.getResultSet();
+               
+           
+            int a = 0;
+            //Lista os alunos no console
+            int numtabelas = Tabela.getRowCount();
+            for (int b = 0 ; b < numtabelas ; b++ ) {
+                Tabela.setValueAt(" ", b, 0);
+                Tabela.setValueAt(" ", b, 1);
+                Tabela.setValueAt(" ", b, 2);
+                Tabela.setValueAt(" ", b, 3);
+                Tabela.setValueAt(" ", b, 4);
+            }
+            while (rs.next()) {
+                Tabela.setValueAt(rs.getString("id_sec"), a, 0);
+                Tabela.setValueAt(rs.getString("nome_sec"), a, 1);
+                Tabela.setValueAt(rs.getString("cpf_sec"), a, 2);
+                Tabela.setValueAt(rs.getString("rg_sec"), a, 3);
+                Tabela.setValueAt(rs.getString("telefone_sec"), a, 4);
+                a++;
+            }
+           
+        } catch (SQLException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        } catch (Exception ex) {
+            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    } 
+    
     
     
     public void MostraMedicos() throws Exception{
@@ -357,11 +397,47 @@ public class Tela_Administrador extends javax.swing.JFrame {
         }
         
         
-        
-        
-        
-        
+     
     } 
+    
+    public void PesquisaMedicos(String pesquisa) throws Exception{
+        try {
+            //Registra JDBC driver
+            Conexao conexao = new Conexao();
+            Connection con = conexao.abrir();
+            //Executa a query de seleção
+            java.sql.Statement st = con.createStatement();
+            st.executeQuery("select * from medicos where nome_medico like '%"+pesquisa+"%'");
+            ResultSet rs = st.getResultSet();
+                        
+            int a = 0;
+            //Lista os alunos no console
+            int numtabelas = Tabela.getRowCount();
+            for (int b = 0 ; b < numtabelas ; b++ ) {
+                Tabela.setValueAt(" ", b, 0);
+                Tabela.setValueAt(" ", b, 1);
+                Tabela.setValueAt(" ", b, 2);
+                Tabela.setValueAt(" ", b, 3);
+                Tabela.setValueAt(" ", b, 4);
+            }
+            int linhas = 0;
+            while (rs.next()) {
+                linhas++;
+                Tabela.setValueAt(rs.getString("id_medico"), a, 0);
+                Tabela.setValueAt(rs.getString("nome_medico"), a, 1);
+                Tabela.setValueAt(rs.getString("cpf_medico"), a, 2);
+                Tabela.setValueAt(rs.getString("rg_medico"), a, 3);
+                Tabela.setValueAt(rs.getString("telefone_medico"), a, 4);
+                a++;
+            }
+           
+        } catch (SQLException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        } catch (Exception ex) {
+            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     
     
     public void MostraConvenios() throws Exception{
@@ -372,6 +448,43 @@ public class Tela_Administrador extends javax.swing.JFrame {
             //Executa a query de seleção
             java.sql.Statement st = con.createStatement();
             st.executeQuery("select * from convenios");
+            ResultSet rs = st.getResultSet();
+                        
+            int a = 0;
+            //Lista os alunos no console
+            int numtabelas = Tabela2.getRowCount();
+            for (int b = 0 ; b < numtabelas ; b++ ) {
+                Tabela2.setValueAt(" ", b, 0);
+                Tabela2.setValueAt(" ", b, 1);
+                Tabela2.setValueAt(" ", b, 2);
+                Tabela2.setValueAt(" ", b, 3);
+            }
+            int linhas = 0;
+            while (rs.next()) {
+                linhas++;
+                Tabela2.setValueAt(rs.getString("id_convenio"), a, 0);
+                Tabela2.setValueAt(rs.getString("nome_convenio"), a, 1);
+                Tabela2.setValueAt(rs.getString("telefone_convenio"), a, 2);
+                Tabela2.setValueAt(rs.getString("cnpj_convenio"), a, 3);
+                a++;
+            }
+           
+        } catch (SQLException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        } catch (Exception ex) {
+            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public void PesquisaConvenios(String pesquisa) throws Exception{
+        try {
+            //Registra JDBC driver
+            Conexao conexao = new Conexao();
+            Connection con = conexao.abrir();
+            //Executa a query de seleção
+            java.sql.Statement st = con.createStatement();
+            st.executeQuery("select * from convenios where nome_convenio LIKE '%"+pesquisa+"%'");
             ResultSet rs = st.getResultSet();
                         
             int a = 0;
@@ -416,12 +529,15 @@ public class Tela_Administrador extends javax.swing.JFrame {
         btnVisualizar = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         txtA = new javax.swing.JLabel();
+        CampoPesquisa = new javax.swing.JTextField();
+        btnPesquisa = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnSair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Administrador");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -731,7 +847,18 @@ public class Tela_Administrador extends javax.swing.JFrame {
         txtA.setForeground(new java.awt.Color(102, 153, 255));
         txtA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtA.setText("Secretários(a)");
-        jPanel1.add(txtA, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 160, 30));
+        jPanel1.add(txtA, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 170, 30));
+        jPanel1.add(CampoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 190, 30));
+
+        btnPesquisa.setBackground(new java.awt.Color(102, 153, 255));
+        btnPesquisa.setIcon(new javax.swing.ImageIcon("C:\\Users\\bergs\\Desktop\\Sem Título-3.png")); // NOI18N
+        btnPesquisa.setName(""); // NOI18N
+        btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 30, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 330));
 
@@ -853,6 +980,33 @@ public class Tela_Administrador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
+    private void btnPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisaActionPerformed
+        String pesquisa = null;
+        String id = null;
+        if(Selecao.getSelectedIndex() == 0){
+            pesquisa = CampoPesquisa.getText();
+            try {
+                PesquisaSecs(pesquisa);
+            } catch (Exception ex) {
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(Selecao.getSelectedIndex() == 1){
+            pesquisa = CampoPesquisa.getText();
+            try {
+                PesquisaMedicos(pesquisa);
+            } catch (Exception ex) {
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        pesquisa = CampoPesquisa.getText();
+            try {
+                PesquisaConvenios(pesquisa);
+            } catch (Exception ex) {
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }//GEN-LAST:event_btnPesquisaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -889,6 +1043,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CampoPesquisa;
     private javax.swing.JScrollPane ScrollTab;
     private javax.swing.JScrollPane ScrollTab2;
     private javax.swing.JComboBox<String> Selecao;
@@ -898,6 +1053,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnPesquisa;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnVisualizar;
     private javax.swing.JLabel jLabel1;

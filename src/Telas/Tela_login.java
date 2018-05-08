@@ -48,8 +48,6 @@ public class Tela_login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        txtVersao = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtNovidades = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -57,6 +55,9 @@ public class Tela_login extends javax.swing.JFrame {
         PainelAjuda = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         PainelNovidades = new javax.swing.JTextPane();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        txtVersao = new javax.swing.JLabel();
 
         jCheckBox1.setBackground(new java.awt.Color(102, 153, 255));
         jCheckBox1.setText("Secretária");
@@ -150,14 +151,6 @@ public class Tela_login extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("PlusLife");
 
-        txtVersao.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtVersao.setForeground(new java.awt.Color(102, 153, 255));
-        txtVersao.setText("v0.0");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel6.setText("Direitos Reservados - Ciriguela 2018");
-
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login.png"))); // NOI18N
 
         txtNovidades.setText("Novidades:");
@@ -192,11 +185,7 @@ public class Tela_login extends javax.swing.JFrame {
                                         .addComponent(jLabel7)
                                         .addGap(32, 32, 32)
                                         .addComponent(jLabel4)))
-                                .addGap(0, 127, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtVersao)))
+                                .addGap(0, 127, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -210,19 +199,44 @@ public class Tela_login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNovidades)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtVersao)
-                    .addComponent(jLabel6))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 348));
+
+        jPanel3.setBackground(new java.awt.Color(102, 153, 255));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Direitos Reservados - Ciriguela 2018");
+
+        txtVersao.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtVersao.setForeground(new java.awt.Color(255, 255, 255));
+        txtVersao.setText("v0.0");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtVersao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(211, 211, 211))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtVersao, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 620, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -361,6 +375,7 @@ public class Tela_login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
