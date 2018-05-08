@@ -662,7 +662,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
         Tabela.setDropMode(javax.swing.DropMode.INSERT_ROWS);
         ScrollTab.setViewportView(Tabela);
 
-        jPanel1.add(ScrollTab, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 89, 580, 220));
+        jPanel1.add(ScrollTab, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 580, 220));
 
         Tabela2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -851,7 +851,6 @@ public class Tela_Administrador extends javax.swing.JFrame {
         jPanel1.add(CampoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 190, 30));
 
         btnPesquisa.setBackground(new java.awt.Color(102, 153, 255));
-        btnPesquisa.setIcon(new javax.swing.ImageIcon("C:\\Users\\bergs\\Desktop\\Sem Título-3.png")); // NOI18N
         btnPesquisa.setName(""); // NOI18N
         btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -999,12 +998,15 @@ public class Tela_Administrador extends javax.swing.JFrame {
                 Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        pesquisa = CampoPesquisa.getText();
+        if(Selecao.getSelectedIndex() == 2){
+            pesquisa = CampoPesquisa.getText();
             try {
                 PesquisaConvenios(pesquisa);
             } catch (Exception ex) {
                 Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        
     }//GEN-LAST:event_btnPesquisaActionPerformed
 
     /**
