@@ -409,6 +409,39 @@ public class Tela_editar_medico extends javax.swing.JFrame {
                 }
             }
             
+            /*VERIFICA CPF CADASTRADO*/
+            /*Secretárias*/
+            
+            java.sql.Statement st4 = con.createStatement();
+            st4.executeQuery("select cpf_sec from secs");
+            ResultSet rs4 = st4.getResultSet();
+            
+            String CPF = CampoCPF.getText();
+           
+            while(rs4.next()){
+                if(rs4.getString("cpf_sec").equals(CPF)){
+                    identity = 1;
+                    JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
+                }else{
+                    
+                }
+            }
+            
+            /*Médicos*/
+            
+            java.sql.Statement st5 = con.createStatement();
+            st5.executeQuery("select cpf_medico from medicos");
+            ResultSet rs5 = st5.getResultSet();
+            
+            while(rs5.next()){
+                if(rs5.getString("cpf_medico").equals(CPF)){
+                    identity = 1;
+                    JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
+                }else{
+                    
+                }
+            }
+            
             if(identity == 1){
                 JOptionPane.showMessageDialog(null, "Identity já existe");
             }
@@ -420,7 +453,6 @@ public class Tela_editar_medico extends javax.swing.JFrame {
                 SexoMedico = "F";
             }
             // Verifica CPF
-            String CPF;
 
             CPF = CampoCPF.getText();
 

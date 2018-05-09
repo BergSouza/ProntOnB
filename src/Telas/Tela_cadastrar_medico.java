@@ -434,6 +434,50 @@ public class Tela_cadastrar_medico extends javax.swing.JFrame {
                 SexoMedico = "F";
             }
             
+            /*VERIFICA CPF CADASTRADO*/
+            /*Secretárias*/
+            
+            java.sql.Statement st4 = con.createStatement();
+            st4.executeQuery("select cpf_sec from secs");
+            ResultSet rs4 = st4.getResultSet();
+            
+            while(rs4.next()){
+                if(rs4.getString("cpf_sec").equals(CPF)){
+                    identity = 1;
+                    JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
+                }else{
+                    
+                }
+            }
+            
+            /*Médicos*/
+            
+            java.sql.Statement st5 = con.createStatement();
+            st5.executeQuery("select cpf_medico from medicos");
+            ResultSet rs5 = st5.getResultSet();
+            
+            while(rs5.next()){
+                if(rs5.getString("cpf_medico").equals(CampoIdentity.getText())){
+                    identity = 1;
+                    JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
+                }else{
+                    
+                }
+            }
+            
+            
+            
+            if(identity == 1){
+                JOptionPane.showMessageDialog(null, "Identity já existe");
+            }
+            
+            if(CheckMasculino.isSelected()){
+                SexoMedico = "M";
+            }else if(CheckFeminino.isSelected()){
+                SexoMedico = "F";
+            }
+            
+            
             if(identity == 0 && campos == 0){
                 String sql = "INSERT INTO medicos(identity,nome_medico,cpf_medico,rg_medico,crm_medico,telefone_medico,endereco_medico,sexo_medico,senha_medico) VALUES(?,?,?,?,?,?,?,?,?)";
                 PreparedStatement stmt = con.prepareStatement(sql);

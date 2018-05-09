@@ -415,20 +415,50 @@ public class Tela_editar_sec extends javax.swing.JFrame {
                 }
             }
             
+            /*VERIFICA CPF CADASTRADO*/
+            /*Secretárias*/
+            String CPF = CampoCPF.getText();
+            
+            java.sql.Statement st4 = con.createStatement();
+            st4.executeQuery("select cpf_sec from secs");
+            ResultSet rs4 = st4.getResultSet();
+            
+            while(rs4.next()){
+                if(rs4.getString("cpf_sec").equals(CPF)){
+                    identity = 1;
+                    JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
+                }else{
+                    
+                }
+            }
+            
+            /*Médicos*/
+            
+            java.sql.Statement st5 = con.createStatement();
+            st5.executeQuery("select cpf_medico from medicos");
+            ResultSet rs5 = st5.getResultSet();
+            
+            while(rs5.next()){
+                if(rs5.getString("cpf_medico").equals(CPF)){
+                    identity = 1;
+                    JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
+                }else{
+                    
+                }
+            }
+            
+            
             if(identity == 1){
                 JOptionPane.showMessageDialog(null, "Identity já existe");
             }
             int campos = 0;
             if(CheckMasculino.isSelected()){
                 SexoSec = "M";
-                campos = 1;
             }else if(CheckFeminino.isSelected()){
                 SexoSec = "F";
-                campos = 1;
             }
             
             // Verifica CPF
-            String CPF;
 
             CPF = CampoCPF.getText();
 
