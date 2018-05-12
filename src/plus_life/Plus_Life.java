@@ -5,8 +5,20 @@
  */
 package plus_life;
 
-import Banco_de_dados.Conexao;
 import Telas.Tela_login;
+import com.jgoodies.looks.plastic.PlasticLookAndFeel;
+import com.jgoodies.looks.plastic.md;
+import com.jgoodies.looks.plastic.theme.AbstractSkyTheme;
+import com.jgoodies.looks.plastic.theme.BrownSugar;
+import com.jgoodies.looks.plastic.theme.DarkStar;
+import com.jgoodies.looks.plastic.theme.DesertBlue;
+import com.jgoodies.looks.plastic.theme.DesertBluer;
+import com.jgoodies.looks.plastic.theme.ExperienceBlue;
+import com.jgoodies.looks.plastic.theme.ExperienceRoyale;
+import com.jgoodies.looks.plastic.theme.InvertedColorTheme;
+import com.jgoodies.looks.plastic.theme.Silver;
+import com.jgoodies.looks.plastic.theme.SkyYellow;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -14,8 +26,10 @@ import Telas.Tela_login;
  */
 public class Plus_Life {
     
-    private String versao = "0.8.4";
+    private String versao = "0.9";
     private String novidades = ""
+            + "v0.9: Novo Sistema de Pesquisa por Critério\n"
+            + "v0.9: Sistema de Secretário(a) 100% funcional\n"
             + "v0.8.2: Sistema do Administrador - Pesquisa Disponível\n"
             + "v0.8: Sistema do Administrador 100% funcional\n"
             + "v0.6: PlusLife conta com o Identity.";
@@ -41,6 +55,11 @@ public class Plus_Life {
         Tela_login login = new Tela_login();
         login.setVisible(true);
         login.setLocationRelativeTo(null);
+        
+        PlasticLookAndFeel.setPlasticTheme(new Silver());
+
+                  
+
     }
     
 }

@@ -298,8 +298,17 @@ public class Tela_login extends javax.swing.JFrame {
             
             while(rs3.next()){
                 if(rs3.getString("identity").equals(identity) && rs3.getString("senha_sec").equals(senha)){
-                    JOptionPane.showMessageDialog(null, "Tela do(a) secretário(a) indisponível!");
+                    dispose();
+                    Tela_Secretária tela_sec = new Tela_Secretária();
+                    tela_sec.setVisible(true);
+                    tela_sec.setLocationRelativeTo(null);
+                    tela_sec.atualizar();
                     login = 1;
+                    try {
+                        tela_sec.MostraMedicos();
+                    } catch (Exception ex) {
+                        Logger.getLogger(Tela_login.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
             

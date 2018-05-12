@@ -19,59 +19,75 @@ import javax.swing.UIManager;
  *
  * @author Bergson
  */
-public class Tela_Administrador extends javax.swing.JFrame {
+public class Tela_Secretária extends javax.swing.JFrame {
 
     /**
      * Creates new form Tela_Administrador
      */
-    public Tela_Administrador() {
+    public Tela_Secretária() {
         initComponents();
     }
     
     public void atualizar(){
         if(Selecao.getSelectedIndex() == 0){
             try {
-                txtA.setText("Secretários(a)");
-                Tabela2.setVisible(false);
-                ScrollTab2.setVisible(false);
-                Tabela.setVisible(true);
-                ScrollTab.setVisible(true);
-                
-                criterioPesquisa1.setVisible(true);
-                criterioPesquisa2.setVisible(false);
-                MostraSecs();
-            } catch (Exception ex) {
-                Logger.getLogger(Tela_Secretária.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        if(Selecao.getSelectedIndex() == 1){
-            try {
                 txtA.setText("Médicos(a)");
+                Tabela3.setVisible(false);
+                jScrollPane1.setVisible(false);
                 Tabela2.setVisible(false);
                 ScrollTab2.setVisible(false);
                 Tabela.setVisible(true);
                 MostraMedicos();
                 ScrollTab.setVisible(true);
                 
-                criterioPesquisa2.setVisible(false);
                 criterioPesquisa1.setVisible(true);
+                criterioPesquisa2.setVisible(false);
+                criterioPesquisa3.setVisible(false);
+                
+                
+                btnCadastrar.setText("Cadastrar");
             } catch (Exception ex) {
-                Logger.getLogger(Tela_Secretária.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if(Selecao.getSelectedIndex() == 2){
+        if(Selecao.getSelectedIndex() == 1){
             try {
                 txtA.setText("Convênios");
                 Tabela2.setVisible(true);
                 ScrollTab2.setVisible(true);
                 Tabela.setVisible(false);
                 ScrollTab.setVisible(false);
+                Tabela3.setVisible(false);
+                jScrollPane1.setVisible(false);
+                MostraConvenios();
                 
                 criterioPesquisa1.setVisible(false);
                 criterioPesquisa2.setVisible(true);
-                MostraConvenios();
+                criterioPesquisa3.setVisible(false);
+                
+                ;
             } catch (Exception ex) {
-                Logger.getLogger(Tela_Secretária.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(Selecao.getSelectedIndex() == 2){
+            try {
+                txtA.setText("Consultas Marcadas");
+                Tabela2.setVisible(false);
+                ScrollTab2.setVisible(false);
+                Tabela.setVisible(false);
+                ScrollTab.setVisible(false);
+                Tabela3.setVisible(true);
+                jScrollPane1.setVisible(true);
+                
+                criterioPesquisa1.setVisible(false);
+                criterioPesquisa2.setVisible(false);
+                criterioPesquisa3.setVisible(true);
+                
+                btnCadastrar.setText("Marcar");
+                MostraConsultas();
+            } catch (Exception ex) {
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -86,23 +102,6 @@ public class Tela_Administrador extends javax.swing.JFrame {
             
             
             if(Selecao.getSelectedIndex() == 0){
-                resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o Secretário(a) "+nome+" ?");
-                UIManager.put("OptionPane.yesButtonText", "Sim");
-                UIManager.put("OptionPane.noButtonText", "Não"); 
-                if(resposta == 0){
-                    String sql = "DELETE FROM secs WHERE id_sec = "+id+" ";
-                    PreparedStatement stmt = con.prepareStatement(sql);
-                    stmt.execute();
-                    stmt.close();
-                    JOptionPane.showMessageDialog(rootPane, "Secretário(a) excluído!");
-                    atualizar();
-                }else{
-                    
-                }
-                
-            }
-            
-            if(Selecao.getSelectedIndex() == 1){
                 resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o Médico(a) "+nome+" ?");
                 UIManager.put("OptionPane.yesButtonText", "Sim");
                 UIManager.put("OptionPane.noButtonText", "Não"); 
@@ -120,7 +119,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
             }
             
             
-            if(Selecao.getSelectedIndex() == 2){
+            if(Selecao.getSelectedIndex() == 1){
                 resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o Convênio "+nome+" ?");
                 UIManager.put("OptionPane.yesButtonText", "Sim");
                 UIManager.put("OptionPane.noButtonText", "Não"); 
@@ -130,6 +129,23 @@ public class Tela_Administrador extends javax.swing.JFrame {
                     stmt.execute();
                     stmt.close();
                     JOptionPane.showMessageDialog(rootPane, "Convênio excluído!");
+                    atualizar();
+                }else{
+                    
+                }
+                
+            }
+            
+            if(Selecao.getSelectedIndex() == 2){
+                resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente cancelar a Consulta do Paciente "+nome+" ?");
+                UIManager.put("OptionPane.yesButtonText", "Sim");
+                UIManager.put("OptionPane.noButtonText", "Não"); 
+                if(resposta == 0){
+                    String sql = "DELETE FROM consultas WHERE id_consulta = "+id+" ";
+                    PreparedStatement stmt = con.prepareStatement(sql);
+                    stmt.execute();
+                    stmt.close();
+                    JOptionPane.showMessageDialog(rootPane, "Consulta cancelada!");
                     atualizar();
                 }else{
                     
@@ -156,24 +172,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
             int resposta = 0;
             
             
-            
             if(Selecao.getSelectedIndex() == 0){
-                java.sql.Statement st = con.createStatement();
-                st.executeQuery("select * from secs where id_sec = "+id+"");
-                ResultSet rs = st.getResultSet();
-                
-                Tela_editar_sec sec = new Tela_editar_sec();
-                sec.setVisible(true);
-                sec.setLocationRelativeTo(null);
-                while(rs.next()){
-                    sec.pegavalores(rs.getString("identity"),rs.getString("id_sec"),rs.getString("nome_sec"),rs.getString("cpf_sec"),rs.getString("rg_sec"),rs.getString("telefone_sec"),rs.getString("endereco_sec"),rs.getString("sexo_sec"),rs.getString("senha_sec"));
-                }
-                
-                
-                
-            }
-            
-            if(Selecao.getSelectedIndex() == 1){
                 java.sql.Statement st = con.createStatement();
                 st.executeQuery("select * from medicos where id_medico = "+id+"");
                 ResultSet rs = st.getResultSet();
@@ -189,7 +188,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
                 
             }
             
-            if(Selecao.getSelectedIndex() == 2){
+            if(Selecao.getSelectedIndex() == 1){
                 java.sql.Statement st = con.createStatement();
                 st.executeQuery("select * from convenios where id_convenio = "+id+"");
                 ResultSet rs = st.getResultSet();
@@ -199,6 +198,22 @@ public class Tela_Administrador extends javax.swing.JFrame {
                 convenio.setLocationRelativeTo(null);
                 while(rs.next()){
                     convenio.pegavalores(rs.getString("id_convenio"), rs.getString("nome_convenio"), rs.getString("endereco_convenio"), rs.getString("telefone_convenio"), rs.getString("cnpj_convenio"), rs.getString("plano_convenio"));
+                }
+                
+                
+                
+            }
+            
+            if(Selecao.getSelectedIndex() == 2){
+                java.sql.Statement st = con.createStatement();
+                st.executeQuery("select * from consultas where id_consulta = "+id+"");
+                ResultSet rs = st.getResultSet();
+                
+                Tela_editar_consulta consulta = new Tela_editar_consulta();
+                consulta.setVisible(true);
+                consulta.setLocationRelativeTo(null);
+                while(rs.next()){
+                    consulta.pegavalores(rs.getString("id_consulta"),rs.getString("nome_paciente"),rs.getString("id_medico"),rs.getString("rg_paciente"), rs.getString("data_nasc_paciente"), rs.getString("sexo_paciente"), rs.getString("data_consulta"), rs.getString("horario_consulta"));
                 }
                 
                 
@@ -225,24 +240,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
             int resposta = 0;
             
             
-            
             if(Selecao.getSelectedIndex() == 0){
-                java.sql.Statement st = con.createStatement();
-                st.executeQuery("select * from secs where id_sec = "+id+"");
-                ResultSet rs = st.getResultSet();
-                
-                Tela_visualizar_sec sec = new Tela_visualizar_sec();
-                sec.setVisible(true);
-                sec.setLocationRelativeTo(null);
-                while(rs.next()){
-                    sec.pegavalores(rs.getString("identity"),rs.getString("id_sec"),rs.getString("nome_sec"),rs.getString("cpf_sec"),rs.getString("rg_sec"),rs.getString("telefone_sec"),rs.getString("endereco_sec"),rs.getString("sexo_sec"),rs.getString("senha_sec"));
-                }
-                
-                
-                
-            }
-            
-            if(Selecao.getSelectedIndex() == 1){
                 java.sql.Statement st = con.createStatement();
                 st.executeQuery("select * from medicos where id_medico = "+id+"");
                 ResultSet rs = st.getResultSet();
@@ -258,7 +256,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
                 
             }
             
-            if(Selecao.getSelectedIndex() == 2){
+            if(Selecao.getSelectedIndex() == 1){
                 java.sql.Statement st = con.createStatement();
                 st.executeQuery("select * from convenios where id_convenio = "+id+"");
                 ResultSet rs = st.getResultSet();
@@ -268,6 +266,22 @@ public class Tela_Administrador extends javax.swing.JFrame {
                 convenio.setLocationRelativeTo(null);
                 while(rs.next()){
                     convenio.pegavalores(rs.getString("id_convenio"), rs.getString("nome_convenio"), rs.getString("endereco_convenio"), rs.getString("telefone_convenio"), rs.getString("cnpj_convenio"), rs.getString("plano_convenio"));
+                }
+                
+                
+                
+            }
+            
+            if(Selecao.getSelectedIndex() == 2){
+                java.sql.Statement st = con.createStatement();
+                st.executeQuery("select * from consultas where id_consulta = "+id+"");
+                ResultSet rs = st.getResultSet();
+                
+                Tela_visualizar_consulta consulta = new Tela_visualizar_consulta();
+                consulta.setVisible(true);
+                consulta.setLocationRelativeTo(null);
+                while(rs.next()){
+                    consulta.pegavalores(rs.getString("id_consulta"),rs.getString("nome_paciente"),rs.getString("nome_medico"),rs.getString("rg_paciente"), rs.getString("data_nasc_paciente"), rs.getString("sexo_paciente"), rs.getString("data_consulta"), rs.getString("horario_consulta"));
                 }
                 
                 
@@ -285,102 +299,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
         
     }
     
-    
-    public void MostraSecs() throws Exception{
-        try {
-            //Registra JDBC driver
-            Conexao conexao = new Conexao();
-            Connection con = conexao.abrir();
-            //Executa a query de seleção
-            java.sql.Statement st = con.createStatement();
-            st.executeQuery("select * from secs");
-            ResultSet rs = st.getResultSet();
-               
-           
-            int a = 0;
-            //Lista os alunos no console
-            int numtabelas = Tabela.getRowCount();
-            for (int b = 0 ; b < numtabelas ; b++ ) {
-                Tabela.setValueAt(" ", b, 0);
-                Tabela.setValueAt(" ", b, 1);
-                Tabela.setValueAt(" ", b, 2);
-                Tabela.setValueAt(" ", b, 3);
-                Tabela.setValueAt(" ", b, 4);
-            }
-            while (rs.next()) {
-                Tabela.setValueAt(rs.getString("id_sec"), a, 0);
-                Tabela.setValueAt(rs.getString("nome_sec"), a, 1);
-                Tabela.setValueAt(rs.getString("cpf_sec"), a, 2);
-                Tabela.setValueAt(rs.getString("rg_sec"), a, 3);
-                Tabela.setValueAt(rs.getString("telefone_sec"), a, 4);
-                a++;
-            }
-           
-        } catch (SQLException | ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(rootPane, e);
-        } catch (Exception ex) {
-            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
-    } 
-    
-    public void PesquisaSecs(String pesquisa) throws Exception{
-        try {
-            //Registra JDBC driver
-            Conexao conexao = new Conexao();
-            Connection con = conexao.abrir();
-            //Executa a query de seleção
-            java.sql.Statement st = con.createStatement();
-            if(criterioPesquisa1.getSelectedIndex() == 0){
-                st.executeQuery("select * from secs where id_sec like '%"+pesquisa+"%'");
-            }
-            if(criterioPesquisa1.getSelectedIndex() == 1){
-                st.executeQuery("select * from secs where nome_sec like '%"+pesquisa+"%'");
-            }
-            if(criterioPesquisa1.getSelectedIndex() == 2){
-                st.executeQuery("select * from secs where cpf_sec like '%"+pesquisa+"%'");
-            }
-            if(criterioPesquisa1.getSelectedIndex() == 3){
-                st.executeQuery("select * from secs where rg_sec like '%"+pesquisa+"%'");
-            }
-            if(criterioPesquisa1.getSelectedIndex() == 4){
-                st.executeQuery("select * from secs where telefone_sec like '%"+pesquisa+"%'");
-            }
-            
-            ResultSet rs = st.getResultSet();
-               
-           
-            int a = 0;
-            //Lista os alunos no console
-            int numtabelas = Tabela.getRowCount();
-            for (int b = 0 ; b < numtabelas ; b++ ) {
-                Tabela.setValueAt(" ", b, 0);
-                Tabela.setValueAt(" ", b, 1);
-                Tabela.setValueAt(" ", b, 2);
-                Tabela.setValueAt(" ", b, 3);
-                Tabela.setValueAt(" ", b, 4);
-            }
-            while (rs.next()) {
-                Tabela.setValueAt(rs.getString("id_sec"), a, 0);
-                Tabela.setValueAt(rs.getString("nome_sec"), a, 1);
-                Tabela.setValueAt(rs.getString("cpf_sec"), a, 2);
-                Tabela.setValueAt(rs.getString("rg_sec"), a, 3);
-                Tabela.setValueAt(rs.getString("telefone_sec"), a, 4);
-                a++;
-            }
-           
-        } catch (SQLException | ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(rootPane, e);
-        } catch (Exception ex) {
-            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
-    } 
-    
+     
     
     
     public void MostraMedicos() throws Exception{
@@ -524,17 +443,21 @@ public class Tela_Administrador extends javax.swing.JFrame {
             //Executa a query de seleção
             java.sql.Statement st = con.createStatement();
             if(criterioPesquisa2.getSelectedIndex() == 0){
-                st.executeQuery("select * from convenios where id_convenio LIKE '%"+pesquisa+"%'");
+                st.executeQuery("select * from convenios where id LIKE '%"+pesquisa+"%'");
             }
             if(criterioPesquisa2.getSelectedIndex() == 1){
                 st.executeQuery("select * from convenios where nome_convenio LIKE '%"+pesquisa+"%'");
             }
+            
             if(criterioPesquisa2.getSelectedIndex() == 2){
                 st.executeQuery("select * from convenios where telefone_convenio LIKE '%"+pesquisa+"%'");
             }
-            if(criterioPesquisa2.getSelectedIndex() == 3){
+            
+            if(criterioPesquisa2.getSelectedIndex() == 4){
                 st.executeQuery("select * from convenios where cnpj_convenio LIKE '%"+pesquisa+"%'");
             }
+            
+            
             
             ResultSet rs = st.getResultSet();
                         
@@ -564,11 +487,132 @@ public class Tela_Administrador extends javax.swing.JFrame {
         }
         
     }
+    
+    
+    public void MostraConsultas() throws Exception{
+        try {
+            //Registra JDBC driver
+            Conexao conexao = new Conexao();
+            Connection con = conexao.abrir();
+            //Executa a query de seleção
+            java.sql.Statement st = con.createStatement();
+            st.executeQuery("select * from consultas");
+            ResultSet rs = st.getResultSet();
+                        
+            int a = 0;
+            //Lista os alunos no console
+            int numtabelas = Tabela3.getRowCount();
+            for (int b = 0 ; b < numtabelas ; b++ ) {
+                Tabela3.setValueAt(" ", b, 0);
+                Tabela3.setValueAt(" ", b, 1);
+                Tabela3.setValueAt(" ", b, 2);
+                Tabela3.setValueAt(" ", b, 3);
+                Tabela3.setValueAt(" ", b, 4);
+                Tabela3.setValueAt(" ", b, 5);
+            }
+            int linhas = 0;
+            while (rs.next()) {
+                linhas++;
+                Tabela3.setValueAt(rs.getString("id_consulta"), a, 0);
+                Tabela3.setValueAt(rs.getString("nome_paciente"), a, 1);
+                /*if(rs.getString("sexo_paciente").equals("M")){
+                    Tabela3.setValueAt("Masculino", a, 2);
+                }else{
+                    if(rs.getString("sexo_paciente").equals("F")){
+                    Tabela3.setValueAt("Feminino", a, 2);
+                }
+                }*/
+                Tabela3.setValueAt(rs.getString("nome_medico"), a, 2);
+                Tabela3.setValueAt(rs.getString("data_nasc_paciente"), a, 3);
+                Tabela3.setValueAt(rs.getString("data_consulta"), a, 4);
+                Tabela3.setValueAt(rs.getString("horario_consulta"), a, 5);
+                a++;
+            }
+           
+        } catch (SQLException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        } catch (Exception ex) {
+            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+     
+    } 
+    public void PesquisaConsultas(String pesquisa) throws Exception{
+        try {
+            //Registra JDBC driver
+            Conexao conexao = new Conexao();
+            Connection con = conexao.abrir();
+            //Executa a query de seleção
+            java.sql.Statement st = con.createStatement();
+            if(criterioPesquisa3.getSelectedIndex() == 0){
+                st.executeQuery("select * from consultas where id_consulta LIKE '%"+pesquisa+"%'");
+            }
+            if(criterioPesquisa3.getSelectedIndex() == 1){
+                st.executeQuery("select * from consultas where nome_paciente LIKE '%"+pesquisa+"%'");
+            }
+            if(criterioPesquisa3.getSelectedIndex() == 2){
+                st.executeQuery("select * from consultas where sexo_paciente LIKE '%"+pesquisa+"%'");
+            }
+            if(criterioPesquisa3.getSelectedIndex() == 3){
+                st.executeQuery("select * from consultas where data_nasc_paciente LIKE '%"+pesquisa+"%'");
+            }
+            if(criterioPesquisa3.getSelectedIndex() == 4){
+                st.executeQuery("select * from consultas where data_consulta LIKE '%"+pesquisa+"%'");
+            }
+            if(criterioPesquisa3.getSelectedIndex() == 5){
+                st.executeQuery("select * from consultas where horario_consulta LIKE '%"+pesquisa+"%'");
+            }
+            
+            ResultSet rs = st.getResultSet();
+                        
+            int a = 0;
+            //Lista os alunos no console
+            int numtabelas = Tabela.getRowCount();
+            for (int b = 0 ; b < numtabelas ; b++ ) {
+                Tabela3.setValueAt(" ", b, 0);
+                Tabela3.setValueAt(" ", b, 1);
+                Tabela3.setValueAt(" ", b, 2);
+                Tabela3.setValueAt(" ", b, 3);
+                Tabela3.setValueAt(" ", b, 4);
+                Tabela3.setValueAt(" ", b, 5);
+            }
+            int linhas = 0;
+            while (rs.next()) {
+                linhas++;
+                Tabela3.setValueAt(rs.getString("id_consulta"), a, 0);
+                Tabela3.setValueAt(rs.getString("nome_paciente"), a, 1);
+                /*if(rs.getString("sexo_paciente") == "M"){
+                    Tabela3.setValueAt("Masculino", a, 2);
+                }else{
+                    if(rs.getString("sexo_paciente") == "F"){
+                    Tabela3.setValueAt("Feminino", a, 2);
+                }
+                }*/
+                Tabela3.setValueAt(rs.getString("nome_medico"), a, 2);
+                
+                Tabela3.setValueAt(rs.getString("data_nasc_paciente"), a, 3);
+                Tabela3.setValueAt(rs.getString("data_consulta"), a, 4);
+                Tabela3.setValueAt(rs.getString("horario_consulta"), a, 5);
+                a++;
+            }
+           
+        } catch (SQLException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        } catch (Exception ex) {
+            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabela3 = new javax.swing.JTable();
         ScrollTab = new javax.swing.JScrollPane();
         Tabela = new javax.swing.JTable();
         ScrollTab2 = new javax.swing.JScrollPane();
@@ -580,22 +624,134 @@ public class Tela_Administrador extends javax.swing.JFrame {
         btnVisualizar = new javax.swing.JButton();
         btnAtualizar = new javax.swing.JButton();
         txtA = new javax.swing.JLabel();
-        CampoPesquisa = new javax.swing.JTextField();
         btnPesquisa = new javax.swing.JButton();
+        CampoPesquisa = new javax.swing.JTextField();
         criterioPesquisa1 = new javax.swing.JComboBox<>();
         criterioPesquisa2 = new javax.swing.JComboBox<>();
+        criterioPesquisa3 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         btnSair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Administrador");
+        setTitle("Secretário(a)");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Tabela3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID Consulta", "Nome do Paciente", "Médico", "Data de Nascimento", "Data", "Horário"
+            }
+        ));
+        jScrollPane1.setViewportView(Tabela3);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 580, 220));
 
         Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -848,7 +1004,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
 
         Selecao.setBackground(new java.awt.Color(102, 153, 255));
         Selecao.setForeground(new java.awt.Color(255, 255, 255));
-        Selecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Secretários(a)", "Médicos(a)", "Convênios" }));
+        Selecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Médicos(a)", "Convênios", "Consultas" }));
         Selecao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelecaoActionPerformed(evt);
@@ -899,9 +1055,8 @@ public class Tela_Administrador extends javax.swing.JFrame {
         txtA.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtA.setForeground(new java.awt.Color(102, 153, 255));
         txtA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtA.setText("Secretários(a)");
-        jPanel1.add(txtA, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 170, 30));
-        jPanel1.add(CampoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 140, 30));
+        txtA.setText("Médicos(a)");
+        jPanel1.add(txtA, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 220, 30));
 
         btnPesquisa.setBackground(new java.awt.Color(102, 153, 255));
         btnPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupabranca.png"))); // NOI18N
@@ -912,12 +1067,17 @@ public class Tela_Administrador extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 30, 30));
+        jPanel1.add(CampoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 140, 30));
 
         criterioPesquisa1.setBackground(new java.awt.Color(102, 153, 255));
         criterioPesquisa1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         criterioPesquisa1.setForeground(new java.awt.Color(255, 255, 255));
         criterioPesquisa1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome", "CPF", "RG", "Telefone" }));
         criterioPesquisa1.setSelectedIndex(1);
+        criterioPesquisa1.setBorder(null);
+        criterioPesquisa1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        criterioPesquisa1.setLightWeightPopupEnabled(false);
+        criterioPesquisa1.setOpaque(false);
         jPanel1.add(criterioPesquisa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 50, 30));
 
         criterioPesquisa2.setBackground(new java.awt.Color(102, 153, 255));
@@ -925,12 +1085,17 @@ public class Tela_Administrador extends javax.swing.JFrame {
         criterioPesquisa2.setForeground(new java.awt.Color(255, 255, 255));
         criterioPesquisa2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome", "Telefone", "CNPJ" }));
         criterioPesquisa2.setSelectedIndex(1);
-        criterioPesquisa2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                criterioPesquisa2ActionPerformed(evt);
-            }
-        });
+        criterioPesquisa2.setBorder(null);
+        criterioPesquisa2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(criterioPesquisa2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 50, 30));
+
+        criterioPesquisa3.setBackground(new java.awt.Color(102, 153, 255));
+        criterioPesquisa3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        criterioPesquisa3.setForeground(new java.awt.Color(255, 255, 255));
+        criterioPesquisa3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome do Paciente", "Sexo", "Data de Nascimento", "Data da Consulta", "Horário da Consulta" }));
+        criterioPesquisa3.setSelectedIndex(1);
+        criterioPesquisa3.setBorder(null);
+        jPanel1.add(criterioPesquisa3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 50, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 330));
 
@@ -953,7 +1118,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Administrador");
+        jLabel2.setText("Secretário(a)");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 194, 45));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 70));
@@ -970,19 +1135,26 @@ public class Tela_Administrador extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         if(Selecao.getSelectedIndex() == 0){
-            Tela_cadastrar_sec sec = new Tela_cadastrar_sec();
-            sec.setVisible(true);
-            sec.setLocationRelativeTo(null);
-        }
-        if(Selecao.getSelectedIndex() == 1){
             Tela_cadastrar_medico medico = new Tela_cadastrar_medico();
             medico.setVisible(true);
             medico.setLocationRelativeTo(null);
         }
-        if(Selecao.getSelectedIndex() == 2){
+        if(Selecao.getSelectedIndex() == 1){
             Tela_cadastrar_convenios convenio = new Tela_cadastrar_convenios();
             convenio.setVisible(true);
             convenio.setLocationRelativeTo(null);
+        }
+        if(Selecao.getSelectedIndex() == 2){
+            int selecionado = Tabela3.getSelectedRow();
+            Tela_cadastrar_consulta consulta;
+            try {
+                consulta = new Tela_cadastrar_consulta();
+                consulta.setVisible(true);
+                consulta.setLocationRelativeTo(null);
+            } catch (Exception ex) {
+                Logger.getLogger(Tela_Secretária.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -994,13 +1166,17 @@ public class Tela_Administrador extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int selecionado = 0;
         String id = null;
-        if(Selecao.getSelectedIndex() == 0 || Selecao.getSelectedIndex() == 1){
+        if(Selecao.getSelectedIndex() == 0){
             selecionado = Tabela.getSelectedRow();
             id = (String) Tabela.getValueAt(selecionado, 0);
         }
-        if(Selecao.getSelectedIndex() == 2){
+        if(Selecao.getSelectedIndex() == 1){
             selecionado = Tabela2.getSelectedRow();
             id = (String) Tabela2.getValueAt(selecionado, 0);
+        }
+        if(Selecao.getSelectedIndex() == 2){
+            selecionado = Tabela3.getSelectedRow();
+            id = (String) Tabela3.getValueAt(selecionado, 0);
         }
         try {
             editar(id);
@@ -1013,20 +1189,25 @@ public class Tela_Administrador extends javax.swing.JFrame {
         int selecionado = 0;
         String id = null;
         String nome = null;
-        if(Selecao.getSelectedIndex() == 0 || Selecao.getSelectedIndex() == 1){
+        if(Selecao.getSelectedIndex() == 0){
             selecionado = Tabela.getSelectedRow();
             id = (String) Tabela.getValueAt(selecionado, 0);
             nome = (String) Tabela.getValueAt(selecionado, 1);
         }
-        if(Selecao.getSelectedIndex() == 2){
+        if(Selecao.getSelectedIndex() == 1){
             selecionado = Tabela2.getSelectedRow();
             id = (String) Tabela2.getValueAt(selecionado, 0);
             nome = (String) Tabela2.getValueAt(selecionado, 1);
         }
+        if(Selecao.getSelectedIndex() == 2){
+            selecionado = Tabela3.getSelectedRow();
+            id = (String) Tabela3.getValueAt(selecionado, 0);
+            nome = (String) Tabela3.getValueAt(selecionado, 1);
+        }
         try {
             excluir(id, nome);
         } catch (Exception ex) {
-            Logger.getLogger(Tela_Secretária.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -1037,18 +1218,22 @@ public class Tela_Administrador extends javax.swing.JFrame {
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
         int selecionado = 0;
         String id = null;
-        if(Selecao.getSelectedIndex() == 0 || Selecao.getSelectedIndex() == 1){
+        if(Selecao.getSelectedIndex() == 0){
             selecionado = Tabela.getSelectedRow();
             id = (String) Tabela.getValueAt(selecionado, 0);
         }
-        if(Selecao.getSelectedIndex() == 2){
+        if(Selecao.getSelectedIndex() == 1){
             selecionado = Tabela2.getSelectedRow();
             id = (String) Tabela2.getValueAt(selecionado, 0);
+        }
+        if(Selecao.getSelectedIndex() == 2){
+            selecionado = Tabela3.getSelectedRow();
+            id = (String) Tabela3.getValueAt(selecionado, 0);
         }
         try {
             visualizar(id);
         } catch (Exception ex) {
-            Logger.getLogger(Tela_Secretária.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
@@ -1058,33 +1243,29 @@ public class Tela_Administrador extends javax.swing.JFrame {
         if(Selecao.getSelectedIndex() == 0){
             pesquisa = CampoPesquisa.getText();
             try {
-                PesquisaSecs(pesquisa);
+                PesquisaMedicos(pesquisa);
             } catch (Exception ex) {
-                Logger.getLogger(Tela_Secretária.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if(Selecao.getSelectedIndex() == 1){
             pesquisa = CampoPesquisa.getText();
             try {
-                PesquisaMedicos(pesquisa);
+                PesquisaConvenios(pesquisa);
             } catch (Exception ex) {
-                Logger.getLogger(Tela_Secretária.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if(Selecao.getSelectedIndex() == 2){
             pesquisa = CampoPesquisa.getText();
             try {
-                PesquisaConvenios(pesquisa);
+                PesquisaConsultas(pesquisa);
             } catch (Exception ex) {
-                Logger.getLogger(Tela_Secretária.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
     }//GEN-LAST:event_btnPesquisaActionPerformed
-
-    private void criterioPesquisa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criterioPesquisa2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_criterioPesquisa2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1103,20 +1284,21 @@ public class Tela_Administrador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tela_Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_Secretária.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tela_Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_Secretária.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tela_Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_Secretária.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tela_Administrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_Secretária.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_Administrador().setVisible(true);
+                new Tela_Secretária().setVisible(true);
             }
         });
     }
@@ -1128,6 +1310,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Selecao;
     private javax.swing.JTable Tabela;
     private javax.swing.JTable Tabela2;
+    private javax.swing.JTable Tabela3;
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEditar;
@@ -1137,10 +1320,12 @@ public class Tela_Administrador extends javax.swing.JFrame {
     private javax.swing.JButton btnVisualizar;
     private javax.swing.JComboBox<String> criterioPesquisa1;
     private javax.swing.JComboBox<String> criterioPesquisa2;
+    private javax.swing.JComboBox<String> criterioPesquisa3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel txtA;
     // End of variables declaration//GEN-END:variables
 }
