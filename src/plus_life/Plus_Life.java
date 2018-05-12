@@ -14,7 +14,7 @@ import Telas.Tela_login;
  */
 public class Plus_Life {
     
-    private String versao = "0.8.3";
+    private String versao = "0.8.4";
     private String novidades = ""
             + "v0.8.2: Sistema do Administrador - Pesquisa Disponível\n"
             + "v0.8: Sistema do Administrador 100% funcional\n"

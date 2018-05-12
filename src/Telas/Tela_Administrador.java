@@ -851,6 +851,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
         jPanel1.add(CampoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 190, 30));
 
         btnPesquisa.setBackground(new java.awt.Color(102, 153, 255));
+        btnPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupabranca.png"))); // NOI18N
         btnPesquisa.setName(""); // NOI18N
         btnPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

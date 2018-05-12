@@ -32,6 +32,7 @@ public class Tela_editar_medico extends javax.swing.JFrame {
     public String pegavalores(String identity,String id,String nome, String cpf, String rg,String crm,String telefone, String endereco, String sexo,String senha){
         CampoIdentity.setText(identity);
         identityy.setText(identity);
+        cpff.setText(cpf);
         campoid.setText(id);
         CampoNome.setText(nome);
         CampoCPF.setText(cpf);
@@ -115,6 +116,7 @@ public class Tela_editar_medico extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         campoid = new javax.swing.JTextField();
         identityy = new javax.swing.JTextField();
+        cpff = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -150,6 +152,8 @@ public class Tela_editar_medico extends javax.swing.JFrame {
         campoid.setText("jTextField1");
 
         identityy.setText("jTextField1");
+
+        cpff.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Editar Médico(a)");
@@ -364,10 +368,11 @@ public class Tela_editar_medico extends javax.swing.JFrame {
             ResultSet rs = st.getResultSet();
             
             int identity = 0;
+            int vcpf = 0;
             while(rs.next()){
                 if(rs.getString("identity").equals(CampoIdentity.getText())){
                     identity = 1;
-                    if(CampoIdentity.getText().equals(this.identityy.getText())){
+                    if(CampoIdentity.getText().equals(identityy.getText())){
                     identity = 0;
                 }
                 }else{
@@ -384,7 +389,7 @@ public class Tela_editar_medico extends javax.swing.JFrame {
             while(rs2.next()){
                 if(rs2.getString("identity").equals(CampoIdentity.getText())){
                     identity = 1;
-                    if(CampoIdentity.getText().equals(this.identityy.getText())){
+                    if(CampoIdentity.getText().equals(identityy.getText())){
                     identity = 0;
                 }
                 }else{
@@ -411,17 +416,19 @@ public class Tela_editar_medico extends javax.swing.JFrame {
             
             /*VERIFICA CPF CADASTRADO*/
             /*Secretárias*/
+            String CPF = CampoCPF.getText();
+           
             
             java.sql.Statement st4 = con.createStatement();
             st4.executeQuery("select cpf_sec from secs");
             ResultSet rs4 = st4.getResultSet();
             
-            String CPF = CampoCPF.getText();
-           
             while(rs4.next()){
                 if(rs4.getString("cpf_sec").equals(CPF)){
-                    identity = 1;
-                    JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
+                   vcpf = 1;
+                   if(CPF.equals(cpff.getText())){
+                        vcpf = 0;
+                    }
                 }else{
                     
                 }
@@ -434,16 +441,21 @@ public class Tela_editar_medico extends javax.swing.JFrame {
             ResultSet rs5 = st5.getResultSet();
             
             while(rs5.next()){
-                if(rs5.getString("cpf_medico").equals(CPF)){
-                    identity = 1;
-                    JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
+                if(rs5.getString("cpf_medico").equals(CPF) && CampoCPF.getText() != cpff.getText()){
+                    vcpf = 1;
+                    if(CPF.equals(cpff.getText())){
+                        vcpf = 0;
+                    }
                 }else{
                     
                 }
             }
             
+            
             if(identity == 1){
                 JOptionPane.showMessageDialog(null, "Identity já existe");
+            }if(vcpf == 1){
+                JOptionPane.showMessageDialog(null, "CPF já Cadastrado!");
             }
             
             
@@ -463,7 +475,7 @@ public class Tela_editar_medico extends javax.swing.JFrame {
             }else{JOptionPane.showMessageDialog(null, "CPF inválido!");
                     campos = 1;
             }
-            if(identity == 0 && campos == 0){
+            if(identity == 0 && campos == 0 && vcpf == 0){
                 String sql = "UPDATE medicos SET identity = ?,nome_medico = ?,cpf_medico = ?,rg_medico = ?,crm_medico = ?,telefone_medico = ?,endereco_medico = ?,sexo_medico = ?,senha_medico = ? WHERE id_medico = ?";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1, CampoIdentity.getText());
@@ -551,6 +563,7 @@ public class Tela_editar_medico extends javax.swing.JFrame {
     private javax.swing.JCheckBox CheckFeminino;
     private javax.swing.JCheckBox CheckMasculino;
     private javax.swing.JTextField campoid;
+    private javax.swing.JTextField cpff;
     private javax.swing.JTextField identityy;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
