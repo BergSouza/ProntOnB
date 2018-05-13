@@ -6,11 +6,8 @@
 package Telas;
 
 import Banco_de_dados.Conexao;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,14 +22,13 @@ import plus_life.Plus_Life;
  *
  * @author Bergson
  */
-public class Tela_login extends javax.swing.JFrame {
+public class Tela_login2 extends javax.swing.JFrame {
 
     /**
      * Creates new form Tela_login
      */
-    public Tela_login() throws FileNotFoundException, IOException {
+    public Tela_login2() {
         initComponents();
-        
         
     }
 
@@ -48,8 +44,6 @@ public class Tela_login extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         CampoA = new javax.swing.JTextField();
@@ -57,19 +51,12 @@ public class Tela_login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jbtn_Logar = new javax.swing.JButton();
         CampoPass = new javax.swing.JPasswordField();
-        jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
-        txtNovidades = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        PainelAjuda = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        PainelNovidades = new javax.swing.JTextPane();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         txtVersao = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jCheckBox1.setBackground(new java.awt.Color(102, 153, 255));
         jCheckBox1.setText("Secretária");
@@ -86,29 +73,10 @@ public class Tela_login extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(102, 153, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Configurações");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setBackground(new java.awt.Color(102, 153, 255));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText(">");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
         setBackground(new java.awt.Color(0, 0, 0));
+        setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -124,18 +92,18 @@ public class Tela_login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 91, 80));
-        jPanel1.add(CampoA, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 170, 28));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 163, 52));
+        jPanel1.add(CampoA, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 240, 28));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Identity:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 103, 91, 40));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 123, 91, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Senha:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 79, 21));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 79, 30));
 
         jbtn_Logar.setBackground(new java.awt.Color(255, 255, 255));
         jbtn_Logar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -146,78 +114,22 @@ public class Tela_login extends javax.swing.JFrame {
                 jbtn_LogarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbtn_Logar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 170, 41));
-        jPanel1.add(CampoPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 170, 31));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 210, 350));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jbtn_Logar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 140, 41));
+        jPanel1.add(CampoPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 240, 31));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("PlusLife");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, 70));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_Azul.png"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 50, 52));
 
-        txtNovidades.setText("Novidades:");
-
-        jLabel8.setText("Ajuda:");
-        jLabel8.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        PainelAjuda.setEditable(false);
-        jScrollPane1.setViewportView(PainelAjuda);
-
-        PainelNovidades.setEditable(false);
-        jScrollPane2.setViewportView(PainelNovidades);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNovidades)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(87, 87, 87)
-                                        .addComponent(jLabel7)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(jLabel4)))
-                                .addGap(0, 127, Short.MAX_VALUE)))
-                        .addContainerGap())))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNovidades)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 348));
-
-        jPanel3.setBackground(new java.awt.Color(102, 153, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        txtVersao.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtVersao.setForeground(new java.awt.Color(255, 255, 255));
+        txtVersao.setText("v0.0");
+        jPanel1.add(txtVersao, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 180, 50));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -228,15 +140,31 @@ public class Tela_login extends javax.swing.JFrame {
                 jLabel6MouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 0, 210, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
 
-        txtVersao.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtVersao.setForeground(new java.awt.Color(255, 255, 255));
-        txtVersao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txtVersao.setText("v0.0");
-        jPanel3.add(txtVersao, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 30));
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(102, 153, 255));
+        jButton2.setText("<");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 50, 40));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 620, 30));
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(102, 153, 255));
+        jButton3.setText("X");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 50, 40));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -270,7 +198,7 @@ public class Tela_login extends javax.swing.JFrame {
                     try {
                         tela_admin.MostraSecs();
                     } catch (Exception ex) {
-                        Logger.getLogger(Tela_login.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Tela_login2.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -314,7 +242,7 @@ public class Tela_login extends javax.swing.JFrame {
                     try {
                         tela_sec.MostraMedicos();
                     } catch (Exception ex) {
-                        Logger.getLogger(Tela_login.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Tela_login2.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -326,7 +254,7 @@ public class Tela_login extends javax.swing.JFrame {
             /*TEMPORÁRIO*/
             
         } catch (Exception ex) {
-            Logger.getLogger(Tela_login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Tela_login2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtn_LogarActionPerformed
 
@@ -335,8 +263,6 @@ public class Tela_login extends javax.swing.JFrame {
         String versao = pl.getVersao();
         txtVersao.setText("v"+versao);
         
-        PainelNovidades.setText(pl.getNovidades());
-        PainelAjuda.setText(pl.getAjuda());
     }//GEN-LAST:event_formWindowOpened
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -347,10 +273,6 @@ public class Tela_login extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             File diretorio = new File("C:\\PlusLife");
             diretorio.mkdir();
@@ -362,17 +284,26 @@ public class Tela_login extends javax.swing.JFrame {
             FileWriter arq = new FileWriter("C:\\PlusLife\\loginconfig.pl");
             BufferedWriter writer = new BufferedWriter(arq);
             //writer.newLine();
-            writer.write("1");
+            writer.write("0");
             writer.flush();
             writer.close();
-            
-            Tela_login2 login2 = new Tela_login2();
-            login2.setVisible(true);
-            login2.setLocationRelativeTo(null);
-            dispose();
         } catch (IOException ex) {
             Logger.getLogger(Tela_login.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Tela_login login;
+        try {
+            login = new Tela_login();
+            login.setVisible(true);
+            login.setLocationRelativeTo(null);
+            dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(Tela_login2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -392,24 +323,21 @@ public class Tela_login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tela_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_login2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tela_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_login2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tela_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_login2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tela_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_login2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new Tela_login().setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(Tela_login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new Tela_login2().setVisible(true);
             }
         });
     }
@@ -417,8 +345,6 @@ public class Tela_login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CampoA;
     private javax.swing.JPasswordField CampoPass;
-    private javax.swing.JTextPane PainelAjuda;
-    private javax.swing.JTextPane PainelNovidades;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -430,15 +356,8 @@ public class Tela_login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtn_Logar;
-    private javax.swing.JLabel txtNovidades;
     private javax.swing.JLabel txtVersao;
     // End of variables declaration//GEN-END:variables
 }

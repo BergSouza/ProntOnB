@@ -6,6 +6,7 @@
 package Telas;
 
 import Banco_de_dados.Conexao;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -1128,9 +1129,15 @@ public class Tela_Secretária extends javax.swing.JFrame {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         dispose();
-        Tela_login login = new Tela_login();
-        login.setVisible(true);
+        Tela_login login;
+        try {
+            login = new Tela_login();
+            login.setVisible(true);
         login.setLocationRelativeTo(null);
+        } catch (IOException ex) {
+            Logger.getLogger(Tela_Secretária.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed

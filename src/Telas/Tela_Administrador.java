@@ -6,6 +6,7 @@
 package Telas;
 
 import Banco_de_dados.Conexao;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -395,22 +396,22 @@ public class Tela_Administrador extends javax.swing.JFrame {
                         
             int a = 0;
             //Lista os alunos no console
-            int numtabelas = Tabela.getRowCount();
+            int numtabelas = Tabela2.getRowCount();
             for (int b = 0 ; b < numtabelas ; b++ ) {
-                Tabela.setValueAt(" ", b, 0);
-                Tabela.setValueAt(" ", b, 1);
-                Tabela.setValueAt(" ", b, 2);
-                Tabela.setValueAt(" ", b, 3);
-                Tabela.setValueAt(" ", b, 4);
+                Tabela2.setValueAt(" ", b, 0);
+                Tabela2.setValueAt(" ", b, 1);
+                Tabela2.setValueAt(" ", b, 2);
+                Tabela2.setValueAt(" ", b, 3);
+                Tabela2.setValueAt(" ", b, 4);
             }
             int linhas = 0;
             while (rs.next()) {
                 linhas++;
-                Tabela.setValueAt(rs.getString("id_medico"), a, 0);
-                Tabela.setValueAt(rs.getString("nome_medico"), a, 1);
-                Tabela.setValueAt(rs.getString("cpf_medico"), a, 2);
-                Tabela.setValueAt(rs.getString("rg_medico"), a, 3);
-                Tabela.setValueAt(rs.getString("telefone_medico"), a, 4);
+                Tabela2.setValueAt(rs.getString("id_medico"), a, 0);
+                Tabela2.setValueAt(rs.getString("nome_medico"), a, 1);
+                Tabela2.setValueAt(rs.getString("cpf_medico"), a, 2);
+                Tabela2.setValueAt(rs.getString("rg_medico"), a, 3);
+                Tabela2.setValueAt(rs.getString("telefone_medico"), a, 4);
                 a++;
             }
            
@@ -963,9 +964,15 @@ public class Tela_Administrador extends javax.swing.JFrame {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         dispose();
-        Tela_login login = new Tela_login();
-        login.setVisible(true);
-        login.setLocationRelativeTo(null);
+        Tela_login login;
+        try {
+            login = new Tela_login();
+            login.setVisible(true);
+            login.setLocationRelativeTo(null);
+        } catch (IOException ex) {
+            Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
