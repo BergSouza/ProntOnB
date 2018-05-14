@@ -43,20 +43,29 @@ public class Tela_Configurações extends javax.swing.JFrame {
         String cors = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
+        corprincipal.setText(corp);
+        corsecundaria.setText(cors);
     }
         
     public void mudacorprincipal(String cor){
+        selecaocor.setBackground(Color.decode(cor));
+        btnOk.setBackground(Color.decode(cor));
+        btnInverter.setBackground(Color.decode(cor));
         painelcabecalho.setBackground(Color.decode(cor));
         painelrodape.setBackground(Color.decode(cor));
         btnconfirmarrodape.setForeground(Color.decode(cor));
         btncancelarrodape.setForeground(Color.decode(cor));
         txta.setForeground(Color.decode(cor));
+        txta1.setForeground(Color.decode(cor));
         txtb.setForeground(Color.decode(cor));
         txtc.setForeground(Color.decode(cor));
         corprincipal.setText(cor);
     }
     
     public void mudacorsecundaria(String cor){
+        selecaocor.setForeground(Color.decode(cor));
+        btnOk.setForeground(Color.decode(cor));
+        btnInverter.setForeground(Color.decode(cor));
         painelcabecalho.setForeground(Color.decode(cor));
         painelrodape.setForeground(Color.decode(cor));
         btnconfirmarrodape.setBackground(Color.decode(cor));
@@ -109,13 +118,12 @@ public class Tela_Configurações extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        corprincipal = new javax.swing.JTextField();
-        corsecundaria = new javax.swing.JTextField();
+        txtb = new javax.swing.JLabel();
+        txtc = new javax.swing.JLabel();
         painelcabecalho = new javax.swing.JPanel();
         txtcabecalho = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txta = new javax.swing.JLabel();
-        txtb = new javax.swing.JLabel();
         cp7 = new javax.swing.JButton();
         cp1 = new javax.swing.JButton();
         cp2 = new javax.swing.JButton();
@@ -123,7 +131,6 @@ public class Tela_Configurações extends javax.swing.JFrame {
         cp4 = new javax.swing.JButton();
         cp5 = new javax.swing.JButton();
         cp6 = new javax.swing.JButton();
-        txtc = new javax.swing.JLabel();
         cs1 = new javax.swing.JButton();
         cs2 = new javax.swing.JButton();
         cs3 = new javax.swing.JButton();
@@ -131,13 +138,25 @@ public class Tela_Configurações extends javax.swing.JFrame {
         cs5 = new javax.swing.JButton();
         cs6 = new javax.swing.JButton();
         cs7 = new javax.swing.JButton();
+        selecaocor = new javax.swing.JComboBox<>();
+        campocor = new javax.swing.JTextField();
+        btnInverter = new javax.swing.JButton();
+        btnOk = new javax.swing.JButton();
+        txta1 = new javax.swing.JLabel();
+        corprincipal = new javax.swing.JTextField();
+        corsecundaria = new javax.swing.JTextField();
         painelrodape = new javax.swing.JPanel();
         btncancelarrodape = new javax.swing.JButton();
         btnconfirmarrodape = new javax.swing.JButton();
 
-        corprincipal.setText("jTextField1");
+        txtb.setText("Cor Principal >>");
+        txtb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtbMouseClicked(evt);
+            }
+        });
 
-        corsecundaria.setText("jTextField1");
+        txtc.setText("Cor Secundária >>");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -151,26 +170,23 @@ public class Tela_Configurações extends javax.swing.JFrame {
         txtcabecalho.setText("Configurações");
         painelcabecalho.add(txtcabecalho, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 320, 50));
 
-        getContentPane().add(painelcabecalho, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 70));
+        getContentPane().add(painelcabecalho, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 70));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txta.setForeground(new java.awt.Color(102, 153, 255));
-        txta.setText("Cores:");
-        jPanel2.add(txta, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 11, -1, -1));
+        txta.setText("Digite Hexadecimal #");
+        jPanel2.add(txta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 130, 30));
 
-        txtb.setText("Cor Principal");
-        jPanel2.add(txtb, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
-
-        cp7.setBackground(new java.awt.Color(0, 0, 0));
+        cp7.setBackground(new java.awt.Color(35, 106, 229));
         cp7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cp7ActionPerformed(evt);
             }
         });
-        jPanel2.add(cp7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 60, 50));
+        jPanel2.add(cp7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, 60, 50));
 
         cp1.setBackground(new java.awt.Color(102, 153, 255));
         cp1.addActionListener(new java.awt.event.ActionListener() {
@@ -178,52 +194,49 @@ public class Tela_Configurações extends javax.swing.JFrame {
                 cp1ActionPerformed(evt);
             }
         });
-        jPanel2.add(cp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 60, 50));
+        jPanel2.add(cp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 60, 50));
 
-        cp2.setBackground(new java.awt.Color(255, 51, 102));
+        cp2.setBackground(new java.awt.Color(255, 0, 74));
         cp2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cp2ActionPerformed(evt);
             }
         });
-        jPanel2.add(cp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 60, 50));
+        jPanel2.add(cp2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 60, 50));
 
-        cp3.setBackground(new java.awt.Color(255, 255, 0));
+        cp3.setBackground(new java.awt.Color(255, 197, 39));
         cp3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cp3ActionPerformed(evt);
             }
         });
-        jPanel2.add(cp3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 60, 50));
+        jPanel2.add(cp3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 60, 50));
 
-        cp4.setBackground(new java.awt.Color(0, 153, 51));
+        cp4.setBackground(new java.awt.Color(0, 159, 124));
         cp4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cp4ActionPerformed(evt);
             }
         });
-        jPanel2.add(cp4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 60, 50));
+        jPanel2.add(cp4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 60, 50));
 
-        cp5.setBackground(new java.awt.Color(0, 0, 255));
+        cp5.setBackground(new java.awt.Color(255, 0, 0));
         cp5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cp5ActionPerformed(evt);
             }
         });
-        jPanel2.add(cp5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 60, 50));
+        jPanel2.add(cp5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 60, 50));
 
-        cp6.setBackground(new java.awt.Color(255, 255, 255));
+        cp6.setBackground(new java.awt.Color(245, 101, 237));
         cp6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cp6ActionPerformed(evt);
             }
         });
-        jPanel2.add(cp6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 60, 50));
+        jPanel2.add(cp6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 60, 50));
 
-        txtc.setText("Cor Secundária");
-        jPanel2.add(txtc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
-
-        cs1.setBackground(new java.awt.Color(102, 153, 255));
+        cs1.setBackground(new java.awt.Color(111, 113, 114));
         cs1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cs1ActionPerformed(evt);
@@ -279,9 +292,41 @@ public class Tela_Configurações extends javax.swing.JFrame {
         });
         jPanel2.add(cs7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 60, 50));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 540, 210));
+        selecaocor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cor Principal", "Cor Secundária" }));
+        jPanel2.add(selecaocor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 130, 30));
+        jPanel2.add(campocor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 130, 30));
+
+        btnInverter.setText("Inverter");
+        btnInverter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInverterActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnInverter, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 130, 30));
+
+        btnOk.setText("OK");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 60, 30));
+
+        txta1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txta1.setForeground(new java.awt.Color(102, 153, 255));
+        txta1.setText("Cores:");
+        jPanel2.add(txta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 50, 30));
+
+        corprincipal.setEditable(false);
+        jPanel2.add(corprincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 100, -1));
+
+        corsecundaria.setEditable(false);
+        jPanel2.add(corsecundaria, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 90, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 520, 210));
 
         painelrodape.setBackground(new java.awt.Color(102, 153, 255));
+        painelrodape.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btncancelarrodape.setBackground(new java.awt.Color(255, 255, 255));
         btncancelarrodape.setForeground(new java.awt.Color(102, 153, 255));
@@ -291,6 +336,7 @@ public class Tela_Configurações extends javax.swing.JFrame {
                 btncancelarrodapeActionPerformed(evt);
             }
         });
+        painelrodape.add(btncancelarrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 97, 40));
 
         btnconfirmarrodape.setBackground(new java.awt.Color(255, 255, 255));
         btnconfirmarrodape.setForeground(new java.awt.Color(102, 153, 255));
@@ -300,29 +346,9 @@ public class Tela_Configurações extends javax.swing.JFrame {
                 btnconfirmarrodapeActionPerformed(evt);
             }
         });
+        painelrodape.add(btnconfirmarrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 97, 40));
 
-        javax.swing.GroupLayout painelrodapeLayout = new javax.swing.GroupLayout(painelrodape);
-        painelrodape.setLayout(painelrodapeLayout);
-        painelrodapeLayout.setHorizontalGroup(
-            painelrodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelrodapeLayout.createSequentialGroup()
-                .addContainerGap(326, Short.MAX_VALUE)
-                .addComponent(btnconfirmarrodape, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btncancelarrodape, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        painelrodapeLayout.setVerticalGroup(
-            painelrodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelrodapeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(painelrodapeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btncancelarrodape, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnconfirmarrodape, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(painelrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 540, 70));
+        getContentPane().add(painelrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 520, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -334,59 +360,129 @@ public class Tela_Configurações extends javax.swing.JFrame {
     }//GEN-LAST:event_btncancelarrodapeActionPerformed
 
     private void cp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cp1ActionPerformed
-        mudacorprincipal("#6699FF");
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#6699FF");
+        }if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#6699FF");
+        }
+        
     }//GEN-LAST:event_cp1ActionPerformed
 
     private void cp2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cp2ActionPerformed
-        mudacorprincipal("#FF3366");
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#FF004A");
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#FF004A");
+        }
     }//GEN-LAST:event_cp2ActionPerformed
 
     private void cp3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cp3ActionPerformed
-        mudacorprincipal("#FFFF00");
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#FFC527");
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#FFC527");
+        }
     }//GEN-LAST:event_cp3ActionPerformed
 
     private void cp4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cp4ActionPerformed
-        mudacorprincipal("#009933");
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#009F7C");
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#009F7C");
+        }
     }//GEN-LAST:event_cp4ActionPerformed
 
     private void cp5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cp5ActionPerformed
-        mudacorprincipal("#0000FF");
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#FF0000");
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#FF0000");
+        }
     }//GEN-LAST:event_cp5ActionPerformed
 
     private void cp6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cp6ActionPerformed
-       mudacorprincipal("#FFFFFF");
+       if(selecaocor.getSelectedIndex() == 0){
+           mudacorprincipal("#F565ED");
+       }
+       if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#F565ED");
+        }
     }//GEN-LAST:event_cp6ActionPerformed
 
     private void cp7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cp7ActionPerformed
-        mudacorprincipal("#000000");
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#236AE5");
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#236AE5");
+        }
     }//GEN-LAST:event_cp7ActionPerformed
 
     private void cs1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cs1ActionPerformed
-        mudacorsecundaria("#6699FF");
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#6F7172");
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#6F7172");
+        }
     }//GEN-LAST:event_cs1ActionPerformed
 
     private void cs2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cs2ActionPerformed
-        mudacorsecundaria("#FF3366");
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#FF3366");
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#FF3366");
+        }
     }//GEN-LAST:event_cs2ActionPerformed
 
     private void cs3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cs3ActionPerformed
-        mudacorsecundaria("#FFFF00");        // TODO add your handling code here:
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#FFFF00"); 
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#FFFF00");
+        }// TODO add your handling code here:
     }//GEN-LAST:event_cs3ActionPerformed
 
     private void cs4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cs4ActionPerformed
-        mudacorsecundaria("#009933");     // TODO add your handling code here:
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#009933");
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#009933");
+        }// TODO add your handling code here:
     }//GEN-LAST:event_cs4ActionPerformed
 
     private void cs5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cs5ActionPerformed
-        mudacorsecundaria("#0000FF");    // TODO add your handling code here:
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#0000FF"); 
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#0000FF");
+        }// TODO add your handling code here:
     }//GEN-LAST:event_cs5ActionPerformed
 
     private void cs6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cs6ActionPerformed
-        mudacorsecundaria("#FFFFFF");      // TODO add your handling code here:
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#FFFFFF");  
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#FFFFFF");
+        }// TODO add your handling code here:
     }//GEN-LAST:event_cs6ActionPerformed
 
     private void cs7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cs7ActionPerformed
-        mudacorsecundaria("#000000");      // TODO add your handling code here:
+        if(selecaocor.getSelectedIndex() == 0){
+            mudacorprincipal("#000000"); 
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            mudacorsecundaria("#000000");
+        }// TODO add your handling code here:
     }//GEN-LAST:event_cs7ActionPerformed
 
     private void btnconfirmarrodapeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconfirmarrodapeActionPerformed
@@ -397,6 +493,45 @@ public class Tela_Configurações extends javax.swing.JFrame {
             salvarcores(corprincipal.getText(),corsecundaria.getText());
         }
     }//GEN-LAST:event_btnconfirmarrodapeActionPerformed
+
+    private void txtbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtbMouseClicked
+        /*Tela_Config_Selecionar_Cor cp1;
+        try {
+            dispose();
+            cp1 = new Tela_Config_Selecionar_Cor();
+            cp1.setVisible(true);
+            cp1.pegavalores("0", corprincipal.getText(), corsecundaria.getText());
+        cp1.setLocationRelativeTo(null);
+        } catch (IOException ex) {
+            Logger.getLogger(Tela_Configurações.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        
+    }//GEN-LAST:event_txtbMouseClicked
+
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        String cor = campocor.getText();
+        if(selecaocor.getSelectedIndex() == 0){
+            try{
+                mudacorprincipal(cor);
+            } catch (Exception ex1){
+                JOptionPane.showMessageDialog(null, "Digite o código com o #");
+            }
+        }
+        if(selecaocor.getSelectedIndex() == 1){
+            try{
+                mudacorsecundaria(cor);
+            } catch (Exception ex1){
+                JOptionPane.showMessageDialog(null, "Digite o código com o #");
+            }
+        }
+    }//GEN-LAST:event_btnOkActionPerformed
+
+    private void btnInverterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInverterActionPerformed
+        String a = corprincipal.getText();
+        String b = corsecundaria.getText();
+        mudacorprincipal(b);
+        mudacorsecundaria(a);
+    }//GEN-LAST:event_btnInverterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -439,8 +574,11 @@ public class Tela_Configurações extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInverter;
+    private javax.swing.JButton btnOk;
     private javax.swing.JButton btncancelarrodape;
     private javax.swing.JButton btnconfirmarrodape;
+    private javax.swing.JTextField campocor;
     private javax.swing.JTextField corprincipal;
     private javax.swing.JTextField corsecundaria;
     private javax.swing.JButton cp1;
@@ -460,7 +598,9 @@ public class Tela_Configurações extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel painelcabecalho;
     private javax.swing.JPanel painelrodape;
+    private javax.swing.JComboBox<String> selecaocor;
     private javax.swing.JLabel txta;
+    private javax.swing.JLabel txta1;
     private javax.swing.JLabel txtb;
     private javax.swing.JLabel txtc;
     private javax.swing.JLabel txtcabecalho;

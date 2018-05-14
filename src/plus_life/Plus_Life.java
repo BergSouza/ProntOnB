@@ -37,7 +37,7 @@ import javax.swing.JOptionPane;
 
 public class Plus_Life {
     
-    private String versao = "0.9.7 - BETA";
+    private String versao = "0.9.7.2 - BETA";
     private String novidades = ""
             + "v0.6: PlusLife conta com o Identity."
             + "v0.8: Sistema do Administrador 100% funcional\n"
