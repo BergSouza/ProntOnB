@@ -6,6 +6,11 @@
 package Telas;
 
 import Banco_de_dados.Conexao;
+import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,8 +29,56 @@ public class Tela_editar_sec extends javax.swing.JFrame {
     /**
      * Creates new form tela_Sec
      */
-    public Tela_editar_sec() {
+    public Tela_editar_sec() throws IOException {
         initComponents();
+        
+        conferecores();
+    }
+    
+    
+    public void conferecores() throws IOException{
+        File file = new File("C:\\PlusLife\\config.pl");
+        FileReader freader = new FileReader(file);
+        BufferedReader breader = new BufferedReader(freader);
+        String corp = breader.readLine();
+        String cors = breader.readLine();
+        mudacorprincipal(corp);
+        mudacorsecundaria(cors);
+    }
+        
+    public void mudacorprincipal(String cor){
+        jLabel1.setForeground(Color.decode(cor));
+        jPanel1.setBackground(Color.decode(cor));
+        jPanel3.setBackground(Color.decode(cor));
+        jLabel2.setForeground(Color.decode(cor));
+        jLabel3.setForeground(Color.decode(cor));
+        jLabel4.setForeground(Color.decode(cor));
+        jLabel5.setForeground(Color.decode(cor));
+        jLabel6.setForeground(Color.decode(cor));
+        jLabel7.setForeground(Color.decode(cor));
+        jLabel8.setForeground(Color.decode(cor));
+        
+        jLabel10.setForeground(Color.decode(cor));
+        jButton1.setForeground(Color.decode(cor));
+        jButton2.setForeground(Color.decode(cor));
+        
+        CheckMasculino.setForeground(Color.decode(cor));
+        CheckFeminino.setForeground(Color.decode(cor));
+    }
+    
+    public void mudacorsecundaria(String cor){
+        
+        
+        
+        jPanel2.setBackground(Color.decode(cor));
+        
+        jLabel9.setForeground(Color.decode(cor));
+        
+        jButton1.setBackground(Color.decode(cor));
+        jButton2.setBackground(Color.decode(cor));
+        
+        CheckMasculino.setBackground(Color.decode(cor));
+        CheckFeminino.setBackground(Color.decode(cor));
         
     }
     
@@ -551,7 +604,11 @@ public class Tela_editar_sec extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_editar_sec().setVisible(true);
+                try {
+                    new Tela_editar_sec().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Tela_editar_sec.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

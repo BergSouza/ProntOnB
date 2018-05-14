@@ -13,6 +13,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Telas.Tela_Administrador;
+import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
@@ -25,8 +30,58 @@ public class Tela_visualizar_consulta extends javax.swing.JFrame {
     /**
      * Creates new form cadastrar_medico
      */
-    public Tela_visualizar_consulta() {
+    public Tela_visualizar_consulta() throws IOException {
         initComponents();
+        
+        conferecores();
+    }
+    
+    
+    public void conferecores() throws IOException{
+        File file = new File("C:\\PlusLife\\config.pl");
+        FileReader freader = new FileReader(file);
+        BufferedReader breader = new BufferedReader(freader);
+        String corp = breader.readLine();
+        String cors = breader.readLine();
+        mudacorprincipal(corp);
+        mudacorsecundaria(cors);
+    }
+        
+    public void mudacorprincipal(String cor){
+        jPanel1.setBackground(Color.decode(cor));
+        jPanel3.setBackground(Color.decode(cor));
+        
+        jLabel2.setForeground(Color.decode(cor));
+        jLabel3.setForeground(Color.decode(cor));
+        jLabel4.setForeground(Color.decode(cor));
+        jLabel5.setForeground(Color.decode(cor));
+        jLabel6.setForeground(Color.decode(cor));
+        jLabel7.setForeground(Color.decode(cor));
+        jLabel8.setForeground(Color.decode(cor));
+        jLabel9.setForeground(Color.decode(cor));
+        jLabel13.setForeground(Color.decode(cor));
+        CampoNomeMed.setBackground(Color.decode(cor));
+        CampoNome.setBackground(Color.decode(cor));
+        CampoDataC.setBackground(Color.decode(cor));
+        CampoDataN.setBackground(Color.decode(cor));
+        CampoHorario.setBackground(Color.decode(cor));
+        CampoRG.setBackground(Color.decode(cor));
+        
+        jButton2.setForeground(Color.decode(cor));
+        
+        CheckMasculino.setForeground(Color.decode(cor));
+        CheckFeminino.setForeground(Color.decode(cor));
+    }
+    
+    public void mudacorsecundaria(String cor){
+        jLabel1.setForeground(Color.decode(cor));
+        
+        
+        jPanel2.setBackground(Color.decode(cor));
+        jButton2.setBackground(Color.decode(cor));
+        
+        CheckMasculino.setBackground(Color.decode(cor));
+        CheckFeminino.setBackground(Color.decode(cor));
     }
     
     public String pegavalores(String id,String nome_paciente,String nome_medico,String rg,String data_nasc, String sexo, String data,String horario){
@@ -104,7 +159,7 @@ public class Tela_visualizar_consulta extends javax.swing.JFrame {
         jLabel1.setText("Visualizar Consulta");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 50));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_Azul.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_transparente.png"))); // NOI18N
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 70));
@@ -115,7 +170,7 @@ public class Tela_visualizar_consulta extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 153, 255));
         jLabel2.setText("Nome do Paciente:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 190, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 153, 255));
@@ -280,7 +335,11 @@ public class Tela_visualizar_consulta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_visualizar_consulta().setVisible(true);
+                try {
+                    new Tela_visualizar_consulta().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Tela_visualizar_consulta.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -13,6 +13,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Telas.Tela_Administrador;
+import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
@@ -30,6 +35,81 @@ public class Tela_editar_consulta extends javax.swing.JFrame {
         initComponents();
         
         MostraMedicos();
+        
+        conferecores();
+    }
+    
+    
+    public void conferecores() throws IOException{
+        File file = new File("C:\\PlusLife\\config.pl");
+        FileReader freader = new FileReader(file);
+        BufferedReader breader = new BufferedReader(freader);
+        String corp = breader.readLine();
+        String cors = breader.readLine();
+        mudacorprincipal(corp);
+        mudacorsecundaria(cors);
+    }
+        
+    public void mudacorprincipal(String cor){
+        jPanel1.setBackground(Color.decode(cor));
+        jPanel3.setBackground(Color.decode(cor));
+        
+        jLabel2.setForeground(Color.decode(cor));
+        jLabel3.setForeground(Color.decode(cor));
+        jLabel4.setForeground(Color.decode(cor));
+        jLabel5.setForeground(Color.decode(cor));
+        jLabel6.setForeground(Color.decode(cor));
+        jLabel7.setForeground(Color.decode(cor));
+        jLabel8.setForeground(Color.decode(cor));
+        jLabel9.setForeground(Color.decode(cor));
+        jLabel12.setForeground(Color.decode(cor));
+        jLabel13.setForeground(Color.decode(cor));
+        jLabel14.setForeground(Color.decode(cor));
+        jLabel15.setForeground(Color.decode(cor));
+        jLabel16.setForeground(Color.decode(cor));
+        jLabel17.setForeground(Color.decode(cor));
+        criterioPesquisa1.setForeground(Color.decode(cor));
+        btnPesquisa.setBackground(Color.decode(cor));
+        
+        SelectCAno.setForeground(Color.decode(cor));
+        SelectCMes.setForeground(Color.decode(cor));
+        SelectCDia.setForeground(Color.decode(cor));
+        SelectNAno.setForeground(Color.decode(cor));
+        SelectNMes.setForeground(Color.decode(cor));
+        SelectNDia.setForeground(Color.decode(cor));
+        SelectHora.setForeground(Color.decode(cor));
+        SelectMinuto.setForeground(Color.decode(cor));
+        
+        jButton1.setForeground(Color.decode(cor));
+        jButton2.setForeground(Color.decode(cor));
+        
+        CheckMasculino.setForeground(Color.decode(cor));
+        CheckFeminino.setForeground(Color.decode(cor));
+    }
+    
+    public void mudacorsecundaria(String cor){
+        jLabel1.setForeground(Color.decode(cor));
+        
+        
+        jPanel2.setBackground(Color.decode(cor));
+        jLabel2.setForeground(Color.decode(cor));
+        criterioPesquisa1.setBackground(Color.decode(cor));
+        btnPesquisa.setBackground(Color.decode(cor));
+        
+        SelectCAno.setBackground(Color.decode(cor));
+        SelectCMes.setBackground(Color.decode(cor));
+        SelectCDia.setBackground(Color.decode(cor));
+        SelectNAno.setBackground(Color.decode(cor));
+        SelectNMes.setBackground(Color.decode(cor));
+        SelectNDia.setBackground(Color.decode(cor));
+        SelectHora.setBackground(Color.decode(cor));
+        SelectMinuto.setBackground(Color.decode(cor));
+        
+        jButton1.setBackground(Color.decode(cor));
+        jButton2.setBackground(Color.decode(cor));
+        
+        CheckMasculino.setBackground(Color.decode(cor));
+        CheckFeminino.setBackground(Color.decode(cor));
     }
     
     public String pegavalores(String id,String nome_paciente,String id_medico,String rg,String data_nasc, String sexo, String data,String horario) throws SQLException, Exception{
@@ -234,7 +314,7 @@ public class Tela_editar_consulta extends javax.swing.JFrame {
         jLabel1.setText("Editar Consulta");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 50));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_Azul.png"))); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_transparente.png"))); // NOI18N
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 50));
         jPanel1.add(CampoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 160, 30));
 

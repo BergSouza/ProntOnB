@@ -6,6 +6,10 @@
 package Telas;
 
 import Banco_de_dados.Conexao;
+import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import plus_life.Plus_Life;
 
 /**
  *
@@ -25,8 +30,50 @@ public class Tela_Administrador extends javax.swing.JFrame {
     /**
      * Creates new form Tela_Administrador
      */
-    public Tela_Administrador() {
+    public Tela_Administrador() throws IOException {
         initComponents();
+        
+        conferecores();
+    }
+    
+    public void conferecores() throws IOException{
+        File file = new File("C:\\PlusLife\\config.pl");
+        FileReader freader = new FileReader(file);
+        BufferedReader breader = new BufferedReader(freader);
+        String corp = breader.readLine();
+        String cors = breader.readLine();
+        mudacorprincipal(corp);
+        mudacorsecundaria(cors);
+    }
+    
+    public void mudacorprincipal(String cor){
+        jPanel2.setBackground(Color.decode(cor));
+        Selecao.setBackground(Color.decode(cor));
+        btnAtualizar.setBackground(Color.decode(cor));
+        criterioPesquisa1.setBackground(Color.decode(cor));
+        criterioPesquisa2.setBackground(Color.decode(cor));
+        txtA.setForeground(Color.decode(cor));
+        btnPesquisa.setBackground(Color.decode(cor));
+        btnEditar.setBackground(Color.decode(cor));
+        btnExcluir.setBackground(Color.decode(cor));
+        btnCadastrar.setBackground(Color.decode(cor));
+        btnVisualizar.setBackground(Color.decode(cor));
+        btnSair.setForeground(Color.decode(cor));
+    }
+    
+    public void mudacorsecundaria(String cor){
+        jPanel1.setBackground(Color.decode(cor));
+        Selecao.setForeground(Color.decode(cor));
+        btnAtualizar.setForeground(Color.decode(cor));
+        jLabel2.setForeground(Color.decode(cor));
+        criterioPesquisa1.setForeground(Color.decode(cor));
+        criterioPesquisa2.setForeground(Color.decode(cor));
+        txtA.setBackground(Color.decode(cor));
+        btnEditar.setForeground(Color.decode(cor));
+        btnExcluir.setForeground(Color.decode(cor));
+        btnCadastrar.setForeground(Color.decode(cor));
+        btnVisualizar.setForeground(Color.decode(cor));
+        btnSair.setBackground(Color.decode(cor));
     }
     
     public void atualizar(){
@@ -398,20 +445,20 @@ public class Tela_Administrador extends javax.swing.JFrame {
             //Lista os alunos no console
             int numtabelas = Tabela2.getRowCount();
             for (int b = 0 ; b < numtabelas ; b++ ) {
-                Tabela2.setValueAt(" ", b, 0);
-                Tabela2.setValueAt(" ", b, 1);
-                Tabela2.setValueAt(" ", b, 2);
-                Tabela2.setValueAt(" ", b, 3);
-                Tabela2.setValueAt(" ", b, 4);
+                Tabela.setValueAt(" ", b, 0);
+                Tabela.setValueAt(" ", b, 1);
+                Tabela.setValueAt(" ", b, 2);
+                Tabela.setValueAt(" ", b, 3);
+                Tabela.setValueAt(" ", b, 4);
             }
             int linhas = 0;
             while (rs.next()) {
                 linhas++;
-                Tabela2.setValueAt(rs.getString("id_medico"), a, 0);
-                Tabela2.setValueAt(rs.getString("nome_medico"), a, 1);
-                Tabela2.setValueAt(rs.getString("cpf_medico"), a, 2);
-                Tabela2.setValueAt(rs.getString("rg_medico"), a, 3);
-                Tabela2.setValueAt(rs.getString("telefone_medico"), a, 4);
+                Tabela.setValueAt(rs.getString("id_medico"), a, 0);
+                Tabela.setValueAt(rs.getString("nome_medico"), a, 1);
+                Tabela.setValueAt(rs.getString("cpf_medico"), a, 2);
+                Tabela.setValueAt(rs.getString("rg_medico"), a, 3);
+                Tabela.setValueAt(rs.getString("telefone_medico"), a, 4);
                 a++;
             }
            
@@ -949,7 +996,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
         });
         jPanel2.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 90, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_Azul.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_transparente.png"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 50));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -964,32 +1011,43 @@ public class Tela_Administrador extends javax.swing.JFrame {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         dispose();
-        Tela_login login;
-        try {
-            login = new Tela_login();
-            login.setVisible(true);
-            login.setLocationRelativeTo(null);
-        } catch (IOException ex) {
-            Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        Plus_Life pl = new Plus_Life();
+        pl.conferetelalogin();
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         if(Selecao.getSelectedIndex() == 0){
-            Tela_cadastrar_sec sec = new Tela_cadastrar_sec();
-            sec.setVisible(true);
-            sec.setLocationRelativeTo(null);
+            Tela_cadastrar_sec sec;
+            try {
+                sec = new Tela_cadastrar_sec();
+                sec.setVisible(true);
+                sec.setLocationRelativeTo(null);
+            } catch (IOException ex) {
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         if(Selecao.getSelectedIndex() == 1){
-            Tela_cadastrar_medico medico = new Tela_cadastrar_medico();
-            medico.setVisible(true);
+            Tela_cadastrar_medico medico;
+            try {
+                medico = new Tela_cadastrar_medico();
+                medico.setVisible(true);
             medico.setLocationRelativeTo(null);
+            } catch (IOException ex) {
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         if(Selecao.getSelectedIndex() == 2){
-            Tela_cadastrar_convenios convenio = new Tela_cadastrar_convenios();
-            convenio.setVisible(true);
-            convenio.setLocationRelativeTo(null);
+            Tela_cadastrar_convenios convenio;
+            try {
+                convenio = new Tela_cadastrar_convenios();
+                convenio.setVisible(true);
+                convenio.setLocationRelativeTo(null);
+            } catch (IOException ex) {
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -1123,7 +1181,11 @@ public class Tela_Administrador extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_Administrador().setVisible(true);
+                try {
+                    new Tela_Administrador().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

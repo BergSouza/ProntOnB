@@ -13,6 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.PreparedStatement;
 import Banco_de_dados.Conexao;
+import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 /**
  *
@@ -23,9 +28,41 @@ public class Tela_visualizar_convenios extends javax.swing.JFrame {
     /**
      * Creates new form cadastrar_convenios
      */
-    public Tela_visualizar_convenios() {
+    public Tela_visualizar_convenios() throws IOException {
         initComponents();
+        
+        conferecores();
     }
+    
+    public void conferecores() throws IOException{
+        File file = new File("C:\\PlusLife\\config.pl");
+        FileReader freader = new FileReader(file);
+        BufferedReader breader = new BufferedReader(freader);
+        String corp = breader.readLine();
+        String cors = breader.readLine();
+        mudacorprincipal(corp);
+        mudacorsecundaria(cors);
+    }
+        
+    public void mudacorprincipal(String cor){
+        jPanel1.setBackground(Color.decode(cor));
+        jPanel2.setBackground(Color.decode(cor));
+        jLabel2.setForeground(Color.decode(cor));
+        jLabel3.setForeground(Color.decode(cor));
+        jLabel4.setForeground(Color.decode(cor));
+        jLabel5.setForeground(Color.decode(cor));
+        jLabel6.setForeground(Color.decode(cor));
+        jLabel7.setForeground(Color.decode(cor));
+        jButton2.setForeground(Color.decode(cor));
+    }
+    
+    public void mudacorsecundaria(String cor){
+        jLabel1.setForeground(Color.decode(cor));
+        jPanel3.setBackground(Color.decode(cor));
+        jButton2.setBackground(Color.decode(cor));
+        
+    }
+    
     
     public String pegavalores(String id,String nome,String endereco, String telefone, String cnpj,String plano){
         campoid.setText(id);
@@ -108,7 +145,7 @@ public class Tela_visualizar_convenios extends javax.swing.JFrame {
         jLabel1.setText("Visualizar Convênio");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 280, 50));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_Azul.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_transparente.png"))); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 70));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 70));
@@ -245,7 +282,11 @@ public class Tela_visualizar_convenios extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_visualizar_convenios().setVisible(true);
+                try {
+                    new Tela_visualizar_convenios().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Tela_visualizar_convenios.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

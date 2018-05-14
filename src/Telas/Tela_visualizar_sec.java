@@ -6,6 +6,11 @@
 package Telas;
 
 import Banco_de_dados.Conexao;
+import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,8 +28,54 @@ public class Tela_visualizar_sec extends javax.swing.JFrame {
     /**
      * Creates new form tela_Sec
      */
-    public Tela_visualizar_sec() {
+    public Tela_visualizar_sec() throws IOException {
         initComponents();
+        
+        conferecores();
+    }
+    
+    
+    
+    public void conferecores() throws IOException{
+        File file = new File("C:\\PlusLife\\config.pl");
+        FileReader freader = new FileReader(file);
+        BufferedReader breader = new BufferedReader(freader);
+        String corp = breader.readLine();
+        String cors = breader.readLine();
+        mudacorprincipal(corp);
+        mudacorsecundaria(cors);
+    }
+        
+    public void mudacorprincipal(String cor){
+        jLabel1.setForeground(Color.decode(cor));
+        jPanel1.setBackground(Color.decode(cor));
+        jPanel3.setBackground(Color.decode(cor));
+        jLabel2.setForeground(Color.decode(cor));
+        jLabel3.setForeground(Color.decode(cor));
+        jLabel4.setForeground(Color.decode(cor));
+        jLabel5.setForeground(Color.decode(cor));
+        jLabel6.setForeground(Color.decode(cor));
+        jLabel7.setForeground(Color.decode(cor));
+        
+        jLabel10.setForeground(Color.decode(cor));
+        jButton2.setForeground(Color.decode(cor));
+        
+        CheckMasculino.setForeground(Color.decode(cor));
+        CheckFeminino.setForeground(Color.decode(cor));
+    }
+    
+    public void mudacorsecundaria(String cor){
+        
+        
+        
+        jPanel2.setBackground(Color.decode(cor));
+        
+        jLabel9.setForeground(Color.decode(cor));
+        
+        jButton2.setBackground(Color.decode(cor));
+        
+        CheckMasculino.setBackground(Color.decode(cor));
+        CheckFeminino.setBackground(Color.decode(cor));
         
     }
     
@@ -97,7 +148,7 @@ public class Tela_visualizar_sec extends javax.swing.JFrame {
         jLabel9.setText("Visualizar Secretário(a)");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 386, 70));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_Azul.png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_transparente.png"))); // NOI18N
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 50));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -192,7 +243,7 @@ public class Tela_visualizar_sec extends javax.swing.JFrame {
                 CheckMasculinoActionPerformed(evt);
             }
         });
-        jPanel2.add(CheckMasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 100, -1));
+        jPanel2.add(CheckMasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 100, -1));
 
         CheckFeminino.setBackground(new java.awt.Color(255, 255, 255));
         CheckFeminino.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -204,7 +255,7 @@ public class Tela_visualizar_sec extends javax.swing.JFrame {
                 CheckFemininoActionPerformed(evt);
             }
         });
-        jPanel2.add(CheckFeminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
+        jPanel2.add(CheckFeminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(102, 153, 255));
 
@@ -332,7 +383,11 @@ public class Tela_visualizar_sec extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_visualizar_sec().setVisible(true);
+                try {
+                    new Tela_visualizar_sec().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Tela_visualizar_sec.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

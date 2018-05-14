@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import plus_life.Plus_Life;
 
 /**
  *
@@ -142,15 +143,9 @@ public class Tela_Ciriguela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Tela_login login;
-        try {
-            login = new Tela_login();
-            login.setVisible(true);
-            login.setLocationRelativeTo(null);
-            dispose();
-        } catch (IOException ex) {
-            Logger.getLogger(Tela_Ciriguela.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        dispose();
+        Plus_Life pl = new Plus_Life();
+        pl.conferetelalogin();
         
     }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -6,6 +6,10 @@
 package Telas;
 
 import Banco_de_dados.Conexao;
+import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import plus_life.Plus_Life;
 
 /**
  *
@@ -25,9 +30,47 @@ public class Tela_Médico extends javax.swing.JFrame {
     /**
      * Creates new form Tela_Administrador
      */
-    public Tela_Médico() {
+    public Tela_Médico() throws IOException {
         initComponents();
+        
+        conferecores();
     }
+    
+    
+    public void conferecores() throws IOException{
+        File file = new File("C:\\PlusLife\\config.pl");
+        FileReader freader = new FileReader(file);
+        BufferedReader breader = new BufferedReader(freader);
+        String corp = breader.readLine();
+        String cors = breader.readLine();
+        mudacorprincipal(corp);
+        mudacorsecundaria(cors);
+    }
+        
+    public void mudacorprincipal(String cor){
+        jPanel2.setBackground(Color.decode(cor));
+        Selecao.setBackground(Color.decode(cor));
+        btnAtualizar.setBackground(Color.decode(cor));
+        criterioPesquisa3.setBackground(Color.decode(cor));
+        txtA.setForeground(Color.decode(cor));
+        btnPesquisa.setBackground(Color.decode(cor));
+        btnExcluir.setBackground(Color.decode(cor));
+        btnVisualizar.setBackground(Color.decode(cor));
+        btnSair.setForeground(Color.decode(cor));
+    }
+    
+    public void mudacorsecundaria(String cor){
+        jPanel1.setBackground(Color.decode(cor));
+        Selecao.setForeground(Color.decode(cor));
+        btnAtualizar.setForeground(Color.decode(cor));
+        jLabel2.setForeground(Color.decode(cor));
+        criterioPesquisa3.setForeground(Color.decode(cor));
+        txtA.setBackground(Color.decode(cor));
+        btnExcluir.setForeground(Color.decode(cor));
+        btnVisualizar.setForeground(Color.decode(cor));
+        btnSair.setBackground(Color.decode(cor));
+    }
+    
     
     public void pegadados(String id,String Nome){
         CampoID.setText(id);
@@ -491,7 +534,7 @@ public class Tela_Médico extends javax.swing.JFrame {
         });
         jPanel2.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 90, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_Azul.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_transparente.png"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 50));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -506,15 +549,8 @@ public class Tela_Médico extends javax.swing.JFrame {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         dispose();
-        Tela_login login;
-        try {
-            login = new Tela_login();
-            login.setVisible(true);
-            login.setLocationRelativeTo(null);
-        } catch (IOException ex) {
-            Logger.getLogger(Tela_Médico.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        Plus_Life pl = new Plus_Life();
+        pl.conferetelalogin();
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void SelecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecaoActionPerformed
@@ -609,7 +645,11 @@ public class Tela_Médico extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_Médico().setVisible(true);
+                try {
+                    new Tela_Médico().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Tela_Médico.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
