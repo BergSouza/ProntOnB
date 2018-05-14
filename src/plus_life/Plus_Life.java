@@ -78,7 +78,7 @@ public class Plus_Life {
                 //writer.newLine();
                 writer.write("#6699FF");
                 writer.newLine();
-                writer.write("#FF3366");
+                writer.write("#FFFFFF");
                 writer.flush();
                 writer.close();
             }
@@ -120,6 +120,7 @@ public class Plus_Life {
     
     public static void main(String[] args) throws Exception {
         
+        criaarquivos();
         conferetelalogin();
         PlasticLookAndFeel.setPlasticTheme(new Silver());
                   
