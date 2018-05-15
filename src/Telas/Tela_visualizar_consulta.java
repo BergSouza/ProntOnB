@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Telas.Tela_Administrador;
 import java.awt.Color;
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -32,20 +33,23 @@ public class Tela_visualizar_consulta extends javax.swing.JFrame {
      */
     public Tela_visualizar_consulta() throws IOException {
         initComponents();
-        
-        conferecores();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        confereconfig();
     }
     
-    
-    public void conferecores() throws IOException{
+    public void confereconfig() throws IOException{
         File file = new File("C:\\PlusLife\\config.pl");
         FileReader freader = new FileReader(file);
         BufferedReader breader = new BufferedReader(freader);
         String corp = breader.readLine();
         String cors = breader.readLine();
+        String fonte = breader.readLine();
+        String tamanho = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
+        mudafonte(fonte, tamanho);
     }
+        
         
     public void mudacorprincipal(String cor){
         jPanel1.setBackground(Color.decode(cor));
@@ -82,6 +86,32 @@ public class Tela_visualizar_consulta extends javax.swing.JFrame {
         
         CheckMasculino.setBackground(Color.decode(cor));
         CheckFeminino.setBackground(Color.decode(cor));
+    }
+    
+    public void mudafonte(String fonte, String tamanhoo){
+        int tamanho = Integer.parseInt(tamanhoo);
+        jLabel1.setFont(new Font(fonte, Font.BOLD, 14+tamanho));
+        jLabel2.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel3.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel4.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel5.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel6.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel7.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel8.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel9.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel13.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        
+        CampoNome.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        CampoRG.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        CampoDataN.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        CampoDataC.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        CampoNomeMed.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        
+        jButton2.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        
+        CheckMasculino.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        CheckFeminino.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+    
     }
     
     public String pegavalores(String id,String nome_paciente,String nome_medico,String rg,String data_nasc, String sexo, String data,String horario){
@@ -157,7 +187,7 @@ public class Tela_visualizar_consulta extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Visualizar Consulta");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 50));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 510, 50));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_transparente.png"))); // NOI18N
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 50));

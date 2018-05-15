@@ -33,7 +33,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,93,0,0,2,3"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-99,0,0,2,3"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
@@ -83,7 +83,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="70" width="520" height="210"/>
+          <AbsoluteConstraints x="0" y="70" width="520" height="270"/>
         </Constraint>
       </Constraints>
 
@@ -376,11 +376,11 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="99" red="66" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cores:"/>
+            <Property name="text" type="java.lang.String" value="Atual:"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="10" width="50" height="30"/>
+              <AbsoluteConstraints x="300" y="200" width="60" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -404,6 +404,182 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Component class="javax.swing.JComboBox" name="selecaofonte">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="65">
+                <StringItem index="0" value="Arial"/>
+                <StringItem index="1" value="Arial Black"/>
+                <StringItem index="2" value="Arial Bold"/>
+                <StringItem index="3" value="Arial Bold Italic"/>
+                <StringItem index="4" value="Arial Italic"/>
+                <StringItem index="5" value="Comic Sans MS"/>
+                <StringItem index="6" value="Comic Sans MS Bold"/>
+                <StringItem index="7" value="Courier 10"/>
+                <StringItem index="8" value="Courier 12"/>
+                <StringItem index="9" value="Courier 15"/>
+                <StringItem index="10" value="Courier New"/>
+                <StringItem index="11" value="Courier New Bold"/>
+                <StringItem index="12" value="Courier New Bold Italic"/>
+                <StringItem index="13" value="Courier New Italic"/>
+                <StringItem index="14" value="Georgia"/>
+                <StringItem index="15" value="Georgia Bold"/>
+                <StringItem index="16" value="Georgia Bold Italic"/>
+                <StringItem index="17" value="Georgia Italic"/>
+                <StringItem index="18" value="Impact"/>
+                <StringItem index="19" value="Lucida Console"/>
+                <StringItem index="20" value="Lucida Sans Unicode"/>
+                <StringItem index="21" value="Microsoft Sans Serif"/>
+                <StringItem index="22" value="Modern"/>
+                <StringItem index="23" value="MS Sans Serif 8"/>
+                <StringItem index="24" value="MS Sans Serif 10"/>
+                <StringItem index="25" value="MS Sans Serif 12"/>
+                <StringItem index="26" value="MS Sans Serif 14"/>
+                <StringItem index="27" value="MS Sans Serif 18"/>
+                <StringItem index="28" value="MS Sans Serif 24"/>
+                <StringItem index="29" value=" "/>
+                <StringItem index="30" value="MS Serif 8"/>
+                <StringItem index="31" value="MS Serif 10"/>
+                <StringItem index="32" value="MS Serif 12"/>
+                <StringItem index="33" value="MS Serif  14"/>
+                <StringItem index="34" value="MS Serif  18"/>
+                <StringItem index="35" value="MS Serif  24"/>
+                <StringItem index="36" value="Palatino Linotype"/>
+                <StringItem index="37" value="Palatino Linotype Bold"/>
+                <StringItem index="38" value="Palatino Linotype Bold Italic"/>
+                <StringItem index="39" value="Palatino Linotype Italic"/>
+                <StringItem index="40" value="Roman"/>
+                <StringItem index="41" value="Script"/>
+                <StringItem index="42" value="Small Fonts"/>
+                <StringItem index="43" value="Symbol 8"/>
+                <StringItem index="44" value="Symbol 10"/>
+                <StringItem index="45" value="Symbol 12"/>
+                <StringItem index="46" value="Symbol 14"/>
+                <StringItem index="47" value="Symbol 18"/>
+                <StringItem index="48" value="Symbol 24"/>
+                <StringItem index="49" value="Tahoma"/>
+                <StringItem index="50" value="Tahoma Bold"/>
+                <StringItem index="51" value="Times MS Visio Standard 2013 New Roman"/>
+                <StringItem index="52" value="Times New Roman Bold"/>
+                <StringItem index="53" value="Times New Roman Bold Italic"/>
+                <StringItem index="54" value="Times New Roman Italic"/>
+                <StringItem index="55" value="Trebuchet MS"/>
+                <StringItem index="56" value="Trebuchet MS Bold"/>
+                <StringItem index="57" value="Trebuchet MS Bold Italic"/>
+                <StringItem index="58" value="Trebuchet MS Italic"/>
+                <StringItem index="59" value="Verdana"/>
+                <StringItem index="60" value="Verdana Bold"/>
+                <StringItem index="61" value="Verdana Bold Italic"/>
+                <StringItem index="62" value="Verdana Italic"/>
+                <StringItem index="63" value="Webdings"/>
+                <StringItem index="64" value="WingDings"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selecaofonteActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="90" y="230" width="130" height="30"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="txta2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="66" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Cores:"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="20" y="10" width="50" height="30"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="selecaotamanhofonte">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="7"/>
+                <StringItem index="1" value="8"/>
+                <StringItem index="2" value="9"/>
+                <StringItem index="3" value="10"/>
+                <StringItem index="4" value="11"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selecaotamanhofonteActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="230" y="230" width="60" height="30"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JTextField" name="campofonte">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="300" y="230" width="130" height="30"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="txta3">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="66" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Fonte:"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="20" y="200" width="60" height="30"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="txta4">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="99" red="66" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Nova:"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="20" y="230" width="60" height="30"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tamanhofonte">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="440" y="230" width="60" height="30"/>
+            </Constraint>
+          </Constraints>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="painelrodape">
@@ -414,7 +590,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="280" width="520" height="70"/>
+          <AbsoluteConstraints x="0" y="340" width="520" height="70"/>
         </Constraint>
       </Constraints>
 

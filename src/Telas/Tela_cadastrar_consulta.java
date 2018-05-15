@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Telas.Tela_Administrador;
 import java.awt.Color;
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -32,23 +33,23 @@ public class Tela_cadastrar_consulta extends javax.swing.JFrame {
      */
     public Tela_cadastrar_consulta() throws Exception {
         initComponents();
-        
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         MostraMedicos();
         
-        conferecores();
+        confereconfig();
     }
     
-    
-    
-    
-    public void conferecores() throws IOException{
+    public void confereconfig() throws IOException{
         File file = new File("C:\\PlusLife\\config.pl");
         FileReader freader = new FileReader(file);
         BufferedReader breader = new BufferedReader(freader);
         String corp = breader.readLine();
         String cors = breader.readLine();
+        String fonte = breader.readLine();
+        String tamanho = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
+        mudafonte(fonte, tamanho);
     }
         
     public void mudacorprincipal(String cor){
@@ -113,6 +114,47 @@ public class Tela_cadastrar_consulta extends javax.swing.JFrame {
         CheckFeminino.setBackground(Color.decode(cor));
     }
     
+    public void mudafonte(String fonte, String tamanhoo){
+        int tamanho = Integer.parseInt(tamanhoo);
+        jLabel1.setFont(new Font(fonte, Font.BOLD, 14+tamanho));
+        jLabel2.setFont(new Font(fonte, Font.BOLD, 14+tamanho));
+        jLabel3.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel4.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel5.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel6.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel7.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel8.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel9.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel15.setFont(new Font(fonte, Font.BOLD, 14+tamanho));
+        jLabel16.setFont(new Font(fonte, Font.BOLD, 14+tamanho));
+        jLabel12.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel13.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel14.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel17.setFont(new Font(fonte, Font.BOLD, 14+tamanho));
+        
+        Tabela.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        CampoPesquisa.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        CampoNome.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        CampoRG.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        
+        SelectCAno.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        SelectCMes.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        SelectCDia.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        SelectNAno.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        SelectNMes.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        SelectNDia1.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        SelectHora.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        SelectMinuto.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        
+        jButton1.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        jButton2.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        
+        criterioPesquisa1.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        
+        CheckMasculino.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        CheckFeminino.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+    
+    }
     public void MostraMedicos() throws Exception{
         try {
             //Registra JDBC driver
@@ -279,7 +321,7 @@ public class Tela_cadastrar_consulta extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Marcar Consulta");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, 50));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 320, 50));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_transparente.png"))); // NOI18N
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 50));

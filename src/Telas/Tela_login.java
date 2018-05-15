@@ -7,6 +7,7 @@ package Telas;
 
 import Banco_de_dados.Conexao;
 import java.awt.Color;
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -34,18 +35,21 @@ public class Tela_login extends javax.swing.JFrame {
     public Tela_login() throws FileNotFoundException, IOException {
         initComponents();
         
-        conferecores();
+        confereconfig();
     }
     
     
-    public void conferecores() throws IOException{
+    public void confereconfig() throws IOException{
         File file = new File("C:\\PlusLife\\config.pl");
         FileReader freader = new FileReader(file);
         BufferedReader breader = new BufferedReader(freader);
         String corp = breader.readLine();
         String cors = breader.readLine();
+        String fonte = breader.readLine();
+        String tamanho = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
+        mudafonte(fonte, tamanho);
     }
         
     public void mudacorprincipal(String cor){
@@ -67,6 +71,24 @@ public class Tela_login extends javax.swing.JFrame {
         jButton2.setForeground(Color.decode(cor));
         jButton3.setForeground(Color.decode(cor));
         jbtn_Logar.setBackground(Color.decode(cor));
+    }
+    public void mudafonte(String fonte, String tamanhoo){
+        int tamanho = Integer.parseInt(tamanhoo);
+        jLabel2.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        jLabel3.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        CampoA.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        CampoPass.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        jLabel4.setFont(new Font(fonte, Font.BOLD, 14+tamanho));
+        jButton2.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        jButton3.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        txtNovidades.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        PainelNovidades.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        PainelAjuda.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        jLabel8.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        jLabel6.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        txtVersao.setFont(new Font(fonte, Font.BOLD, 6+tamanho));
+        jLabel1.setFont(new Font(fonte, Font.BOLD, 14+tamanho));
+        jbtn_Logar.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -268,7 +290,7 @@ public class Tela_login extends javax.swing.JFrame {
         txtVersao.setForeground(new java.awt.Color(255, 255, 255));
         txtVersao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         txtVersao.setText("v0.0");
-        jPanel3.add(txtVersao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 150, 30));
+        jPanel3.add(txtVersao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 30));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 620, 30));
 

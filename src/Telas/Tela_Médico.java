@@ -7,6 +7,7 @@ package Telas;
 
 import Banco_de_dados.Conexao;
 import java.awt.Color;
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -32,19 +33,22 @@ public class Tela_Médico extends javax.swing.JFrame {
      */
     public Tela_Médico() throws IOException {
         initComponents();
-        
-        conferecores();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        confereconfig();
     }
     
     
-    public void conferecores() throws IOException{
+    public void confereconfig() throws IOException{
         File file = new File("C:\\PlusLife\\config.pl");
         FileReader freader = new FileReader(file);
         BufferedReader breader = new BufferedReader(freader);
         String corp = breader.readLine();
         String cors = breader.readLine();
+        String fonte = breader.readLine();
+        String tamanho = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
+        mudafonte(fonte, tamanho);
     }
         
     public void mudacorprincipal(String cor){
@@ -70,7 +74,17 @@ public class Tela_Médico extends javax.swing.JFrame {
         btnVisualizar.setForeground(Color.decode(cor));
         btnSair.setBackground(Color.decode(cor));
     }
-    
+    public void mudafonte(String fonte, String tamanhoo){
+        int tamanho = Integer.parseInt(tamanhoo);
+        jLabel2.setFont(new Font(fonte, Font.BOLD, 14+tamanho));
+        Selecao.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        btnAtualizar.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        txtA.setFont(new Font(fonte, Font.BOLD, 2+tamanho));
+        btnExcluir.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        btnVisualizar.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        btnSair.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+        Tabela.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+    }
     
     public void pegadados(String id,String Nome){
         CampoID.setText(id);
@@ -540,7 +554,7 @@ public class Tela_Médico extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Médico");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 194, 45));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 380, 45));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 70));
 

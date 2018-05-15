@@ -6,6 +6,7 @@
 package Telas;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,24 +32,32 @@ public class Tela_Configurações extends javax.swing.JFrame {
      */
     public Tela_Configurações() throws IOException {
         initComponents();
-        
-        conferecores();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        confereconfig();
     }
     
-    public void conferecores() throws IOException{
+    public void confereconfig() throws IOException{
         File file = new File("C:\\PlusLife\\config.pl");
         FileReader freader = new FileReader(file);
         BufferedReader breader = new BufferedReader(freader);
         String corp = breader.readLine();
         String cors = breader.readLine();
+        String fonte = breader.readLine();
+        String tamanho = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
+        mudafonte(fonte,tamanho);
         corprincipal.setText(corp);
         corsecundaria.setText(cors);
+        
+        campofonte.setText(fonte);
+        tamanhofonte.setText(tamanho);
     }
         
     public void mudacorprincipal(String cor){
         selecaocor.setBackground(Color.decode(cor));
+        selecaofonte.setBackground(Color.decode(cor));
+        selecaotamanhofonte.setBackground(Color.decode(cor));
         btnOk.setBackground(Color.decode(cor));
         btnInverter.setBackground(Color.decode(cor));
         painelcabecalho.setBackground(Color.decode(cor));
@@ -57,6 +66,9 @@ public class Tela_Configurações extends javax.swing.JFrame {
         btncancelarrodape.setForeground(Color.decode(cor));
         txta.setForeground(Color.decode(cor));
         txta1.setForeground(Color.decode(cor));
+        txta2.setForeground(Color.decode(cor));
+        txta3.setForeground(Color.decode(cor));
+        txta4.setForeground(Color.decode(cor));
         txtb.setForeground(Color.decode(cor));
         txtc.setForeground(Color.decode(cor));
         corprincipal.setText(cor);
@@ -64,6 +76,8 @@ public class Tela_Configurações extends javax.swing.JFrame {
     
     public void mudacorsecundaria(String cor){
         selecaocor.setForeground(Color.decode(cor));
+        selecaofonte.setForeground(Color.decode(cor));
+        selecaotamanhofonte.setForeground(Color.decode(cor));
         btnOk.setForeground(Color.decode(cor));
         btnInverter.setForeground(Color.decode(cor));
         painelcabecalho.setForeground(Color.decode(cor));
@@ -75,7 +89,23 @@ public class Tela_Configurações extends javax.swing.JFrame {
         corsecundaria.setText(cor);
     }
     
-    public void salvarcores(String corprincipal, String corsecundaria){
+    public void mudafonte(String fonte, String tamanhoo){
+        int tamanho = Integer.parseInt(tamanhoo);
+        txtcabecalho.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        txta.setFont(new Font(fonte, Font.BOLD, 2+tamanho));
+        txta1.setFont(new Font(fonte, Font.BOLD, 2+tamanho));
+        txta2.setFont(new Font(fonte, Font.BOLD, 2+tamanho));
+        selecaocor.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        btnOk.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        btnInverter.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        selecaofonte.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        selecaotamanhofonte.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        btnconfirmarrodape.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        btncancelarrodape.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        
+    }
+    
+    public void salvarconfiguracoes(String corprincipal, String corsecundaria){
         
         try{
             File diretorio = new File("C:\\PlusLife");
@@ -87,9 +117,16 @@ public class Tela_Configurações extends javax.swing.JFrame {
                 writer.write(corprincipal);
                 writer.newLine();
                 writer.write(corsecundaria);
+                writer.newLine();
+                writer.write((String) selecaofonte.getSelectedItem());
+                writer.newLine();
+                writer.write((String) selecaotamanhofonte.getSelectedItem());
                 writer.flush();
                 writer.close();
-                JOptionPane.showMessageDialog(null, "Cores salvas!");
+                JOptionPane.showMessageDialog(null, "Configurações salvas!");
+                campofonte.setText((String) selecaofonte.getSelectedItem());
+                tamanhofonte.setText((String) selecaotamanhofonte.getSelectedItem());
+                
         } catch (IOException erro1) {
             
             try {
@@ -102,7 +139,7 @@ public class Tela_Configurações extends javax.swing.JFrame {
                 writer.write("0");
                 writer.flush();
                 writer.close();
-                salvarcores(corprincipal,corsecundaria);
+                salvarconfiguracoes(corprincipal,corsecundaria);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Erro ao criar o diretorio");
                 System.out.println(ex);
@@ -145,6 +182,13 @@ public class Tela_Configurações extends javax.swing.JFrame {
         txta1 = new javax.swing.JLabel();
         corprincipal = new javax.swing.JTextField();
         corsecundaria = new javax.swing.JTextField();
+        selecaofonte = new javax.swing.JComboBox<>();
+        txta2 = new javax.swing.JLabel();
+        selecaotamanhofonte = new javax.swing.JComboBox<>();
+        campofonte = new javax.swing.JTextField();
+        txta3 = new javax.swing.JLabel();
+        txta4 = new javax.swing.JLabel();
+        tamanhofonte = new javax.swing.JTextField();
         painelrodape = new javax.swing.JPanel();
         btncancelarrodape = new javax.swing.JButton();
         btnconfirmarrodape = new javax.swing.JButton();
@@ -314,8 +358,8 @@ public class Tela_Configurações extends javax.swing.JFrame {
 
         txta1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txta1.setForeground(new java.awt.Color(102, 153, 255));
-        txta1.setText("Cores:");
-        jPanel2.add(txta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 50, 30));
+        txta1.setText("Atual:");
+        jPanel2.add(txta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 60, 30));
 
         corprincipal.setEditable(false);
         jPanel2.add(corprincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 100, -1));
@@ -323,7 +367,44 @@ public class Tela_Configurações extends javax.swing.JFrame {
         corsecundaria.setEditable(false);
         jPanel2.add(corsecundaria, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 90, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 520, 210));
+        selecaofonte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Arial", "Arial Black", "Arial Bold", "Arial Bold Italic", "Arial Italic", "Comic Sans MS", "Comic Sans MS Bold", "Courier 10", "Courier 12", "Courier 15", "Courier New", "Courier New Bold", "Courier New Bold Italic", "Courier New Italic", "Georgia", "Georgia Bold", "Georgia Bold Italic", "Georgia Italic", "Impact", "Lucida Console", "Lucida Sans Unicode", "Microsoft Sans Serif", "Modern", "MS Sans Serif 8", "MS Sans Serif 10", "MS Sans Serif 12", "MS Sans Serif 14", "MS Sans Serif 18", "MS Sans Serif 24", " ", "MS Serif 8", "MS Serif 10", "MS Serif 12", "MS Serif  14", "MS Serif  18", "MS Serif  24", "Palatino Linotype", "Palatino Linotype Bold", "Palatino Linotype Bold Italic", "Palatino Linotype Italic", "Roman", "Script", "Small Fonts", "Symbol 8", "Symbol 10", "Symbol 12", "Symbol 14", "Symbol 18", "Symbol 24", "Tahoma", "Tahoma Bold", "Times MS Visio Standard 2013 New Roman", "Times New Roman Bold", "Times New Roman Bold Italic", "Times New Roman Italic", "Trebuchet MS", "Trebuchet MS Bold", "Trebuchet MS Bold Italic", "Trebuchet MS Italic", "Verdana", "Verdana Bold", "Verdana Bold Italic", "Verdana Italic", "Webdings", "WingDings" }));
+        selecaofonte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selecaofonteActionPerformed(evt);
+            }
+        });
+        jPanel2.add(selecaofonte, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 130, 30));
+
+        txta2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txta2.setForeground(new java.awt.Color(102, 153, 255));
+        txta2.setText("Cores:");
+        jPanel2.add(txta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 50, 30));
+
+        selecaotamanhofonte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7", "8", "9", "10", "11" }));
+        selecaotamanhofonte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selecaotamanhofonteActionPerformed(evt);
+            }
+        });
+        jPanel2.add(selecaotamanhofonte, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 60, 30));
+
+        campofonte.setEditable(false);
+        jPanel2.add(campofonte, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 130, 30));
+
+        txta3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txta3.setForeground(new java.awt.Color(102, 153, 255));
+        txta3.setText("Fonte:");
+        jPanel2.add(txta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 60, 30));
+
+        txta4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txta4.setForeground(new java.awt.Color(102, 153, 255));
+        txta4.setText("Nova:");
+        jPanel2.add(txta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 60, 30));
+
+        tamanhofonte.setEditable(false);
+        jPanel2.add(tamanhofonte, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 60, 30));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 520, 270));
 
         painelrodape.setBackground(new java.awt.Color(102, 153, 255));
         painelrodape.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -348,7 +429,7 @@ public class Tela_Configurações extends javax.swing.JFrame {
         });
         painelrodape.add(btnconfirmarrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 97, 40));
 
-        getContentPane().add(painelrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 520, 70));
+        getContentPane().add(painelrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 520, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -486,11 +567,11 @@ public class Tela_Configurações extends javax.swing.JFrame {
     }//GEN-LAST:event_cs7ActionPerformed
 
     private void btnconfirmarrodapeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconfirmarrodapeActionPerformed
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar essas cores?");
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente salvar essas configurações?");
         UIManager.put("OptionPane.yesButtonText", "Sim");
         UIManager.put("OptionPane.noButtonText", "Não");
         if(resposta == 0){
-            salvarcores(corprincipal.getText(),corsecundaria.getText());
+            salvarconfiguracoes(corprincipal.getText(),corsecundaria.getText());
         }
     }//GEN-LAST:event_btnconfirmarrodapeActionPerformed
 
@@ -532,6 +613,14 @@ public class Tela_Configurações extends javax.swing.JFrame {
         mudacorprincipal(b);
         mudacorsecundaria(a);
     }//GEN-LAST:event_btnInverterActionPerformed
+
+    private void selecaofonteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecaofonteActionPerformed
+        mudafonte((String) selecaofonte.getSelectedItem(), (String) selecaotamanhofonte.getSelectedItem());
+    }//GEN-LAST:event_selecaofonteActionPerformed
+
+    private void selecaotamanhofonteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecaotamanhofonteActionPerformed
+        mudafonte((String) selecaofonte.getSelectedItem(), (String) selecaotamanhofonte.getSelectedItem());
+    }//GEN-LAST:event_selecaotamanhofonteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -579,6 +668,7 @@ public class Tela_Configurações extends javax.swing.JFrame {
     private javax.swing.JButton btncancelarrodape;
     private javax.swing.JButton btnconfirmarrodape;
     private javax.swing.JTextField campocor;
+    private javax.swing.JTextField campofonte;
     private javax.swing.JTextField corprincipal;
     private javax.swing.JTextField corsecundaria;
     private javax.swing.JButton cp1;
@@ -599,8 +689,14 @@ public class Tela_Configurações extends javax.swing.JFrame {
     private javax.swing.JPanel painelcabecalho;
     private javax.swing.JPanel painelrodape;
     private javax.swing.JComboBox<String> selecaocor;
+    private javax.swing.JComboBox<String> selecaofonte;
+    private javax.swing.JComboBox<String> selecaotamanhofonte;
+    private javax.swing.JTextField tamanhofonte;
     private javax.swing.JLabel txta;
     private javax.swing.JLabel txta1;
+    private javax.swing.JLabel txta2;
+    private javax.swing.JLabel txta3;
+    private javax.swing.JLabel txta4;
     private javax.swing.JLabel txtb;
     private javax.swing.JLabel txtc;
     private javax.swing.JLabel txtcabecalho;

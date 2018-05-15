@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import java.sql.PreparedStatement;
 import Banco_de_dados.Conexao;
 import java.awt.Color;
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -30,19 +31,21 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
      */
     public Tela_cadastrar_convenios() throws IOException {
         initComponents();
-        
-        conferecores();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        confereconfig();
     }
     
-    
-    public void conferecores() throws IOException{
+    public void confereconfig() throws IOException{
         File file = new File("C:\\PlusLife\\config.pl");
         FileReader freader = new FileReader(file);
         BufferedReader breader = new BufferedReader(freader);
         String corp = breader.readLine();
         String cors = breader.readLine();
+        String fonte = breader.readLine();
+        String tamanho = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
+        mudafonte(fonte, tamanho);
     }
         
     public void mudacorprincipal(String cor){
@@ -67,6 +70,28 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
         jButton1.setBackground(Color.decode(cor));
         jButton2.setBackground(Color.decode(cor));
         
+    }
+    
+    public void mudafonte(String fonte, String tamanhoo){
+        int tamanho = Integer.parseInt(tamanhoo);
+        jLabel1.setFont(new Font(fonte, Font.BOLD, 14+tamanho));
+        jLabel2.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel3.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel4.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel5.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel6.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        jLabel7.setFont(new Font(fonte, Font.BOLD, 8+tamanho));
+        
+        CampoNome.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        CampoCNPJ.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        CampoEndereco.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        CampoTelefone.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        CampoPlano  .setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        
+        jButton1.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        jButton2.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        
+    
     }
     
     public void adiciona() throws Exception{ 
@@ -156,7 +181,7 @@ public class Tela_cadastrar_convenios extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cadastro Convênio");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 280, 50));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 400, 50));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_transparente.png"))); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 70));
