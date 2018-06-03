@@ -158,14 +158,15 @@ public class Tela_editar_consulta extends javax.swing.JFrame {
     
     }
     
-    public String pegavalores(String id,String nome_paciente,String id_medico,String rg,String data_nasc, String sexo, String data,String horario) throws SQLException, Exception{
+    public String pegavalores(String funcao,String id,String nome_paciente,String id_medico,String rg,String data_nasc, String sexo, String data,String hora, String minuto) throws SQLException, Exception{
         CampoNome.setText(nome_paciente);
         campoidd.setText(id);
+        campof.setText(funcao);
         idmedico.setText(id_medico);
         CampoRG.setText(rg);
         txtDN.setText("Data Cadastrada : "+data_nasc);
         txtDC.setText("Data Cadastrada : "+data);
-        txtDH.setText("Horário Cadastrado : "+horario);
+        txtDH.setText("Horário Cadastrado : "+hora+":"+minuto);
         if(sexo.equals("M")){
             CheckMasculino.setSelected(true);
         }if(sexo.equals("F")){
@@ -297,6 +298,7 @@ public class Tela_editar_consulta extends javax.swing.JFrame {
         jComboBox5 = new javax.swing.JComboBox<>();
         campoidd = new javax.swing.JTextField();
         idmedico = new javax.swing.JTextField();
+        campof = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -345,6 +347,8 @@ public class Tela_editar_consulta extends javax.swing.JFrame {
         jComboBox5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBox5.setForeground(new java.awt.Color(102, 153, 255));
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+
+        campof.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Editar Consulta");
@@ -744,23 +748,50 @@ public class Tela_editar_consulta extends javax.swing.JFrame {
             }
             
             if(campos == 0){
-                String data_nasc = (String) SelectNDia.getSelectedItem()+"/"+SelectNMes.getSelectedItem()+"/"+SelectNAno.getSelectedItem();
-                String data_consulta = (String) SelectCDia.getSelectedItem()+"/"+SelectCMes.getSelectedItem()+"/"+SelectCAno.getSelectedItem();
-                String horario = (String) SelectHora.getSelectedItem()+":"+SelectMinuto.getSelectedItem();
-                String nome_medico = (String) Tabela.getValueAt(Tabela.getSelectedRow(), 1);
-                String sql = "UPDATE consultas SET nome_paciente = ?, id_medico = ?, nome_medico = ?,rg_paciente = ?,data_nasc_paciente = ?,sexo_paciente = ?,data_consulta = ?,horario_consulta = ? WHERE id_consulta = ?";
-                PreparedStatement stmt = con.prepareStatement(sql);
-                stmt.setString(1, CampoNome.getText());
-                stmt.setString(2, idmedico.getText());
-                stmt.setString(3, nome_medico);
-                stmt.setString(4, CampoRG.getText());
-                stmt.setString(5, data_nasc);
-                stmt.setString(6, SexoPaciente);
-                stmt.setString(7, data_consulta);
-                stmt.setString(8, horario);
-                stmt.setString(9, campoidd.getText());
-                stmt.execute();
-                stmt.close(); 
+                if(campof.getText().equals("consultas")){
+                    String data_nasc = (String) SelectNDia.getSelectedItem()+"/"+SelectNMes.getSelectedItem()+"/"+SelectNAno.getSelectedItem();
+                    String data_consulta = (String) SelectCDia.getSelectedItem()+"/"+SelectCMes.getSelectedItem()+"/"+SelectCAno.getSelectedItem();
+                    String hora = (String) SelectHora.getSelectedItem();
+                    String minuto = (String) SelectMinuto.getSelectedItem();
+                    String nome_medico = (String) Tabela.getValueAt(Tabela.getSelectedRow(), 1);
+                    String sql = "UPDATE consultas SET nome_paciente = ?, id_medico = ?, nome_medico = ?,rg_paciente = ?,data_nasc_paciente = ?,sexo_paciente = ?,data_consulta = ?,hora_consulta = ?, minuto_consulta = ? WHERE id_consulta = ?";
+                    PreparedStatement stmt = con.prepareStatement(sql);
+                    stmt.setString(1, CampoNome.getText());
+                    stmt.setString(2, idmedico.getText());
+                    stmt.setString(3, nome_medico);
+                    stmt.setString(4, CampoRG.getText());
+                    stmt.setString(5, data_nasc);
+                    stmt.setString(6, SexoPaciente);
+                    stmt.setString(7, data_consulta);
+                    stmt.setString(8, hora);
+                    stmt.setString(9, minuto);
+                    stmt.setString(10, campoidd.getText());
+                    stmt.execute();
+                    stmt.close(); 
+                }
+                if(campof.getText().equals("consultas_r")){
+                    String data_nasc = (String) SelectNDia.getSelectedItem()+"/"+SelectNMes.getSelectedItem()+"/"+SelectNAno.getSelectedItem();
+                    String data_consulta = (String) SelectCDia.getSelectedItem()+"/"+SelectCMes.getSelectedItem()+"/"+SelectCAno.getSelectedItem();
+                    String hora = (String) SelectHora.getSelectedItem();
+                    String minuto = (String) SelectMinuto.getSelectedItem();
+                    String nome_medico = (String) Tabela.getValueAt(Tabela.getSelectedRow(), 1);
+                    String sql = "UPDATE consultas_r SET nome_paciente = ?, id_medico = ?, nome_medico = ?,rg_paciente = ?,data_nasc_paciente = ?,sexo_paciente = ?,data_consulta = ?,hora_consulta = ?, minuto_consulta = ? WHERE id_consulta = ?";
+                    PreparedStatement stmt = con.prepareStatement(sql);
+                    stmt.setString(1, CampoNome.getText());
+                    stmt.setString(2, idmedico.getText());
+                    stmt.setString(3, nome_medico);
+                    stmt.setString(4, CampoRG.getText());
+                    stmt.setString(5, data_nasc);
+                    stmt.setString(6, SexoPaciente);
+                    stmt.setString(7, data_consulta);
+                    stmt.setString(8, hora);
+                    stmt.setString(9, minuto);
+                    stmt.setString(10, campoidd.getText());
+                    stmt.execute();
+                    stmt.close(); 
+                }
+                
+                
                 JOptionPane.showMessageDialog(null, "Consulta Atualizada!");
             }
             
@@ -872,6 +903,7 @@ public class Tela_editar_consulta extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> SelectNMes;
     private javax.swing.JTable Tabela;
     private javax.swing.JButton btnPesquisa;
+    private javax.swing.JTextField campof;
     private javax.swing.JTextField campoidd;
     private javax.swing.JComboBox<String> criterioPesquisa1;
     private javax.swing.JTextField idmedico;

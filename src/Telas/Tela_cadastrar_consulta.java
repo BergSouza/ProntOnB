@@ -702,10 +702,11 @@ public class Tela_cadastrar_consulta extends javax.swing.JFrame {
             if(campos == 0){
                 String data_nasc = (String) SelectCDia.getSelectedItem()+"/"+SelectNMes.getSelectedItem()+"/"+SelectNAno.getSelectedItem();
                 String data_consulta = (String) SelectCDia.getSelectedItem()+"/"+SelectCMes.getSelectedItem()+"/"+SelectCAno.getSelectedItem();
-                String horario = (String) SelectHora.getSelectedItem()+":"+SelectMinuto.getSelectedItem();
+                String hora_consulta = (String) SelectHora.getSelectedItem();
+                String minuto_consulta = (String) SelectMinuto.getSelectedItem();
                 String id_medico = (String) Tabela.getValueAt(Tabela.getSelectedRow(), 0);
                 String nome_medico = (String) Tabela.getValueAt(Tabela.getSelectedRow(), 1);
-                String sql = "INSERT INTO consultas(nome_paciente,id_medico,nome_medico,rg_paciente,data_nasc_paciente,sexo_paciente,data_consulta,horario_consulta) VALUES(?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO consultas(nome_paciente,id_medico,nome_medico,rg_paciente,data_nasc_paciente,sexo_paciente,data_consulta,hora_consulta,minuto_consulta) VALUES(?,?,?,?,?,?,?,?,?)";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1, CampoNome.getText());
                 stmt.setString(2, id_medico);
@@ -714,7 +715,8 @@ public class Tela_cadastrar_consulta extends javax.swing.JFrame {
                 stmt.setString(5, data_nasc);
                 stmt.setString(6, SexoPaciente);
                 stmt.setString(7, data_consulta);
-                stmt.setString(8, horario);
+                stmt.setString(8, hora_consulta);
+                stmt.setString(9, minuto_consulta);
                 stmt.execute();
                 stmt.close(); 
                 JOptionPane.showMessageDialog(null, "Consulta Marcada!");

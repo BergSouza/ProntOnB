@@ -114,14 +114,14 @@ public class Tela_visualizar_consulta extends javax.swing.JFrame {
     
     }
     
-    public String pegavalores(String id,String nome_paciente,String nome_medico,String rg,String data_nasc, String sexo, String data,String horario){
+    public String pegavalores(String id,String nome_paciente,String nome_medico,String rg,String data_nasc, String sexo, String data,String hora,String minuto){
         CampoNome.setText(nome_paciente);
         campoidd.setText(id);
         CampoNomeMed.setText(nome_medico);
         CampoRG.setText(rg);
         CampoDataN.setText(data_nasc);
         CampoDataC.setText(data);
-        CampoHorario.setText(horario);
+        CampoHorario.setText(hora+":"+minuto);
         if(sexo.equals("M")){
             CheckMasculino.setSelected(true);
         }if(sexo.equals("F")){

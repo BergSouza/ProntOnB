@@ -61,6 +61,7 @@ public class Tela_Médico extends javax.swing.JFrame {
         btnExcluir.setBackground(Color.decode(cor));
         btnVisualizar.setBackground(Color.decode(cor));
         btnSair.setForeground(Color.decode(cor));
+        Selecao.setBackground(Color.decode(cor));
     }
     
     public void mudacorsecundaria(String cor){
@@ -73,6 +74,8 @@ public class Tela_Médico extends javax.swing.JFrame {
         btnExcluir.setForeground(Color.decode(cor));
         btnVisualizar.setForeground(Color.decode(cor));
         btnSair.setBackground(Color.decode(cor));
+        
+        Selecao.setForeground(Color.decode(cor));
     }
     public void mudafonte(String fonte, String tamanhoo){
         int tamanho = Integer.parseInt(tamanhoo);
@@ -84,6 +87,7 @@ public class Tela_Médico extends javax.swing.JFrame {
         btnVisualizar.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
         btnSair.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
         Tabela.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        Selecao.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
     }
     
     public void pegadados(String id,String Nome){
@@ -105,11 +109,34 @@ public class Tela_Médico extends javax.swing.JFrame {
                 UIManager.put("OptionPane.yesButtonText", "Sim");
                 UIManager.put("OptionPane.noButtonText", "Não"); 
                 if(resposta == 0){
-                    String sql = "DELETE FROM consultas WHERE id_consulta = "+id+" ";
+                    String sql = "INSERT INTO consultas_r SELECT * FROM consultas WHERE id_consulta = "+id+" ";
                     PreparedStatement stmt = con.prepareStatement(sql);
                     stmt.execute();
                     stmt.close();
+
+                    String sql2 = "DELETE FROM consultas WHERE id_consulta = "+id+" ";
+                    PreparedStatement stmt2 = con.prepareStatement(sql2);
+                    stmt2.execute();
+                    stmt2.close();
                     JOptionPane.showMessageDialog(rootPane, "Consulta Concluída!");
+                    MostraConsultas();
+                    
+                }
+                
+                    
+            }
+            
+            
+            if(Selecao.getSelectedIndex() == 1){
+                resposta = JOptionPane.showConfirmDialog(null, "Deletar o Registro da Consulta Com o Paciente "+nome+" ?");
+                UIManager.put("OptionPane.yesButtonText", "Sim");
+                UIManager.put("OptionPane.noButtonText", "Não"); 
+                if(resposta == 0){
+                    String sql = "DELETE FROM consultas_r WHERE id_consulta = "+id+" ";
+                    PreparedStatement stmt = con.prepareStatement(sql);
+                    stmt.execute();
+                    stmt.close();
+                    JOptionPane.showMessageDialog(rootPane, "Consulta Deletada!");
                     MostraConsultas();
                 }else{
                     
@@ -129,37 +156,6 @@ public class Tela_Médico extends javax.swing.JFrame {
         
     }
     
-    public void editar(String id) throws Exception{ 
-        try {
-            Conexao conexao = new Conexao();
-            Connection con = conexao.abrir();
-            
-            int resposta = 0;
-            
-                java.sql.Statement st = con.createStatement();
-                st.executeQuery("select * from consultas where id_consulta = "+id+"");
-                ResultSet rs = st.getResultSet();
-                
-                Tela_editar_consulta consulta = new Tela_editar_consulta();
-                consulta.setVisible(true);
-                consulta.setLocationRelativeTo(null);
-                while(rs.next()){
-                    consulta.pegavalores(rs.getString("id_consulta"),rs.getString("nome_paciente"),rs.getString("id_medico"),rs.getString("rg_paciente"), rs.getString("data_nasc_paciente"), rs.getString("sexo_paciente"), rs.getString("data_consulta"), rs.getString("horario_consulta"));
-                }
-                
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        
-    }
-    
-    
     public void visualizar(String id) throws Exception{ 
        
             Conexao conexao = new Conexao();
@@ -167,6 +163,7 @@ public class Tela_Médico extends javax.swing.JFrame {
             
             int resposta = 0;
                         
+            if(Selecao.getSelectedIndex() == 0){
                 java.sql.Statement st = con.createStatement();
                 st.executeQuery("select * from consultas where id_consulta = "+id+"");
                 ResultSet rs = st.getResultSet();
@@ -175,12 +172,23 @@ public class Tela_Médico extends javax.swing.JFrame {
                 consulta.setVisible(true);
                 consulta.setLocationRelativeTo(null);
                 while(rs.next()){
-                    consulta.pegavalores(rs.getString("id_consulta"),rs.getString("nome_paciente"),rs.getString("nome_medico"),rs.getString("rg_paciente"), rs.getString("data_nasc_paciente"), rs.getString("sexo_paciente"), rs.getString("data_consulta"), rs.getString("horario_consulta"));
+                    consulta.pegavalores(rs.getString("id_consulta"),rs.getString("nome_paciente"),rs.getString("nome_medico"),rs.getString("rg_paciente"), rs.getString("data_nasc_paciente"), rs.getString("sexo_paciente"), rs.getString("data_consulta"), rs.getString("hora_consulta"),rs.getString("minuto_consulta"));
                 
-        
-        
-        
-        }
+            }
+            }
+            if(Selecao.getSelectedIndex() == 1){
+                java.sql.Statement st = con.createStatement();
+                st.executeQuery("select * from consultas_r where id_consulta = "+id+"");
+                ResultSet rs = st.getResultSet();
+                
+                Tela_visualizar_consulta consulta = new Tela_visualizar_consulta();
+                consulta.setVisible(true);
+                consulta.setLocationRelativeTo(null);
+                while(rs.next()){
+                    consulta.pegavalores(rs.getString("id_consulta"),rs.getString("nome_paciente"),rs.getString("nome_medico"),rs.getString("rg_paciente"), rs.getString("data_nasc_paciente"), rs.getString("sexo_paciente"), rs.getString("data_consulta"), rs.getString("hora_consulta"),rs.getString("minuto_consulta"));
+                
+            }
+            }
     }
     public void MostraConsultas() throws Exception{
         try {
@@ -188,47 +196,85 @@ public class Tela_Médico extends javax.swing.JFrame {
             Conexao conexao = new Conexao();
             Connection con = conexao.abrir();
             
-            int pesquisaa = 0;
+            
             if(Selecao.getSelectedIndex() == 0){
-                txtA.setText("Bem-Vindo! "+CampoNomeMedico.getText()+" essas são as Suas Consultas");
-                //txtA.setText("Todas as Suas Consultas (Organizadas por ID)");
-                pesquisaa = 0;
-            }else{
+                int pesquisaa = 0;
                 txtA.setText("Todas as Suas Consultas (Organizadas pela Data)");
                 pesquisaa = 1;
-            }
-            //Executa a query de seleção
-            java.sql.Statement st = con.createStatement();
-            if(pesquisaa == 0){
-                st.executeQuery("select * from consultas where id_medico = "+CampoID.getText());
-            }
-            if(pesquisaa == 1){
-                st.executeQuery("select * from consultas where id_medico = "+CampoID.getText()+" ORDER BY data_consulta DESC");
+                
+                
+                //Executa a query de seleção
+                java.sql.Statement st = con.createStatement();
+                if(pesquisaa == 0){
+                    st.executeQuery("select * from consultas where id_medico = "+CampoID.getText());
+                }
+                if(pesquisaa == 1){
+                    st.executeQuery("select * from consultas where id_medico = "+CampoID.getText()+" ORDER BY data_consulta DESC");
+                }
+
+                ResultSet rs = st.getResultSet();
+
+
+                int a = 0;
+                //Lista os alunos no console
+                int numtabelas = Tabela.getRowCount();
+                for (int b = 0 ; b < numtabelas ; b++ ) {
+                    Tabela.setValueAt(" ", b, 0);
+                    Tabela.setValueAt(" ", b, 1);
+                    Tabela.setValueAt(" ", b, 2);
+                    Tabela.setValueAt(" ", b, 3);
+                    Tabela.setValueAt(" ", b, 4);
+                }
+                int linhas = 0;
+                while (rs.next()) {
+                    linhas++;
+                    Tabela.setValueAt(rs.getString("id_consulta"), a, 0);
+                    Tabela.setValueAt(rs.getString("nome_paciente"), a, 1);
+                    Tabela.setValueAt(rs.getString("data_nasc_paciente"), a, 2);
+                    Tabela.setValueAt(rs.getString("data_consulta"), a, 3);
+                    Tabela.setValueAt((rs.getString("hora_consulta"))+":"+(rs.getString("minuto_consulta")), a, 4);
+                    a++;
+                }
+            }if(Selecao.getSelectedIndex() == 1){
+                int pesquisaa = 0;
+                txtA.setText("Todas as Suas Consultas (Já Realizadas)");
+                pesquisaa = 1;
+                
+                
+                //Executa a query de seleção
+                java.sql.Statement st = con.createStatement();
+                if(pesquisaa == 0){
+                    st.executeQuery("select * from consultas_r where id_medico = "+CampoID.getText());
+                }
+                if(pesquisaa == 1){
+                    st.executeQuery("select * from consultas_r where id_medico = "+CampoID.getText()+" ORDER BY data_consulta DESC");
+                }
+
+                ResultSet rs = st.getResultSet();
+
+
+                int a = 0;
+                //Lista os alunos no console
+                int numtabelas = Tabela.getRowCount();
+                for (int b = 0 ; b < numtabelas ; b++ ) {
+                    Tabela.setValueAt(" ", b, 0);
+                    Tabela.setValueAt(" ", b, 1);
+                    Tabela.setValueAt(" ", b, 2);
+                    Tabela.setValueAt(" ", b, 3);
+                    Tabela.setValueAt(" ", b, 4);
+                }
+                int linhas = 0;
+                while (rs.next()) {
+                    linhas++;
+                    Tabela.setValueAt(rs.getString("id_consulta"), a, 0);
+                    Tabela.setValueAt(rs.getString("nome_paciente"), a, 1);
+                    Tabela.setValueAt(rs.getString("data_nasc_paciente"), a, 2);
+                    Tabela.setValueAt(rs.getString("data_consulta"), a, 3);
+                    Tabela.setValueAt((rs.getString("hora_consulta"))+":"+(rs.getString("minuto_consulta")), a, 4);
+                    a++;
+                }
             }
             
-            ResultSet rs = st.getResultSet();
-                        
-            
-            int a = 0;
-            //Lista os alunos no console
-            int numtabelas = Tabela.getRowCount();
-            for (int b = 0 ; b < numtabelas ; b++ ) {
-                Tabela.setValueAt(" ", b, 0);
-                Tabela.setValueAt(" ", b, 1);
-                Tabela.setValueAt(" ", b, 2);
-                Tabela.setValueAt(" ", b, 3);
-                Tabela.setValueAt(" ", b, 4);
-            }
-            int linhas = 0;
-            while (rs.next()) {
-                linhas++;
-                Tabela.setValueAt(rs.getString("id_consulta"), a, 0);
-                Tabela.setValueAt(rs.getString("nome_paciente"), a, 1);
-                Tabela.setValueAt(rs.getString("data_nasc_paciente"), a, 2);
-                Tabela.setValueAt(rs.getString("data_consulta"), a, 3);
-                Tabela.setValueAt(rs.getString("horario_consulta"), a, 4);
-                a++;
-            }
            
         } catch (SQLException | ClassNotFoundException e) {
             JOptionPane.showMessageDialog(rootPane, e);
@@ -248,12 +294,14 @@ public class Tela_Médico extends javax.swing.JFrame {
             java.sql.Statement st = con.createStatement();
             int pesquisaa = 0;
             if(Selecao.getSelectedIndex() == 0){
-                txtA.setText("Bem-Vindo! "+CampoNomeMedico.getText()+" essas são as Suas Consultas");
-                //txtA.setText("Todas as Suas Consultas (Organizadas por ID)");
+                
                 pesquisaa = 0;
-            }else{
-                txtA.setText("Todas as Suas Consultas (Organizadas pela Data)");
+                
+                
+            }if(Selecao.getSelectedIndex() == 1){
+                
                 pesquisaa = 1;
+                
             }
             
             if(pesquisaa == 0){
@@ -270,25 +318,25 @@ public class Tela_Médico extends javax.swing.JFrame {
                     st.executeQuery("select * from consultas where data_consulta LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText());
                 }
                 if(criterioPesquisa3.getSelectedIndex() == 4){
-                    st.executeQuery("select * from consultas where horario_consulta LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText());
+                    st.executeQuery("select * from consultas where hora_consulta LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText());
                 }
             
             }
             if(pesquisaa == 1){
                 if(criterioPesquisa3.getSelectedIndex() == 0){
-                    st.executeQuery("select * from consultas where id_consulta LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText()+"ORDER BY data_consultaa DESC");
+                    st.executeQuery("select * from consultas_r where id_consulta LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText()+" ORDER BY data_consulta DESC");
                 }
                 if(criterioPesquisa3.getSelectedIndex() == 1){
-                    st.executeQuery("select * from consultas where nome_paciente LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText()+"ORDER BY data_consultaa DESC");
+                    st.executeQuery("select * from consultas_r where nome_paciente LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText()+" ORDER BY data_consulta DESC");
                 }
                 if(criterioPesquisa3.getSelectedIndex() == 2){
-                    st.executeQuery("select * from consultas where data_nasc_paciente LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText()+"ORDER BY data_consultaa DESC");
+                    st.executeQuery("select * from consultas_r where data_nasc_paciente LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText()+" ORDER BY data_consulta DESC");
                 }
                 if(criterioPesquisa3.getSelectedIndex() == 3){
-                    st.executeQuery("select * from consultas where data_consulta LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText()+"ORDER BY data_consultaa DESC");
+                    st.executeQuery("select * from consultas_r where data_consulta LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText()+" ORDER BY data_consulta DESC");
                 }
                 if(criterioPesquisa3.getSelectedIndex() == 4){
-                    st.executeQuery("select * from consultas where horario_consulta LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText()+"ORDER BY data_consultaa DESC");
+                    st.executeQuery("select * from consultas_r where hora_consulta LIKE '%"+pesquisa+"%' AND id_medico = "+CampoID.getText()+" ORDER BY data_consulta DESC");
                 }
             
             }
@@ -312,7 +360,7 @@ public class Tela_Médico extends javax.swing.JFrame {
                 Tabela.setValueAt(rs.getString("nome_paciente"), a, 1);
                 Tabela.setValueAt(rs.getString("data_nasc_paciente"), a, 2);
                 Tabela.setValueAt(rs.getString("data_consulta"), a, 3);
-                Tabela.setValueAt(rs.getString("horario_consulta"), a, 4);
+                Tabela.setValueAt(rs.getString("hora_consulta")+":"+rs.getString("minuto_consulta"), a, 4);
                 a++;
             }
            
@@ -330,7 +378,6 @@ public class Tela_Médico extends javax.swing.JFrame {
     private void initComponents() {
 
         CampoID = new javax.swing.JTextField();
-        Selecao = new javax.swing.JComboBox<>();
         CampoNomeMedico = new javax.swing.JTextField();
         btnAtualizar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -342,21 +389,13 @@ public class Tela_Médico extends javax.swing.JFrame {
         btnPesquisa = new javax.swing.JButton();
         CampoPesquisa = new javax.swing.JTextField();
         criterioPesquisa3 = new javax.swing.JComboBox<>();
+        Selecao = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         btnSair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         CampoID.setText("jTextField1");
-
-        Selecao.setBackground(new java.awt.Color(102, 153, 255));
-        Selecao.setForeground(new java.awt.Color(255, 255, 255));
-        Selecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Data" }));
-        Selecao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelecaoActionPerformed(evt);
-            }
-        });
 
         CampoNomeMedico.setText("jTextField1");
 
@@ -496,7 +535,7 @@ public class Tela_Médico extends javax.swing.JFrame {
                 btnExcluirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 110, 30));
+        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 90, 30));
 
         btnVisualizar.setBackground(new java.awt.Color(102, 153, 255));
         btnVisualizar.setForeground(new java.awt.Color(255, 255, 255));
@@ -506,7 +545,7 @@ public class Tela_Médico extends javax.swing.JFrame {
                 btnVisualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 110, 30));
+        jPanel1.add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 90, 30));
 
         txtA.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtA.setForeground(new java.awt.Color(102, 153, 255));
@@ -522,15 +561,23 @@ public class Tela_Médico extends javax.swing.JFrame {
                 btnPesquisaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 30, 30));
-        jPanel1.add(CampoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 190, 30));
+        jPanel1.add(btnPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 30, 30));
+        jPanel1.add(CampoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 190, 30));
 
         criterioPesquisa3.setBackground(new java.awt.Color(102, 153, 255));
         criterioPesquisa3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         criterioPesquisa3.setForeground(new java.awt.Color(255, 255, 255));
         criterioPesquisa3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome do Paciente", "Data de Nascimento", "Data da Consulta", "Horário da Consulta" }));
         criterioPesquisa3.setBorder(null);
-        jPanel1.add(criterioPesquisa3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, 30));
+        jPanel1.add(criterioPesquisa3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 60, 30));
+
+        Selecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Consultas Marcadas", "Consultas Realizadas" }));
+        Selecao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelecaoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Selecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 330));
 
@@ -566,14 +613,6 @@ public class Tela_Médico extends javax.swing.JFrame {
         Plus_Life pl = new Plus_Life();
         pl.conferetelalogin();
     }//GEN-LAST:event_btnSairActionPerformed
-
-    private void SelecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecaoActionPerformed
-        try {
-            MostraConsultas();
-        } catch (Exception ex) {
-            Logger.getLogger(Tela_Médico.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_SelecaoActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         int selecionado = 0;
@@ -625,6 +664,14 @@ public class Tela_Médico extends javax.swing.JFrame {
             Logger.getLogger(Tela_Médico.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnPesquisaActionPerformed
+
+    private void SelecaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelecaoActionPerformed
+        try {
+            MostraConsultas();
+        } catch (Exception ex) {
+            Logger.getLogger(Tela_Médico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_SelecaoActionPerformed
 
     /**
      * @param args the command line arguments

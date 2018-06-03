@@ -6,11 +6,16 @@
 package Telas;
 
 import Banco_de_dados.Conexao;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,8 +25,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.swing.text.Position;
+import javax.swing.text.Segment;
 import plus_life.Plus_Life;
 import static plus_life.Plus_Life.conferetelalogin;
+
 
 /**
  *
@@ -167,6 +181,26 @@ public class Tela_Secretária extends javax.swing.JFrame {
                 Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        if(Selecao.getSelectedIndex() == 3){
+            try {
+                txtA.setText("Consultas Realizadas");
+                Tabela2.setVisible(false);
+                ScrollTab2.setVisible(false);
+                Tabela.setVisible(false);
+                ScrollTab.setVisible(false);
+                Tabela3.setVisible(true);
+                jScrollPane1.setVisible(true);
+                
+                criterioPesquisa1.setVisible(false);
+                criterioPesquisa2.setVisible(false);
+                criterioPesquisa3.setVisible(true);
+                
+                btnCadastrar.setText("Relatório");
+                MostraConsultasConcluidas();
+            } catch (Exception ex) {
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public void excluir(String id, String nome) throws Exception{ 
@@ -223,6 +257,23 @@ public class Tela_Secretária extends javax.swing.JFrame {
                     stmt.execute();
                     stmt.close();
                     JOptionPane.showMessageDialog(rootPane, "Consulta cancelada!");
+                    atualizar();
+                }else{
+                    
+                }
+                
+            }
+            
+            if(Selecao.getSelectedIndex() == 3){
+                resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente deletar o registro da Consulta do Paciente "+nome+" ?");
+                UIManager.put("OptionPane.yesButtonText", "Sim");
+                UIManager.put("OptionPane.noButtonText", "Não"); 
+                if(resposta == 0){
+                    String sql = "DELETE FROM consultas_r WHERE id_consulta = "+id+" ";
+                    PreparedStatement stmt = con.prepareStatement(sql);
+                    stmt.execute();
+                    stmt.close();
+                    JOptionPane.showMessageDialog(rootPane, "Consulta deletada!");
                     atualizar();
                 }else{
                     
@@ -290,7 +341,22 @@ public class Tela_Secretária extends javax.swing.JFrame {
                 consulta.setVisible(true);
                 consulta.setLocationRelativeTo(null);
                 while(rs.next()){
-                    consulta.pegavalores(rs.getString("id_consulta"),rs.getString("nome_paciente"),rs.getString("id_medico"),rs.getString("rg_paciente"), rs.getString("data_nasc_paciente"), rs.getString("sexo_paciente"), rs.getString("data_consulta"), rs.getString("horario_consulta"));
+                    consulta.pegavalores("consultas",rs.getString("id_consulta"),rs.getString("nome_paciente"),rs.getString("id_medico"),rs.getString("rg_paciente"), rs.getString("data_nasc_paciente"), rs.getString("sexo_paciente"), rs.getString("data_consulta"), rs.getString("hora_consulta"), rs.getString("minuto_consulta"));
+                }
+                
+                
+                
+            }
+            if(Selecao.getSelectedIndex() == 3){
+                java.sql.Statement st = con.createStatement();
+                st.executeQuery("select * from consultas_r where id_consulta = "+id+"");
+                ResultSet rs = st.getResultSet();
+                
+                Tela_editar_consulta consulta = new Tela_editar_consulta();
+                consulta.setVisible(true);
+                consulta.setLocationRelativeTo(null);
+                while(rs.next()){
+                    consulta.pegavalores("consultas_r",rs.getString("id_consulta"),rs.getString("nome_paciente"),rs.getString("id_medico"),rs.getString("rg_paciente"), rs.getString("data_nasc_paciente"), rs.getString("sexo_paciente"), rs.getString("data_consulta"), rs.getString("hora_consulta"), rs.getString("minuto_consulta"));
                 }
                 
                 
@@ -358,7 +424,22 @@ public class Tela_Secretária extends javax.swing.JFrame {
                 consulta.setVisible(true);
                 consulta.setLocationRelativeTo(null);
                 while(rs.next()){
-                    consulta.pegavalores(rs.getString("id_consulta"),rs.getString("nome_paciente"),rs.getString("nome_medico"),rs.getString("rg_paciente"), rs.getString("data_nasc_paciente"), rs.getString("sexo_paciente"), rs.getString("data_consulta"), rs.getString("horario_consulta"));
+                    consulta.pegavalores(rs.getString("id_consulta"),rs.getString("nome_paciente"),rs.getString("nome_medico"),rs.getString("rg_paciente"), rs.getString("data_nasc_paciente"), rs.getString("sexo_paciente"), rs.getString("data_consulta"), rs.getString("hora_consulta"),rs.getString("minuto_consulta"));
+                }
+                
+                
+                
+            }
+            if(Selecao.getSelectedIndex() == 3){
+                java.sql.Statement st = con.createStatement();
+                st.executeQuery("select * from consultas_r where id_consulta = "+id+"");
+                ResultSet rs = st.getResultSet();
+                
+                Tela_visualizar_consulta consulta = new Tela_visualizar_consulta();
+                consulta.setVisible(true);
+                consulta.setLocationRelativeTo(null);
+                while(rs.next()){
+                    consulta.pegavalores(rs.getString("id_consulta"),rs.getString("nome_paciente"),rs.getString("nome_medico"),rs.getString("rg_paciente"), rs.getString("data_nasc_paciente"), rs.getString("sexo_paciente"), rs.getString("data_consulta"), rs.getString("hora_consulta"),rs.getString("minuto_consulta"));
                 }
                 
                 
@@ -602,7 +683,7 @@ public class Tela_Secretária extends javax.swing.JFrame {
                 Tabela3.setValueAt(rs.getString("nome_medico"), a, 2);
                 Tabela3.setValueAt(rs.getString("data_nasc_paciente"), a, 3);
                 Tabela3.setValueAt(rs.getString("data_consulta"), a, 4);
-                Tabela3.setValueAt(rs.getString("horario_consulta"), a, 5);
+                Tabela3.setValueAt((rs.getString("hora_consulta"))+":"+((rs.getString("minuto_consulta"))), a, 5);
                 a++;
             }
            
@@ -615,6 +696,57 @@ public class Tela_Secretária extends javax.swing.JFrame {
         
      
     } 
+    
+    public void MostraConsultasConcluidas() throws Exception{
+        try {
+            //Registra JDBC driver
+            Conexao conexao = new Conexao();
+            Connection con = conexao.abrir();
+            //Executa a query de seleção
+            java.sql.Statement st = con.createStatement();
+            st.executeQuery("select * from consultas_r");
+            ResultSet rs = st.getResultSet();
+                        
+            int a = 0;
+            //Lista os alunos no console
+            int numtabelas = Tabela3.getRowCount();
+            for (int b = 0 ; b < numtabelas ; b++ ) {
+                Tabela3.setValueAt(" ", b, 0);
+                Tabela3.setValueAt(" ", b, 1);
+                Tabela3.setValueAt(" ", b, 2);
+                Tabela3.setValueAt(" ", b, 3);
+                Tabela3.setValueAt(" ", b, 4);
+                Tabela3.setValueAt(" ", b, 5);
+            }
+            int linhas = 0;
+            while (rs.next()) {
+                linhas++;
+                Tabela3.setValueAt(rs.getString("id_consulta"), a, 0);
+                Tabela3.setValueAt(rs.getString("nome_paciente"), a, 1);
+                /*if(rs.getString("sexo_paciente").equals("M")){
+                    Tabela3.setValueAt("Masculino", a, 2);
+                }else{
+                    if(rs.getString("sexo_paciente").equals("F")){
+                    Tabela3.setValueAt("Feminino", a, 2);
+                }
+                }*/
+                Tabela3.setValueAt(rs.getString("nome_medico"), a, 2);
+                Tabela3.setValueAt(rs.getString("data_nasc_paciente"), a, 3);
+                Tabela3.setValueAt(rs.getString("data_consulta"), a, 4);
+                Tabela3.setValueAt((rs.getString("hora_consulta"))+":"+((rs.getString("minuto_consulta"))), a, 5);
+                a++;
+            }
+           
+        } catch (SQLException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        } catch (Exception ex) {
+            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+     
+    } 
+    
     public void PesquisaConsultas(String pesquisa) throws Exception{
         try {
             //Registra JDBC driver
@@ -638,7 +770,7 @@ public class Tela_Secretária extends javax.swing.JFrame {
                 st.executeQuery("select * from consultas where data_consulta LIKE '%"+pesquisa+"%'");
             }
             if(criterioPesquisa3.getSelectedIndex() == 5){
-                st.executeQuery("select * from consultas where horario_consulta LIKE '%"+pesquisa+"%'");
+                st.executeQuery("select * from consultas where hora_consulta LIKE '%"+pesquisa+"%'");
             }
             
             ResultSet rs = st.getResultSet();
@@ -670,7 +802,7 @@ public class Tela_Secretária extends javax.swing.JFrame {
                 
                 Tabela3.setValueAt(rs.getString("data_nasc_paciente"), a, 3);
                 Tabela3.setValueAt(rs.getString("data_consulta"), a, 4);
-                Tabela3.setValueAt(rs.getString("horario_consulta"), a, 5);
+                Tabela3.setValueAt(rs.getString("hora_consulta")+":"+rs.getString("minuto_consulta"), a, 5);
                 a++;
             }
            
@@ -681,9 +813,75 @@ public class Tela_Secretária extends javax.swing.JFrame {
         }
         
     }
-    
-    
-    @SuppressWarnings("unchecked")
+    public void PesquisaConsultasConcluidas(String pesquisa) throws Exception{
+        try {
+            //Registra JDBC driver
+            Conexao conexao = new Conexao();
+            Connection con = conexao.abrir();
+            //Executa a query de seleção
+            java.sql.Statement st = con.createStatement();
+            if(criterioPesquisa3.getSelectedIndex() == 0){
+                st.executeQuery("select * from consultas_r where id_consulta LIKE '%"+pesquisa+"%'");
+            }
+            if(criterioPesquisa3.getSelectedIndex() == 1){
+                st.executeQuery("select * from consultas_r where nome_paciente LIKE '%"+pesquisa+"%'");
+            }
+            if(criterioPesquisa3.getSelectedIndex() == 2){
+                st.executeQuery("select * from consultas_r where sexo_paciente LIKE '%"+pesquisa+"%'");
+            }
+            if(criterioPesquisa3.getSelectedIndex() == 3){
+                st.executeQuery("select * from consultas_r where data_nasc_paciente LIKE '%"+pesquisa+"%'");
+            }
+            if(criterioPesquisa3.getSelectedIndex() == 4){
+                st.executeQuery("select * from consultas_r where data_consulta LIKE '%"+pesquisa+"%'");
+            }
+            if(criterioPesquisa3.getSelectedIndex() == 5){
+                st.executeQuery("select * from consultas where hora_consulta LIKE '%"+pesquisa+"%'");
+            }
+            
+            ResultSet rs = st.getResultSet();
+                        
+            int a = 0;
+            //Lista os alunos no console
+            int numtabelas = Tabela.getRowCount();
+            for (int b = 0 ; b < numtabelas ; b++ ) {
+                Tabela3.setValueAt(" ", b, 0);
+                Tabela3.setValueAt(" ", b, 1);
+                Tabela3.setValueAt(" ", b, 2);
+                Tabela3.setValueAt(" ", b, 3);
+                Tabela3.setValueAt(" ", b, 4);
+                Tabela3.setValueAt(" ", b, 5);
+            }
+            int linhas = 0;
+            while (rs.next()) {
+                linhas++;
+                Tabela3.setValueAt(rs.getString("id_consulta"), a, 0);
+                Tabela3.setValueAt(rs.getString("nome_paciente"), a, 1);
+                /*if(rs.getString("sexo_paciente") == "M"){
+                    Tabela3.setValueAt("Masculino", a, 2);
+                }else{
+                    if(rs.getString("sexo_paciente") == "F"){
+                    Tabela3.setValueAt("Feminino", a, 2);
+                }
+                }*/
+                Tabela3.setValueAt(rs.getString("nome_medico"), a, 2);
+                
+                Tabela3.setValueAt(rs.getString("data_nasc_paciente"), a, 3);
+                Tabela3.setValueAt(rs.getString("data_consulta"), a, 4);
+                Tabela3.setValueAt(rs.getString("hora_consulta")+":"+rs.getString("minuto_consulta"), a, 5);
+                a++;
+            }
+           
+        } catch (SQLException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        } catch (Exception ex) {
+            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    public static void GeraRelatorio(){
+        
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -1081,7 +1279,7 @@ public class Tela_Secretária extends javax.swing.JFrame {
 
         Selecao.setBackground(new java.awt.Color(102, 153, 255));
         Selecao.setForeground(new java.awt.Color(255, 255, 255));
-        Selecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Médicos(a)", "Convênios", "Consultas" }));
+        Selecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Médicos(a)", "Convênios", "Consultas", "Consultas Concluídas" }));
         Selecao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelecaoActionPerformed(evt);
@@ -1244,6 +1442,66 @@ public class Tela_Secretária extends javax.swing.JFrame {
             }
             
         }
+        if(Selecao.getSelectedIndex() == 3){
+            
+            File diretorio = new File("C:\\PlusLife");
+                Conexao conexao = new Conexao();
+                Connection con;
+            try {
+                con = conexao.abrir();
+                java.sql.Statement st = con.createStatement();
+                st.executeQuery("SELECT * FROM consultas_r");
+                diretorio.mkdir();
+                
+                FileWriter arq;
+            try {
+                ResultSet rs = st.getResultSet();
+                arq = new FileWriter("C:\\PlusLife\\Relatorio Consultas Realizadas.txt");
+                BufferedWriter writer = new BufferedWriter(arq);
+                while(rs.next()){
+                    writer.write("                  ");
+                    writer.newLine();               
+                    String id = rs.getString("id_consulta");
+                    char[] idarray = id.toCharArray();
+                    int idd = idarray.length;
+                    writer.write("                  ------- DADOS CONSULTA ID: "+rs.getString("id_consulta")+" ");
+                    int a = 7-idd;
+                    int b = 0;
+                    while(b < a){
+                        writer.write("-");
+                        b++;
+                    }
+                    writer.newLine();
+                    writer.write("                  » Nome Paciente: "+rs.getString("nome_paciente"));
+                    writer.newLine();
+                    if(rs.getString("sexo_paciente").equals("M")){
+                        writer.write("                  » Sexo Paciente: Masculino");
+                    }if(rs.getString("sexo_paciente").equals("F")){
+                        writer.write("                  » Sexo Paciente: Feminino");
+                    }
+                    writer.newLine();
+                    writer.write("                  » Nome Médico: "+rs.getString("nome_medico"));
+                    writer.newLine();
+                    writer.write("                  » Data Nascimento Paciente: "+rs.getString("data_nasc_paciente"));
+                    writer.newLine();
+                    writer.write("                  » Data da Consulta: "+rs.getString("data_consulta"));
+                    writer.newLine();
+                    writer.write("                  » Hora da Consulta: "+rs.getString("hora_consulta")+":"+rs.getString("minuto_consulta"));
+                    writer.newLine();
+                }
+                writer.flush();
+                writer.close();
+                JOptionPane.showMessageDialog(null, "Relatório gerado com sucesso em C:/PlusLife");
+            } catch (IOException ex) {
+                Logger.getLogger(Tela_Secretária.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+            } catch (Exception ex) {
+                Logger.getLogger(Tela_Secretária.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+                
+        }
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -1263,6 +1521,10 @@ public class Tela_Secretária extends javax.swing.JFrame {
             id = (String) Tabela2.getValueAt(selecionado, 0);
         }
         if(Selecao.getSelectedIndex() == 2){
+            selecionado = Tabela3.getSelectedRow();
+            id = (String) Tabela3.getValueAt(selecionado, 0);
+        }
+        if(Selecao.getSelectedIndex() == 3){
             selecionado = Tabela3.getSelectedRow();
             id = (String) Tabela3.getValueAt(selecionado, 0);
         }
@@ -1292,6 +1554,11 @@ public class Tela_Secretária extends javax.swing.JFrame {
             id = (String) Tabela3.getValueAt(selecionado, 0);
             nome = (String) Tabela3.getValueAt(selecionado, 1);
         }
+        if(Selecao.getSelectedIndex() == 3){
+            selecionado = Tabela3.getSelectedRow();
+            id = (String) Tabela3.getValueAt(selecionado, 0);
+            nome = (String) Tabela3.getValueAt(selecionado, 1);
+        }
         try {
             excluir(id, nome);
         } catch (Exception ex) {
@@ -1315,6 +1582,10 @@ public class Tela_Secretária extends javax.swing.JFrame {
             id = (String) Tabela2.getValueAt(selecionado, 0);
         }
         if(Selecao.getSelectedIndex() == 2){
+            selecionado = Tabela3.getSelectedRow();
+            id = (String) Tabela3.getValueAt(selecionado, 0);
+        }
+        if(Selecao.getSelectedIndex() == 3){
             selecionado = Tabela3.getSelectedRow();
             id = (String) Tabela3.getValueAt(selecionado, 0);
         }
@@ -1348,6 +1619,14 @@ public class Tela_Secretária extends javax.swing.JFrame {
             pesquisa = CampoPesquisa.getText();
             try {
                 PesquisaConsultas(pesquisa);
+            } catch (Exception ex) {
+                Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(Selecao.getSelectedIndex() == 3){
+            pesquisa = CampoPesquisa.getText();
+            try {
+                PesquisaConsultasConcluidas(pesquisa);
             } catch (Exception ex) {
                 Logger.getLogger(Tela_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
