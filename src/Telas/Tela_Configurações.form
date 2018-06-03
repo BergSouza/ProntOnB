@@ -407,7 +407,7 @@
         <Component class="javax.swing.JComboBox" name="selecaofonte">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="65">
+              <StringArray count="64">
                 <StringItem index="0" value="Arial"/>
                 <StringItem index="1" value="Arial Black"/>
                 <StringItem index="2" value="Arial Bold"/>
@@ -437,42 +437,41 @@
                 <StringItem index="26" value="MS Sans Serif 14"/>
                 <StringItem index="27" value="MS Sans Serif 18"/>
                 <StringItem index="28" value="MS Sans Serif 24"/>
-                <StringItem index="29" value=" "/>
-                <StringItem index="30" value="MS Serif 8"/>
-                <StringItem index="31" value="MS Serif 10"/>
-                <StringItem index="32" value="MS Serif 12"/>
-                <StringItem index="33" value="MS Serif  14"/>
-                <StringItem index="34" value="MS Serif  18"/>
-                <StringItem index="35" value="MS Serif  24"/>
-                <StringItem index="36" value="Palatino Linotype"/>
-                <StringItem index="37" value="Palatino Linotype Bold"/>
-                <StringItem index="38" value="Palatino Linotype Bold Italic"/>
-                <StringItem index="39" value="Palatino Linotype Italic"/>
-                <StringItem index="40" value="Roman"/>
-                <StringItem index="41" value="Script"/>
-                <StringItem index="42" value="Small Fonts"/>
-                <StringItem index="43" value="Symbol 8"/>
-                <StringItem index="44" value="Symbol 10"/>
-                <StringItem index="45" value="Symbol 12"/>
-                <StringItem index="46" value="Symbol 14"/>
-                <StringItem index="47" value="Symbol 18"/>
-                <StringItem index="48" value="Symbol 24"/>
-                <StringItem index="49" value="Tahoma"/>
-                <StringItem index="50" value="Tahoma Bold"/>
-                <StringItem index="51" value="Times MS Visio Standard 2013 New Roman"/>
-                <StringItem index="52" value="Times New Roman Bold"/>
-                <StringItem index="53" value="Times New Roman Bold Italic"/>
-                <StringItem index="54" value="Times New Roman Italic"/>
-                <StringItem index="55" value="Trebuchet MS"/>
-                <StringItem index="56" value="Trebuchet MS Bold"/>
-                <StringItem index="57" value="Trebuchet MS Bold Italic"/>
-                <StringItem index="58" value="Trebuchet MS Italic"/>
-                <StringItem index="59" value="Verdana"/>
-                <StringItem index="60" value="Verdana Bold"/>
-                <StringItem index="61" value="Verdana Bold Italic"/>
-                <StringItem index="62" value="Verdana Italic"/>
-                <StringItem index="63" value="Webdings"/>
-                <StringItem index="64" value="WingDings"/>
+                <StringItem index="29" value="MS Serif 8"/>
+                <StringItem index="30" value="MS Serif 10"/>
+                <StringItem index="31" value="MS Serif 12"/>
+                <StringItem index="32" value="MS Serif  14"/>
+                <StringItem index="33" value="MS Serif  18"/>
+                <StringItem index="34" value="MS Serif  24"/>
+                <StringItem index="35" value="Palatino Linotype"/>
+                <StringItem index="36" value="Palatino Linotype Bold"/>
+                <StringItem index="37" value="Palatino Linotype Bold Italic"/>
+                <StringItem index="38" value="Palatino Linotype Italic"/>
+                <StringItem index="39" value="Roman"/>
+                <StringItem index="40" value="Script"/>
+                <StringItem index="41" value="Small Fonts"/>
+                <StringItem index="42" value="Symbol 8"/>
+                <StringItem index="43" value="Symbol 10"/>
+                <StringItem index="44" value="Symbol 12"/>
+                <StringItem index="45" value="Symbol 14"/>
+                <StringItem index="46" value="Symbol 18"/>
+                <StringItem index="47" value="Symbol 24"/>
+                <StringItem index="48" value="Tahoma"/>
+                <StringItem index="49" value="Tahoma Bold"/>
+                <StringItem index="50" value="Times MS Visio Standard 2013 New Roman"/>
+                <StringItem index="51" value="Times New Roman Bold"/>
+                <StringItem index="52" value="Times New Roman Bold Italic"/>
+                <StringItem index="53" value="Times New Roman Italic"/>
+                <StringItem index="54" value="Trebuchet MS"/>
+                <StringItem index="55" value="Trebuchet MS Bold"/>
+                <StringItem index="56" value="Trebuchet MS Bold Italic"/>
+                <StringItem index="57" value="Trebuchet MS Italic"/>
+                <StringItem index="58" value="Verdana"/>
+                <StringItem index="59" value="Verdana Bold"/>
+                <StringItem index="60" value="Verdana Bold Italic"/>
+                <StringItem index="61" value="Verdana Italic"/>
+                <StringItem index="62" value="Webdings"/>
+                <StringItem index="63" value="WingDings"/>
               </StringArray>
             </Property>
           </Properties>
