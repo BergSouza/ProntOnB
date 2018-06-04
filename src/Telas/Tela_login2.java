@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import plus_life.Plus_Life;
 
@@ -44,9 +45,11 @@ public class Tela_login2 extends javax.swing.JFrame {
         String cors = breader.readLine();
         String fonte = breader.readLine();
         String tamanho = breader.readLine();
+        String icones = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
         mudafonte(fonte, tamanho);
+        setaicones(icones);
     }
         
     public void mudacorprincipal(String cor){
@@ -85,6 +88,41 @@ public class Tela_login2 extends javax.swing.JFrame {
         txtVersao.setFont(new Font(fonte, Font.BOLD, 6+tamanho));
         jLabel1.setFont(new Font(fonte, Font.BOLD, 14+tamanho));
         jbtn_Logar.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+    }
+    public void setaicones(String icones){
+        if(icones.equals("Sem icones")){
+            
+        }
+        if(icones.equals("Icones 1")){
+            ImageIcon config = new ImageIcon(getClass().getResource("/img/icons/plconfig.png"));           
+            jbtn_Config.setIcon(config);
+            ImageIcon identity = new ImageIcon(getClass().getResource("/img/icons/user.png"));           
+            jLabel2.setIcon(identity);
+            ImageIcon senha = new ImageIcon(getClass().getResource("/img/icons/senha.png"));           
+            jLabel3.setIcon(senha);
+            ImageIcon login = new ImageIcon(getClass().getResource("/img/icons/pllogar.png"));           
+            jbtn_Logar.setIcon(login);
+        }
+        if(icones.equals("Icones 2")){
+            ImageIcon config = new ImageIcon(getClass().getResource("/img/icons/config2.png"));           
+            jbtn_Config.setIcon(config);
+            ImageIcon identity = new ImageIcon(getClass().getResource("/img/icons/user.png"));           
+            jLabel2.setIcon(identity);
+            ImageIcon senha = new ImageIcon(getClass().getResource("/img/icons/senha.png"));           
+            jLabel3.setIcon(senha);
+            ImageIcon login = new ImageIcon(getClass().getResource("/img/icons/logar2.png"));           
+            jbtn_Logar.setIcon(login);
+        }
+        if(icones.equals("Icones 3")){
+            ImageIcon config = new ImageIcon(getClass().getResource("/img/icons/config.png"));           
+            jbtn_Config.setIcon(config);
+            ImageIcon identity = new ImageIcon(getClass().getResource("/img/icons/user2.png"));           
+            jLabel2.setIcon(identity);
+            ImageIcon senha = new ImageIcon(getClass().getResource("/img/icons/senha2.png"));           
+            jLabel3.setIcon(senha);
+            ImageIcon login = new ImageIcon(getClass().getResource("/img/icons/logar.png"));           
+            jbtn_Logar.setIcon(login);
+        }
     }
 
     /**

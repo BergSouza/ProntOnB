@@ -18,6 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,9 +44,11 @@ public class Tela_visualizar_sec extends javax.swing.JFrame {
         String cors = breader.readLine();
         String fonte = breader.readLine();
         String tamanho = breader.readLine();
+        String icones = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
         mudafonte(fonte, tamanho);
+        setaicones(icones);
     }
         
     public void mudacorprincipal(String cor){
@@ -106,6 +109,23 @@ public class Tela_visualizar_sec extends javax.swing.JFrame {
         jButton2.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
         
     
+    }
+    public void setaicones(String icones){
+        if(icones.equals("Sem icones")){
+            
+        }
+        if(icones.equals("Icones 1")){
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/platualizar.png"));           
+            jButton2.setIcon(editar);
+        }
+        if(icones.equals("Icones 2")){
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/atualizar2.png"));           
+            jButton2.setIcon(editar);
+        }
+        if(icones.equals("Icones 3")){
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/atualizar.png"));           
+            jButton2.setIcon(editar);
+        }
     }
     
     public String pegavalores(String identity,String id,String nome, String cpf, String rg,String telefone,String endereco, String sexo, String senha){
@@ -303,8 +323,8 @@ public class Tela_visualizar_sec extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(391, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(380, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(

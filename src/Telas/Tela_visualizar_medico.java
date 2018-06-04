@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.ResultSet;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 /**
  *
@@ -44,9 +45,11 @@ public class Tela_visualizar_medico extends javax.swing.JFrame {
         String cors = breader.readLine();
         String fonte = breader.readLine();
         String tamanho = breader.readLine();
+        String icones = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
         mudafonte(fonte, tamanho);
+        setaicones(icones);
     }
         
     public void mudacorprincipal(String cor){
@@ -105,6 +108,23 @@ public class Tela_visualizar_medico extends javax.swing.JFrame {
         jButton2.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
         
     
+    }
+    public void setaicones(String icones){
+        if(icones.equals("Sem icones")){
+            
+        }
+        if(icones.equals("Icones 1")){
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/platualizar.png"));           
+            jButton2.setIcon(editar);
+        }
+        if(icones.equals("Icones 2")){
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/atualizar2.png"));           
+            jButton2.setIcon(editar);
+        }
+        if(icones.equals("Icones 3")){
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/atualizar.png"));           
+            jButton2.setIcon(editar);
+        }
     }
     
     public String pegavalores(String identity,String id,String nome, String cpf, String rg,String crm,String telefone, String endereco, String sexo,String senha){
@@ -319,7 +339,7 @@ public class Tela_visualizar_medico extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 110, 40));
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 120, 40));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 710, 80));
 

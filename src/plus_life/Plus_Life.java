@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 
 public class Plus_Life {
     
-    private String versao = "0.9.8 - BETA";
+    private String versao = "0.9.8.2 - BETA";
     private String novidades = ""
             + "v0.6: PlusLife conta com o Identity."
             + "v0.8: Sistema do Administrador 100% funcional\n"
@@ -37,8 +37,10 @@ public class Plus_Life {
             + "v0.9.7: Novo Sistema de Launcher e Configurações\n"
             + "v0.9.7.2: Novo Sistema de Cores em Configurações\n"
             + "v0.9.7.3: Novo Sistema de Fontes em Configurações\n"
-            + "v0.9.8: »NEW» Consultas Realizadas Com Relatório\n";
-    private String ajuda = "Identity: é o código único entre todos os usuários.Ex: O identity de um médico é diferente de uma secretária, e ambos diferentes de todos os outros.";
+            + "v0.9.8: »NEW» Consultas Realizadas Com Relatório\n"
+            + "v0.9.8.2: »NEW» Novo Sistema de Ícones no Layout\n";
+    private String ajuda = "Identity: é o código único entre todos os usuários.Ex: O identity de um médico é diferente de uma secretária, e ambos diferentes de todos os outros. \n"
+            +"Lançamento da Versão Final: Em breve, a qualquer momento";
 
     public String getVersao() {
         return versao;

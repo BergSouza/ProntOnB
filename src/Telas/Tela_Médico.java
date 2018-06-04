@@ -18,6 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import plus_life.Plus_Life;
@@ -46,9 +47,11 @@ public class Tela_Médico extends javax.swing.JFrame {
         String cors = breader.readLine();
         String fonte = breader.readLine();
         String tamanho = breader.readLine();
+        String icones = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
         mudafonte(fonte, tamanho);
+        setaicones(icones);
     }
         
     public void mudacorprincipal(String cor){
@@ -89,7 +92,35 @@ public class Tela_Médico extends javax.swing.JFrame {
         Tabela.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
         Selecao.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
     }
-    
+    public void setaicones(String icones){
+        if(icones.equals("Sem icones")){
+            
+        }
+        if(icones.equals("Icones 1")){
+            ImageIcon visualizar = new ImageIcon(getClass().getResource("/img/icons/visualizar.png"));           
+            btnVisualizar.setIcon(visualizar);
+            ImageIcon ok = new ImageIcon(getClass().getResource("/img/icons/logar.png"));           
+            btnExcluir.setIcon(ok);
+            ImageIcon sair = new ImageIcon(getClass().getResource("/img/icons/plcancelar.png"));           
+            btnSair.setIcon(sair);
+        }
+        if(icones.equals("Icones 2")){
+            ImageIcon visualizar = new ImageIcon(getClass().getResource("/img/icons/visualizar.png"));           
+            btnVisualizar.setIcon(visualizar);
+            ImageIcon ok = new ImageIcon(getClass().getResource("/img/icons/logar.png"));           
+            btnExcluir.setIcon(ok);
+            ImageIcon sair = new ImageIcon(getClass().getResource("/img/icons/cancelar2.png"));           
+            btnSair.setIcon(sair);
+        }
+        if(icones.equals("Icones 3")){
+            ImageIcon visualizar = new ImageIcon(getClass().getResource("/img/icons/visualizar2.png"));           
+            btnVisualizar.setIcon(visualizar);
+            ImageIcon ok = new ImageIcon(getClass().getResource("/img/icons/logar2.png"));           
+            btnExcluir.setIcon(ok);
+            ImageIcon sair = new ImageIcon(getClass().getResource("/img/icons/cancelar.png"));           
+            btnSair.setIcon(sair);
+        }
+    }
     public void pegadados(String id,String Nome){
         CampoID.setText(id);
         CampoNomeMedico.setText(Nome);
@@ -535,7 +566,7 @@ public class Tela_Médico extends javax.swing.JFrame {
                 btnExcluirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 90, 30));
+        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 130, 30));
 
         btnVisualizar.setBackground(new java.awt.Color(102, 153, 255));
         btnVisualizar.setForeground(new java.awt.Color(255, 255, 255));
@@ -545,13 +576,13 @@ public class Tela_Médico extends javax.swing.JFrame {
                 btnVisualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 90, 30));
+        jPanel1.add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 130, 30));
 
         txtA.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtA.setForeground(new java.awt.Color(102, 153, 255));
         txtA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtA.setText("Todas as Suas Consultas Marcadas");
-        jPanel1.add(txtA, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 580, 30));
+        jPanel1.add(txtA, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 450, 30));
 
         btnPesquisa.setBackground(new java.awt.Color(102, 153, 255));
         btnPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupabranca.png"))); // NOI18N
@@ -561,15 +592,15 @@ public class Tela_Médico extends javax.swing.JFrame {
                 btnPesquisaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 30, 30));
-        jPanel1.add(CampoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 190, 30));
+        jPanel1.add(btnPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 40, 30));
+        jPanel1.add(CampoPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 180, 30));
 
         criterioPesquisa3.setBackground(new java.awt.Color(102, 153, 255));
         criterioPesquisa3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         criterioPesquisa3.setForeground(new java.awt.Color(255, 255, 255));
         criterioPesquisa3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nome do Paciente", "Data de Nascimento", "Data da Consulta", "Horário da Consulta" }));
         criterioPesquisa3.setBorder(null);
-        jPanel1.add(criterioPesquisa3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 60, 30));
+        jPanel1.add(criterioPesquisa3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 70, 30));
 
         Selecao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Consultas Marcadas", "Consultas Realizadas" }));
         Selecao.addActionListener(new java.awt.event.ActionListener() {
@@ -577,7 +608,7 @@ public class Tela_Médico extends javax.swing.JFrame {
                 SelecaoActionPerformed(evt);
             }
         });
-        jPanel1.add(Selecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, 30));
+        jPanel1.add(Selecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 330));
 
@@ -593,7 +624,7 @@ public class Tela_Médico extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 90, 50));
+        jPanel2.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 130, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_transparente.png"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 50));

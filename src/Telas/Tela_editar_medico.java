@@ -21,6 +21,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.InputMismatchException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 /**
  *
@@ -45,9 +46,11 @@ public class Tela_editar_medico extends javax.swing.JFrame {
         String cors = breader.readLine();
         String fonte = breader.readLine();
         String tamanho = breader.readLine();
+        String icones = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
         mudafonte(fonte, tamanho);
+        setaicones(icones);
     }
         
     public void mudacorprincipal(String cor){
@@ -111,6 +114,29 @@ public class Tela_editar_medico extends javax.swing.JFrame {
         jButton2.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
         
     
+    }
+    public void setaicones(String icones){
+        if(icones.equals("Sem icones")){
+            
+        }
+        if(icones.equals("Icones 1")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/pllogar.png"));           
+            jButton1.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/plcancelar.png"));           
+            jButton2.setIcon(editar);
+        }
+        if(icones.equals("Icones 2")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/logar2.png"));           
+            jButton1.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/cancelar2.png"));           
+            jButton2.setIcon(editar);
+        }
+        if(icones.equals("Icones 3")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/logar.png"));           
+            jButton1.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/cancelar.png"));           
+            jButton2.setIcon(editar);
+        }
     }
     
     public String pegavalores(String identity,String id,String nome, String cpf, String rg,String crm,String telefone, String endereco, String sexo,String senha){
@@ -390,7 +416,7 @@ public class Tela_editar_medico extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 110, 40));
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 130, 40));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -401,7 +427,7 @@ public class Tela_editar_medico extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 100, 40));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 130, 40));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 710, 80));
 

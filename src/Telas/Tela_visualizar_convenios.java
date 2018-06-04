@@ -19,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 /**
  *
@@ -43,9 +44,11 @@ public class Tela_visualizar_convenios extends javax.swing.JFrame {
         String cors = breader.readLine();
         String fonte = breader.readLine();
         String tamanho = breader.readLine();
+        String icones = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
         mudafonte(fonte, tamanho);
+        setaicones(icones);
     }
         
     public void mudacorprincipal(String cor){
@@ -87,7 +90,23 @@ public class Tela_visualizar_convenios extends javax.swing.JFrame {
         
     
     }
-    
+    public void setaicones(String icones){
+        if(icones.equals("Sem icones")){
+            
+        }
+        if(icones.equals("Icones 1")){
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/platualizar.png"));           
+            jButton2.setIcon(editar);
+        }
+        if(icones.equals("Icones 2")){
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/atualizar2.png"));           
+            jButton2.setIcon(editar);
+        }
+        if(icones.equals("Icones 3")){
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/atualizar.png"));           
+            jButton2.setIcon(editar);
+        }
+    }
     
     public String pegavalores(String id,String nome,String endereco, String telefone, String cnpj,String plano){
         campoid.setText(id);
@@ -179,6 +198,7 @@ public class Tela_visualizar_convenios extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(102, 153, 255));
         jButton2.setText("Voltar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -186,7 +206,7 @@ public class Tela_visualizar_convenios extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 100, 40));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 110, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 480, 80));
 

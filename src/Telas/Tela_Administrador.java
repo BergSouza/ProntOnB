@@ -8,6 +8,7 @@ package Telas;
 import Banco_de_dados.Conexao;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -18,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import plus_life.Plus_Life;
@@ -45,9 +47,11 @@ public class Tela_Administrador extends javax.swing.JFrame {
         String cors = breader.readLine();
         String fonte = breader.readLine();
         String tamanho = breader.readLine();
+        String icones = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
         mudafonte(fonte, tamanho);
+        setaicones(icones);
     }
     
     public void mudacorprincipal(String cor){
@@ -95,6 +99,54 @@ public class Tela_Administrador extends javax.swing.JFrame {
         Tabela.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
         Tabela2.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
         CampoPesquisa.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
+        
+    }
+    public void setaicones(String icones){
+        if(icones.equals("Sem icones")){
+            
+        }
+        if(icones.equals("Icones 1")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/atualizar.png"));           
+            btnAtualizar.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/editar.png"));           
+            btnEditar.setIcon(editar);
+            ImageIcon visualizar = new ImageIcon(getClass().getResource("/img/icons/visualizar.png"));           
+            btnVisualizar.setIcon(visualizar);
+            ImageIcon lixeira = new ImageIcon(getClass().getResource("/img/icons/lixeira.png"));           
+            btnExcluir.setIcon(lixeira);
+            ImageIcon adicionar = new ImageIcon(getClass().getResource("/img/icons/adicionar.png"));           
+            btnCadastrar.setIcon(adicionar);
+            ImageIcon sair = new ImageIcon(getClass().getResource("/img/icons/plcancelar.png"));           
+            btnSair.setIcon(sair);
+        }
+        if(icones.equals("Icones 2")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/atualizar.png"));           
+            btnAtualizar.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/editar.png"));           
+            btnEditar.setIcon(editar);
+            ImageIcon visualizar = new ImageIcon(getClass().getResource("/img/icons/visualizar.png"));           
+            btnVisualizar.setIcon(visualizar);
+            ImageIcon lixeira = new ImageIcon(getClass().getResource("/img/icons/lixeira.png"));           
+            btnExcluir.setIcon(lixeira);
+            ImageIcon adicionar = new ImageIcon(getClass().getResource("/img/icons/adicionar.png"));           
+            btnCadastrar.setIcon(adicionar);
+            ImageIcon sair = new ImageIcon(getClass().getResource("/img/icons/cancelar2.png"));           
+            btnSair.setIcon(sair);
+        }
+        if(icones.equals("Icones 3")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/atualizar2.png"));           
+            btnAtualizar.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/editar2.png"));           
+            btnEditar.setIcon(editar);
+            ImageIcon visualizar = new ImageIcon(getClass().getResource("/img/icons/visualizar2.png"));           
+            btnVisualizar.setIcon(visualizar);
+            ImageIcon lixeira = new ImageIcon(getClass().getResource("/img/icons/lixeira2.png"));           
+            btnExcluir.setIcon(lixeira);
+            ImageIcon adicionar = new ImageIcon(getClass().getResource("/img/icons/adicionar2.png"));           
+            btnCadastrar.setIcon(adicionar);
+            ImageIcon sair = new ImageIcon(getClass().getResource("/img/icons/cancelar.png"));           
+            btnSair.setIcon(sair);
+        }
     }
     
     public void atualizar(){
@@ -784,7 +836,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
         Tabela.setDropMode(javax.swing.DropMode.INSERT_ROWS);
         ScrollTab.setViewportView(Tabela);
 
-        jPanel1.add(ScrollTab, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 580, 220));
+        jPanel1.add(ScrollTab, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 620, 220));
 
         Tabela2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -903,7 +955,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
         });
         ScrollTab2.setViewportView(Tabela2);
 
-        jPanel1.add(ScrollTab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 580, 220));
+        jPanel1.add(ScrollTab2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 620, 220));
 
         btnCadastrar.setBackground(new java.awt.Color(102, 153, 255));
         btnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
@@ -913,7 +965,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
                 btnCadastrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 100, 30));
+        jPanel1.add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 120, 30));
 
         Selecao.setBackground(new java.awt.Color(102, 153, 255));
         Selecao.setForeground(new java.awt.Color(255, 255, 255));
@@ -933,7 +985,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 100, 30));
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 120, 30));
 
         btnExcluir.setBackground(new java.awt.Color(102, 153, 255));
         btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
@@ -943,7 +995,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
                 btnExcluirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 100, 30));
+        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 120, 30));
 
         btnVisualizar.setBackground(new java.awt.Color(102, 153, 255));
         btnVisualizar.setForeground(new java.awt.Color(255, 255, 255));
@@ -953,7 +1005,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
                 btnVisualizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 100, 30));
+        jPanel1.add(btnVisualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 120, 30));
 
         btnAtualizar.setBackground(new java.awt.Color(102, 153, 255));
         btnAtualizar.setForeground(new java.awt.Color(255, 255, 255));
@@ -1001,7 +1053,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
         });
         jPanel1.add(criterioPesquisa2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 50, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 600, 330));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 640, 330));
 
         jPanel2.setBackground(new java.awt.Color(102, 153, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1015,7 +1067,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 90, 50));
+        jPanel2.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 120, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/PlusLife_Login_transparente.png"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 50));
@@ -1025,7 +1077,7 @@ public class Tela_Administrador extends javax.swing.JFrame {
         jLabel2.setText("Administrador");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 370, 45));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 70));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

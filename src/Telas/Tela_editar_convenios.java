@@ -19,6 +19,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 /**
  *
@@ -43,9 +44,11 @@ public class Tela_editar_convenios extends javax.swing.JFrame {
         String cors = breader.readLine();
         String fonte = breader.readLine();
         String tamanho = breader.readLine();
+        String icones = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
         mudafonte(fonte, tamanho);
+        setaicones(icones);
     }
         
     public void mudacorprincipal(String cor){
@@ -70,6 +73,29 @@ public class Tela_editar_convenios extends javax.swing.JFrame {
         jButton1.setBackground(Color.decode(cor));
         jButton2.setBackground(Color.decode(cor));
         
+    }
+    public void setaicones(String icones){
+        if(icones.equals("Sem icones")){
+            
+        }
+        if(icones.equals("Icones 1")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/pllogar.png"));           
+            jButton1.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/plcancelar.png"));           
+            jButton2.setIcon(editar);
+        }
+        if(icones.equals("Icones 2")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/logar2.png"));           
+            jButton1.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/cancelar2.png"));           
+            jButton2.setIcon(editar);
+        }
+        if(icones.equals("Icones 3")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/logar.png"));           
+            jButton1.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/cancelar.png"));           
+            jButton2.setIcon(editar);
+        }
     }
     
     public void mudafonte(String fonte, String tamanhoo){
@@ -192,7 +218,7 @@ public class Tela_editar_convenios extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 100, 40));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 120, 40));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setForeground(new java.awt.Color(102, 153, 255));
@@ -202,7 +228,7 @@ public class Tela_editar_convenios extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 100, 40));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 120, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 480, 80));
 

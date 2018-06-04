@@ -16,6 +16,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import plus_life.Plus_Life;
@@ -44,12 +45,13 @@ public class Tela_Configurações extends javax.swing.JFrame {
         String cors = breader.readLine();
         String fonte = breader.readLine();
         String tamanho = breader.readLine();
+        String icones = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
         mudafonte(fonte,tamanho);
         corprincipal.setText(corp);
         corsecundaria.setText(cors);
-        
+        setaicones(icones);
         campofonte.setText(fonte);
         tamanhofonte.setText(tamanho);
     }
@@ -58,6 +60,8 @@ public class Tela_Configurações extends javax.swing.JFrame {
         selecaocor.setBackground(Color.decode(cor));
         selecaofonte.setBackground(Color.decode(cor));
         selecaotamanhofonte.setBackground(Color.decode(cor));
+        selecaoicones.setBackground(Color.decode(cor));
+        painelicones.setBackground(Color.decode(cor));
         btnOk.setBackground(Color.decode(cor));
         btnInverter.setBackground(Color.decode(cor));
         painelcabecalho.setBackground(Color.decode(cor));
@@ -71,6 +75,7 @@ public class Tela_Configurações extends javax.swing.JFrame {
         txta4.setForeground(Color.decode(cor));
         txtb.setForeground(Color.decode(cor));
         txtc.setForeground(Color.decode(cor));
+        txticones.setForeground(Color.decode(cor));
         corprincipal.setText(cor);
     }
     
@@ -78,6 +83,7 @@ public class Tela_Configurações extends javax.swing.JFrame {
         selecaocor.setForeground(Color.decode(cor));
         selecaofonte.setForeground(Color.decode(cor));
         selecaotamanhofonte.setForeground(Color.decode(cor));
+        selecaoicones.setForeground(Color.decode(cor));
         btnOk.setForeground(Color.decode(cor));
         btnInverter.setForeground(Color.decode(cor));
         painelcabecalho.setForeground(Color.decode(cor));
@@ -86,6 +92,7 @@ public class Tela_Configurações extends javax.swing.JFrame {
         btncancelarrodape.setBackground(Color.decode(cor));
         txtcabecalho.setForeground(Color.decode(cor));
         jPanel2.setBackground(Color.decode(cor));
+        txticones.setBackground(Color.decode(cor));
         corsecundaria.setText(cor);
     }
     
@@ -105,6 +112,31 @@ public class Tela_Configurações extends javax.swing.JFrame {
         
     }
     
+    public void setaicones(String icones){
+        if(icones.equals("Sem icones")){
+            
+        }
+        if(icones.equals("Icones 1")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/pllogar.png"));           
+            btnconfirmarrodape.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/plcancelar.png"));           
+            btncancelarrodape.setIcon(editar);
+        }
+        if(icones.equals("Icones 2")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/logar2.png"));           
+            btnconfirmarrodape.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/cancelar2.png"));           
+            btncancelarrodape.setIcon(editar);
+        }
+        if(icones.equals("Icones 3")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/logar.png"));           
+            btnconfirmarrodape.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/cancelar.png"));           
+            btncancelarrodape.setIcon(editar);
+        }
+    }
+    
+    
     public void salvarconfiguracoes(String corprincipal, String corsecundaria){
         
         try{
@@ -121,6 +153,8 @@ public class Tela_Configurações extends javax.swing.JFrame {
                 writer.write((String) selecaofonte.getSelectedItem());
                 writer.newLine();
                 writer.write((String) selecaotamanhofonte.getSelectedItem());
+                writer.newLine();
+                writer.write((String) selecaoicones.getSelectedItem());
                 writer.flush();
                 writer.close();
                 JOptionPane.showMessageDialog(null, "Configurações salvas!");
@@ -189,6 +223,18 @@ public class Tela_Configurações extends javax.swing.JFrame {
         txta3 = new javax.swing.JLabel();
         txta4 = new javax.swing.JLabel();
         tamanhofonte = new javax.swing.JTextField();
+        txticones = new javax.swing.JLabel();
+        selecaoicones = new javax.swing.JComboBox<>();
+        painelicones = new javax.swing.JPanel();
+        txtIcon3 = new javax.swing.JLabel();
+        txtIcon4 = new javax.swing.JLabel();
+        txtIcon5 = new javax.swing.JLabel();
+        txtIcon6 = new javax.swing.JLabel();
+        txtIcon8 = new javax.swing.JLabel();
+        txtIcon7 = new javax.swing.JLabel();
+        txtIcon9 = new javax.swing.JLabel();
+        txtIcon2 = new javax.swing.JLabel();
+        txtIcon1 = new javax.swing.JLabel();
         painelrodape = new javax.swing.JPanel();
         btncancelarrodape = new javax.swing.JButton();
         btnconfirmarrodape = new javax.swing.JButton();
@@ -404,7 +450,53 @@ public class Tela_Configurações extends javax.swing.JFrame {
         tamanhofonte.setEditable(false);
         jPanel2.add(tamanhofonte, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 60, 30));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 520, 270));
+        txticones.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txticones.setForeground(new java.awt.Color(102, 153, 255));
+        txticones.setText("Icones:");
+        jPanel2.add(txticones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 50, -1));
+
+        selecaoicones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sem icones", "Icones 1", "Icones 2", "Icones 3" }));
+        selecaoicones.setSelectedIndex(1);
+        selecaoicones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selecaoiconesActionPerformed(evt);
+            }
+        });
+        jPanel2.add(selecaoicones, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 130, 30));
+
+        painelicones.setBackground(new java.awt.Color(102, 153, 255));
+        painelicones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/editar.png"))); // NOI18N
+        painelicones.add(txtIcon3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, 30));
+
+        txtIcon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/user.png"))); // NOI18N
+        painelicones.add(txtIcon4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, 30));
+
+        txtIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/senha.png"))); // NOI18N
+        painelicones.add(txtIcon5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, 30));
+
+        txtIcon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/atualizar.png"))); // NOI18N
+        painelicones.add(txtIcon6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, -1, 30));
+
+        txtIcon8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/lixeira.png"))); // NOI18N
+        painelicones.add(txtIcon8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 30, 30));
+
+        txtIcon7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/visualizar.png"))); // NOI18N
+        painelicones.add(txtIcon7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, 30));
+
+        txtIcon9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/adicionar.png"))); // NOI18N
+        painelicones.add(txtIcon9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, -1, 30));
+
+        jPanel2.add(painelicones, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 200, 30));
+
+        txtIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/pllogar.png"))); // NOI18N
+        jPanel2.add(txtIcon2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, 30));
+
+        txtIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/plconfig.png"))); // NOI18N
+        jPanel2.add(txtIcon1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, -1, 30));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 520, 320));
 
         painelrodape.setBackground(new java.awt.Color(102, 153, 255));
         painelrodape.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -417,7 +509,7 @@ public class Tela_Configurações extends javax.swing.JFrame {
                 btncancelarrodapeActionPerformed(evt);
             }
         });
-        painelrodape.add(btncancelarrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 97, 40));
+        painelrodape.add(btncancelarrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(397, 20, 110, 40));
 
         btnconfirmarrodape.setBackground(new java.awt.Color(255, 255, 255));
         btnconfirmarrodape.setForeground(new java.awt.Color(102, 153, 255));
@@ -427,9 +519,9 @@ public class Tela_Configurações extends javax.swing.JFrame {
                 btnconfirmarrodapeActionPerformed(evt);
             }
         });
-        painelrodape.add(btnconfirmarrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 97, 40));
+        painelrodape.add(btnconfirmarrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 110, 40));
 
-        getContentPane().add(painelrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 520, 70));
+        getContentPane().add(painelrodape, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 520, 70));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -622,6 +714,122 @@ public class Tela_Configurações extends javax.swing.JFrame {
         mudafonte((String) selecaofonte.getSelectedItem(), (String) selecaotamanhofonte.getSelectedItem());
     }//GEN-LAST:event_selecaotamanhofonteActionPerformed
 
+    private void selecaoiconesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecaoiconesActionPerformed
+        if(selecaoicones.getSelectedIndex() == 0){
+            txtIcon1.setVisible(false);
+            txtIcon2.setVisible(false);
+            txtIcon3.setVisible(false);
+            txtIcon4.setVisible(false);
+            txtIcon5.setVisible(false);
+            txtIcon6.setVisible(false); 
+            txtIcon7.setVisible(false);
+            txtIcon8.setVisible(false);
+            txtIcon9.setVisible(false);
+            btnconfirmarrodape.setIcon(null);          
+            btncancelarrodape.setIcon(null);
+        }
+        if(selecaoicones.getSelectedIndex() == 1){
+            txtIcon1.setVisible(true);
+            txtIcon2.setVisible(true);
+            txtIcon3.setVisible(true);
+            txtIcon4.setVisible(true);
+            txtIcon5.setVisible(true);
+            txtIcon6.setVisible(true);
+            txtIcon7.setVisible(true);
+            txtIcon8.setVisible(true);
+            txtIcon9.setVisible(true);
+            ImageIcon ok = new ImageIcon(getClass().getResource("/img/icons/pllogar.png"));           
+            btnconfirmarrodape.setIcon(ok);
+            ImageIcon cancelar = new ImageIcon(getClass().getResource("/img/icons/plcancelar.png"));           
+            btncancelarrodape.setIcon(cancelar);
+            ImageIcon i1 = new ImageIcon(getClass().getResource("/img/icons/plconfig.png"));           
+            txtIcon1.setIcon(i1);
+            ImageIcon i2 = new ImageIcon(getClass().getResource("/img/icons/pllogar.png"));           
+            txtIcon2.setIcon(i2);
+            ImageIcon i3 = new ImageIcon(getClass().getResource("/img/icons/editar.png"));           
+            txtIcon3.setIcon(i3);
+            ImageIcon i4 = new ImageIcon(getClass().getResource("/img/icons/user.png"));           
+            txtIcon4.setIcon(i4);
+            ImageIcon i5 = new ImageIcon(getClass().getResource("/img/icons/senha.png"));           
+            txtIcon5.setIcon(i5);
+            ImageIcon i6 = new ImageIcon(getClass().getResource("/img/icons/atualizar.png"));           
+            txtIcon6.setIcon(i6);
+            ImageIcon i7 = new ImageIcon(getClass().getResource("/img/icons/visualizar.png"));           
+            txtIcon7.setIcon(i7);
+            ImageIcon i8 = new ImageIcon(getClass().getResource("/img/icons/adicionar.png"));           
+            txtIcon8.setIcon(i8);
+            ImageIcon i9 = new ImageIcon(getClass().getResource("/img/icons/lixeira.png"));           
+            txtIcon9.setIcon(i9);
+            
+        }
+        if(selecaoicones.getSelectedIndex() == 2){
+            txtIcon1.setVisible(true);
+            txtIcon2.setVisible(true);
+            txtIcon3.setVisible(true);
+            txtIcon4.setVisible(true);
+            txtIcon5.setVisible(true);
+            txtIcon6.setVisible(true);
+            txtIcon7.setVisible(true);
+            txtIcon8.setVisible(true);
+            txtIcon9.setVisible(true);
+            ImageIcon ok = new ImageIcon(getClass().getResource("/img/icons/logar2.png"));           
+            btnconfirmarrodape.setIcon(ok);
+            ImageIcon cancelar = new ImageIcon(getClass().getResource("/img/icons/cancelar2.png"));           
+            btncancelarrodape.setIcon(cancelar);
+            ImageIcon i1 = new ImageIcon(getClass().getResource("/img/icons/config2.png"));           
+            txtIcon1.setIcon(i1);
+            ImageIcon i2 = new ImageIcon(getClass().getResource("/img/icons/logar2.png"));           
+            txtIcon2.setIcon(i2);
+            ImageIcon i3 = new ImageIcon(getClass().getResource("/img/icons/editar.png"));           
+            txtIcon3.setIcon(i3);
+            ImageIcon i4 = new ImageIcon(getClass().getResource("/img/icons/user.png"));           
+            txtIcon4.setIcon(i4);
+            ImageIcon i5 = new ImageIcon(getClass().getResource("/img/icons/senha.png"));           
+            txtIcon5.setIcon(i5);
+            ImageIcon i6 = new ImageIcon(getClass().getResource("/img/icons/atualizar.png"));           
+            txtIcon6.setIcon(i6);
+            ImageIcon i7 = new ImageIcon(getClass().getResource("/img/icons/visualizar.png"));           
+            txtIcon7.setIcon(i7);
+            ImageIcon i8 = new ImageIcon(getClass().getResource("/img/icons/adicionar.png"));           
+            txtIcon8.setIcon(i8);
+            ImageIcon i9 = new ImageIcon(getClass().getResource("/img/icons/lixeira.png"));           
+            txtIcon9.setIcon(i9);
+        }
+        if(selecaoicones.getSelectedIndex() == 3){
+            txtIcon1.setVisible(true);
+            txtIcon2.setVisible(true);
+            txtIcon3.setVisible(true);
+            txtIcon4.setVisible(true);
+            txtIcon5.setVisible(true);
+            txtIcon6.setVisible(true);
+            txtIcon7.setVisible(true);
+            txtIcon8.setVisible(true);
+            txtIcon9.setVisible(true);
+            ImageIcon ok = new ImageIcon(getClass().getResource("/img/icons/logar.png"));           
+            btnconfirmarrodape.setIcon(ok);
+            ImageIcon cancelar = new ImageIcon(getClass().getResource("/img/icons/cancelar.png"));           
+            btncancelarrodape.setIcon(cancelar);
+            ImageIcon i1 = new ImageIcon(getClass().getResource("/img/icons/config.png"));           
+            txtIcon1.setIcon(i1);
+            ImageIcon i2 = new ImageIcon(getClass().getResource("/img/icons/logar.png"));           
+            txtIcon2.setIcon(i2);
+            ImageIcon i3 = new ImageIcon(getClass().getResource("/img/icons/editar2.png"));           
+            txtIcon3.setIcon(i3);
+            ImageIcon i4 = new ImageIcon(getClass().getResource("/img/icons/user2.png"));           
+            txtIcon4.setIcon(i4);
+            ImageIcon i5 = new ImageIcon(getClass().getResource("/img/icons/senha2.png"));           
+            txtIcon5.setIcon(i5);
+            ImageIcon i6 = new ImageIcon(getClass().getResource("/img/icons/atualizar2.png"));           
+            txtIcon6.setIcon(i6);
+            ImageIcon i7 = new ImageIcon(getClass().getResource("/img/icons/visualizar2.png"));           
+            txtIcon7.setIcon(i7);
+            ImageIcon i8 = new ImageIcon(getClass().getResource("/img/icons/adicionar2.png"));           
+            txtIcon8.setIcon(i8);
+            ImageIcon i9 = new ImageIcon(getClass().getResource("/img/icons/lixeira2.png"));           
+            txtIcon9.setIcon(i9);
+        }
+    }//GEN-LAST:event_selecaoiconesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -687,11 +895,22 @@ public class Tela_Configurações extends javax.swing.JFrame {
     private javax.swing.JButton cs7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel painelcabecalho;
+    private javax.swing.JPanel painelicones;
     private javax.swing.JPanel painelrodape;
     private javax.swing.JComboBox<String> selecaocor;
     private javax.swing.JComboBox<String> selecaofonte;
+    private javax.swing.JComboBox<String> selecaoicones;
     private javax.swing.JComboBox<String> selecaotamanhofonte;
     private javax.swing.JTextField tamanhofonte;
+    private javax.swing.JLabel txtIcon1;
+    private javax.swing.JLabel txtIcon2;
+    private javax.swing.JLabel txtIcon3;
+    private javax.swing.JLabel txtIcon4;
+    private javax.swing.JLabel txtIcon5;
+    private javax.swing.JLabel txtIcon6;
+    private javax.swing.JLabel txtIcon7;
+    private javax.swing.JLabel txtIcon8;
+    private javax.swing.JLabel txtIcon9;
     private javax.swing.JLabel txta;
     private javax.swing.JLabel txta1;
     private javax.swing.JLabel txta2;
@@ -700,5 +919,6 @@ public class Tela_Configurações extends javax.swing.JFrame {
     private javax.swing.JLabel txtb;
     private javax.swing.JLabel txtc;
     private javax.swing.JLabel txtcabecalho;
+    private javax.swing.JLabel txticones;
     // End of variables declaration//GEN-END:variables
 }

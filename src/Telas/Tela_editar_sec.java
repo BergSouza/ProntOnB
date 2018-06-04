@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,9 +45,11 @@ public class Tela_editar_sec extends javax.swing.JFrame {
         String cors = breader.readLine();
         String fonte = breader.readLine();
         String tamanho = breader.readLine();
+        String icones = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
         mudafonte(fonte, tamanho);
+        setaicones(icones);
     }
     public void mudacorprincipal(String cor){
         jLabel1.setForeground(Color.decode(cor));
@@ -111,6 +114,29 @@ public class Tela_editar_sec extends javax.swing.JFrame {
         jButton2.setFont(new Font(fonte, Font.BOLD, 1+tamanho));
         
     
+    }
+    public void setaicones(String icones){
+        if(icones.equals("Sem icones")){
+            
+        }
+        if(icones.equals("Icones 1")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/pllogar.png"));           
+            jButton1.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/plcancelar.png"));           
+            jButton2.setIcon(editar);
+        }
+        if(icones.equals("Icones 2")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/logar2.png"));           
+            jButton1.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/cancelar2.png"));           
+            jButton2.setIcon(editar);
+        }
+        if(icones.equals("Icones 3")){
+            ImageIcon atualizar = new ImageIcon(getClass().getResource("/img/icons/logar.png"));           
+            jButton1.setIcon(atualizar);
+            ImageIcon editar = new ImageIcon(getClass().getResource("/img/icons/cancelar.png"));           
+            jButton2.setIcon(editar);
+        }
     }
     
     public boolean VerificaCPF(String CPF){
@@ -378,10 +404,10 @@ public class Tela_editar_sec extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(281, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(248, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(

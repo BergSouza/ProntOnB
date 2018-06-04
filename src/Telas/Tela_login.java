@@ -20,6 +20,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import plus_life.Plus_Life;
 
@@ -47,9 +48,11 @@ public class Tela_login extends javax.swing.JFrame {
         String cors = breader.readLine();
         String fonte = breader.readLine();
         String tamanho = breader.readLine();
+        String icones = breader.readLine();
         mudacorprincipal(corp);
         mudacorsecundaria(cors);
         mudafonte(fonte, tamanho);
+        setaicones(icones);
     }
         
     public void mudacorprincipal(String cor){
@@ -89,6 +92,40 @@ public class Tela_login extends javax.swing.JFrame {
         txtVersao.setFont(new Font(fonte, Font.BOLD, 6+tamanho));
         jLabel1.setFont(new Font(fonte, Font.BOLD, 14+tamanho));
         jbtn_Logar.setFont(new Font(fonte, Font.BOLD, 4+tamanho));
+    }
+    public void setaicones(String icones){
+        if(icones.equals("Sem icones")){
+            
+        }
+        if(icones.equals("Icones 1")){
+            ImageIcon config = new ImageIcon(getClass().getResource("/img/icons/config.png"));           
+            jButton2.setIcon(config);
+            ImageIcon identity = new ImageIcon(getClass().getResource("/img/icons/user.png"));           
+            jLabel2.setIcon(identity);
+            ImageIcon senha = new ImageIcon(getClass().getResource("/img/icons/senha.png"));           
+            jLabel3.setIcon(senha);
+            ImageIcon login = new ImageIcon(getClass().getResource("/img/icons/pllogar.png"));           
+            jbtn_Logar.setIcon(login);
+        }
+        if(icones.equals("Icones 2")){
+            ImageIcon config = new ImageIcon(getClass().getResource("/img/icons/config.png"));           
+            jButton2.setIcon(config);
+            ImageIcon identity = new ImageIcon(getClass().getResource("/img/icons/user.png"));           
+            jLabel2.setIcon(identity);
+            ImageIcon senha = new ImageIcon(getClass().getResource("/img/icons/senha.png"));           
+            jLabel3.setIcon(senha);
+            ImageIcon login = new ImageIcon(getClass().getResource("/img/icons/logar2.png"));           
+            jbtn_Logar.setIcon(login);
+        }if(icones.equals("Icones 3")){
+            ImageIcon config = new ImageIcon(getClass().getResource("/img/icons/config2.png"));           
+            jButton2.setIcon(config);
+            ImageIcon identity = new ImageIcon(getClass().getResource("/img/icons/user2.png"));           
+            jLabel2.setIcon(identity);
+            ImageIcon senha = new ImageIcon(getClass().getResource("/img/icons/senha2.png"));           
+            jLabel3.setIcon(senha);
+            ImageIcon login = new ImageIcon(getClass().getResource("/img/icons/logar.png"));           
+            jbtn_Logar.setIcon(login);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -158,8 +195,8 @@ public class Tela_login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 91, 80));
-        jPanel1.add(CampoA, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 170, 28));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 91, 80));
+        jPanel1.add(CampoA, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 180, 28));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,8 +217,8 @@ public class Tela_login extends javax.swing.JFrame {
                 jbtn_LogarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbtn_Logar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 170, 41));
-        jPanel1.add(CampoPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 170, 31));
+        jPanel1.add(jbtn_Logar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 180, 41));
+        jPanel1.add(CampoPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 180, 31));
 
         jButton2.setBackground(new java.awt.Color(102, 153, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -192,7 +229,7 @@ public class Tela_login extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 160, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 170, 40));
 
         jButton3.setBackground(new java.awt.Color(102, 153, 255));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -205,7 +242,7 @@ public class Tela_login extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 210, 350));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 220, 350));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -254,6 +291,7 @@ public class Tela_login extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
@@ -262,7 +300,7 @@ public class Tela_login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNovidades)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -292,7 +330,7 @@ public class Tela_login extends javax.swing.JFrame {
         txtVersao.setText("v0.0");
         jPanel3.add(txtVersao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 30));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 620, 30));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 630, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
