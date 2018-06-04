@@ -6,7 +6,6 @@
 package Telas;
 
 import Banco_de_dados.Conexao;
-import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.BufferedReader;

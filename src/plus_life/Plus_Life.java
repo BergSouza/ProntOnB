@@ -76,6 +76,8 @@ public class Plus_Life {
                 writer.write("Arial");
                 writer.newLine();
                 writer.write("10");
+                writer.newLine();
+                writer.write("Icones 1");
                 writer.flush();
                 writer.close();
             }
