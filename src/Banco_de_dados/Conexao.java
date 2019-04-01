@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 public class Conexao {
 
     // Conectar ao banco
+    //Teste Claudio
     public static Connection abrir() throws Exception {
  
         Class.forName("com.mysql.jdbc.Driver");
