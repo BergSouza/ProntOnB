@@ -17,6 +17,7 @@ public class Conexao {
 
     // Conectar ao banco
     //Teste Claudio
+    //Teste Claudio 2
     public static Connection abrir() throws Exception {
  
         Class.forName("com.mysql.jdbc.Driver");
